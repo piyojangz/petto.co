@@ -1,0 +1,9 @@
+.auction-timer{
+  padding: 5px;
+}
+.auction-timer p {
+  color: #222222;
+}
+.auction-timer span {
+  width: 45px;
+}
