@@ -23,7 +23,7 @@ class FooterTwo extends Component {
 
         return (
                 <footer className="footer-light pet-layout-footer">
-                    <div className="white-layout">
+                    {/* <div className="white-layout">
                         <div className="container">
                             <section className="small-section">
                                 <div className="row footer-theme2">
@@ -73,17 +73,16 @@ class FooterTwo extends Component {
                                 </div>
                             </section>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="sub-footer black-subfooter">
                         <div className="container">
                             <div className="row">
                                 <div className="col-xl-6 col-md-6 col-sm-12">
                                     <div className="footer-end">
-                                        <p><i className="fa fa-copyright" aria-hidden="true"></i> 2018-19 themeforest
-                                            powered by pixelstrap</p>
+                                        <p><i className="fa fa-copyright" aria-hidden="true"></i> Copyright © 2010-2020 Petto.co. All rights reserved.</p>
                                     </div>
                                 </div>
-                                <div className="col-xl-6 col-md-6 col-sm-12">
+                                {/* <div className="col-xl-6 col-md-6 col-sm-12">
                                     <div className="payment-card-bottom">
                                         <ul>
                                             <li>
@@ -103,7 +102,7 @@ class FooterTwo extends Component {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

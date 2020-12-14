@@ -112,11 +112,13 @@ class AuctionItem extends Component {
                                 <del><span className="money">{'฿'}{product.price}</span></del>
                             </h4> */}
                             <div className="row">
-                                <div className="col-6 text-left">
+                                <div className="col-3 text-left">
                                     <span>12:20</span>
                                 </div>
-                                <div className="col-4 text-right">
-                                    <h4 style={{ color: '#0072BE' }}>{'฿'}{product.price - (product.price * product.discount / 100)}</h4>
+                                <div className="col-8 text-right">
+                                    <div className="inline"> 
+                                        <h5 style={{ color: '#0072BE',fontSize:14 }}><img className="img-noneblock" style={{ width: 15 }} src={`${process.env.PUBLIC_URL}/assets/images/icon/auction_icon.png`} />{' ฿'}{product.price - (product.price * product.discount / 100)}</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,35 @@
 
-
+export const Cate6 = {
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    autoplay: false,
+    autoplaySpeed: 3000,
+    responsive: [
+        {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4
+            }
+        },
+        {
+            breakpoint: 991,
+            settings: {
+                slidesToShow:4,
+                slidesToScroll: 4
+            }
+        },
+        {
+            breakpoint: 420,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4
+            }
+        }
+    ]
+}
 export const Product4 = {
     infinite: true,
     speed: 300,

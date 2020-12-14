@@ -9,7 +9,7 @@ import './index.scss';
 // Import custom components
 import store from './store';
 import translations from './constants/translations'
-import { getAllProducts } from './actions'
+import { getAllProducts, getAllCategory } from './actions'
 import Landing from './components/landing'
 
 
@@ -93,7 +93,7 @@ class Root extends React.Component {
 
     render() {
         store.dispatch(getAllProducts());
-
+        store.dispatch(getAllCategory()); 
         return (
             <Provider store={store}>
                 <IntlProvider translations={translations} locale='en'>
