@@ -96,8 +96,7 @@ class HeaderTwo extends Component {
                                         <div className="navbar">
                                             <a href="javascript:void(0)" onClick={this.openNav}>
                                                 <div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>
-                                            </a>
-                                            {/*SideBar Navigation Component*/}
+                                            </a> 
                                             <SideBar/>
                                         </div>
                                     </div>

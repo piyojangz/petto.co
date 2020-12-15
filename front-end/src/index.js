@@ -9,7 +9,7 @@ import './index.scss';
 // Import custom components
 import store from './store';
 import translations from './constants/translations'
-import { getAllProducts } from './actions'
+import { getAllProducts, getAllCategory } from './actions'
 import Landing from './components/landing'
 
 
@@ -56,6 +56,7 @@ import aboutUs from './components/pages/about-us'
 import PageNotFound from './components/pages/404'
 import lookbook from './components/pages/lookbook'
 import Login from './components/pages/login'
+import Termandcond from './components/pages/termandcond'
 import Register from './components/pages/register'
 import Search from './components/pages/search'
 import Collection from './components/pages/collection'
@@ -93,7 +94,7 @@ class Root extends React.Component {
 
     render() {
         store.dispatch(getAllProducts());
-
+        store.dispatch(getAllCategory()); 
         return (
             <Provider store={store}>
                 <IntlProvider translations={translations} locale='en'>
@@ -155,6 +156,8 @@ class Root extends React.Component {
                                     <Route path={`${process.env.PUBLIC_URL}/pages/contact`} component={Contact} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/faq`} component={Faq} />
+
+                                    <Route path={`${process.env.PUBLIC_URL}/pages/termandcond`} component={Termandcond} />
 
                                     {/*Features*/}
                                     {/*Theme Elements*/}

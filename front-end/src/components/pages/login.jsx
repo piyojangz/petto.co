@@ -1,52 +1,48 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import Breadcrumb from "../common/breadcrumb";
 
 class Login extends Component {
 
-    constructor (props) {
-        super (props)
+    constructor(props) {
+        super(props)
 
     }
 
-    render (){
+    render() {
 
 
         return (
             <div>
-                <Breadcrumb title={'Login'}/>
-                
-                
+                <Breadcrumb title={'เข้าสู่ระบบ'} />
                 {/*Login section*/}
                 <section className="login-page section-b-space">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-6">
-                                <h3>Login</h3>
+                                <h3>เข้าสู่ระบบ</h3>
                                 <div className="theme-card">
                                     <form className="theme-form">
                                         <div className="form-group">
-                                            <label htmlFor="email">Email</label>
-                                            <input type="text" className="form-control" id="email" placeholder="Email"
-                                                   required="" />
+                                            <label htmlFor="email">อีเมลล์ที่ใช้ลงทะเบียน</label>
+                                            <input type="text" className="form-control" id="email" placeholder="ระบุอีเมลล์"
+                                                required="" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="review">Password</label>
+                                            <label htmlFor="review">รหัสผ่าน</label>
                                             <input type="password" className="form-control" id="review"
-                                                   placeholder="Enter your password" required="" />
+                                                placeholder="ระบุรหัสผ่าน" required="" />
                                         </div>
-                                        <a href="#" className="btn btn-solid">Login</a>
+                                        <a href={`${process.env.PUBLIC_URL}/pages/login`} className="btn btn-petto">เข้าสู่ระบบ</a>
                                     </form>
                                 </div>
                             </div>
                             <div className="col-lg-6 right-login">
-                                <h3>New Customer</h3>
+                                <h3>ลูกค้าใหม่</h3>
                                 <div className="theme-card authentication-right">
-                                    <h6 className="title-font">Create A Account</h6>
-                                    <p>Sign up for a free account at our store. Registration is quick and easy. It
-                                        allows you to be able to order from our shop. To start shopping click
-                                        register.</p>
-                                    <a href="#" className="btn btn-solid">Create an Account</a>
+                                    <h6 className="title-font">สมัครสมาชิก</h6>
+                                    <p>สำหรับสมาชิกใหม่ เมื่อสมัครแล้วสามารถทำการซื้อสินค้ากับ Petto.co ได้ทันที<br />ส่วนสำหรับผู้ขายต้องรอการยืนยันจากเจ้าหน้าที่ก่อน</p>
+                                    <a href={`${process.env.PUBLIC_URL}/pages/register`} className="btn btn-petto-secondcolor">สมัครสมาชิก</a>
                                 </div>
                             </div>
                         </div>

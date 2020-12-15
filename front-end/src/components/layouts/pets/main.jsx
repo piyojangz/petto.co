@@ -5,17 +5,20 @@ import Slider from 'react-slick';
 
 // Import custom components
 import Collection from "./collection"
+import CategoryCollection from "./categorycollection"
 import AuctionCollection from "./auctioncollection"
+import ShopCollection from "./shopcollection"
 import CateBlock from "../common/cate-block"
 import BlogSection from "../common/blogsection";
 import HeaderThree from "../../common/headers/header-three"
+import HeaderFive from "../../common/headers/header-five"
 import FooterTwo from "../../common/footers/footer-two"
 import ThemeSettings from "../../common/theme-settings"
 
 
 class Pets extends Component {
 
-    componentDidMount() { 
+    componentDidMount() {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color15.css`);
     }
 
@@ -25,7 +28,7 @@ class Pets extends Component {
                 <Helmet>
                     <title>Petto.co | หน้าหลัก</title>
                 </Helmet>
-                <HeaderThree logoName={'logo/petto_logo.png'} />
+                <HeaderFive logoName={'logo/petto_logo.png'} />
                 <section className="p-0 small-slider">
                     <Slider className="slide-1 home-slider">
                         <div>
@@ -61,9 +64,9 @@ class Pets extends Component {
                 <CateBlock />
                 {/*Logo Block section end*/}
                 {/*Product Slider*/}
-                <Collection type={'pets'}   title="สินค้าแนะนำ" />
+                <Collection type={'pets'} title="สินค้าแนะนำ" />
                 <AuctionCollection type={'pets'} title="รายการประมูล" />
-                <Collection type={'pets'} title="ร้านค้าแนะนำ" /> 
+                <ShopCollection type={'pets'} title="ร้านค้าแนะนำ" />
                 {/*Product Slider End*/}
 
                 {/*Banner Section*/}
@@ -79,7 +82,7 @@ class Pets extends Component {
                                         </div>
                                         <div className="contain-banner banner-3">
                                             <div>
-                                                <h2>Clothes</h2>
+                                                <h2>แบนเนอร์1</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +97,7 @@ class Pets extends Component {
                                         </div>
                                         <div className="contain-banner banner-3">
                                             <div>
-                                                <h2>Groom</h2>
+                                                <h2>แบนเนอร์2</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -109,14 +112,14 @@ class Pets extends Component {
                                         </div>
                                         <div className="contain-banner banner-3">
                                             <div>
-                                                <h2>food</h2>
+                                                <h2>แบนเนอร์3</h2>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </div>
-                        <div className="row partition3 banner-top-cls">
+                        {/* <div className="row partition3 banner-top-cls">
                             <div className="col-md-4">
                                 <a href="#">
                                     <div className="collection-banner p-right">
@@ -162,17 +165,21 @@ class Pets extends Component {
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
                 {/*Banner Section End*/}
 
+                {/*Category Section*/}
+                <CategoryCollection   title="หมวดหมู่"  />
+                {/*Category Section End*/}
+
                 {/*Product Section*/}
-                <Collection type={'pets'} title="TOP COLLECTION" subtitle="Special Offer" />
+                {/* <Collection type={'pets'} title="TOP COLLECTION" subtitle="Special Offer" /> */}
                 {/*Product Section End*/}
 
                 {/*Parallax banner*/}
-                <section className="p-0 pet-parallax">
+                {/* <section className="p-0 pet-parallax">
                     <div className="full-banner parallax parallax-banner19  text-center p-center">
                         <div className="container">
                             <div className="row">
@@ -194,10 +201,10 @@ class Pets extends Component {
                             <img src={`${process.env.PUBLIC_URL}/assets/images/dog.png`} alt="" className="img-fluid blur-up lazyload" />
                         </div>
                     </div>
-                </section>
+                </section> */}
                 {/*Parallax banner end*/}
                 {/* Blog Section Section*/}
-                <div className="container ">
+                {/* <div className="container ">
                     <div className="row">
                         <div className="col">
                             <div className="title1 title5">
@@ -210,10 +217,10 @@ class Pets extends Component {
                 </div>
                 <section className="section-b-space p-t-0 ratio2_3">
                     <BlogSection />
-                </section>
+                </section> */}
                 {/* Blog Section End*/}
                 {/* <ThemeSettings/> */}
-                <FooterTwo logoName={'logo/14.png'} />
+                <FooterTwo logoName={'logo/petto_logo.png'} />
             </div>
         )
     }

@@ -8,20 +8,37 @@ export const fetchProductsBegin = () => ({
     type: types.FETCH_PRODUCTS_BEGIN
 });
 
-
+export const fetchCategoryBegin = () => ({
+    type: types.FETCH_CATEGORY_BEGIN
+});
 
 export const receiveProducts = products => ({
     type: types.RECEIVE_PRODUCTS,
     products
 })
 
+export const receiveCategory = category => ({
+    type: types.RECEIVE_CATEGORY,
+    category
+})
+
+
 export const getAllProducts = () => dispatch => {
     dispatch(fetchProductsBegin());
-    shop.getProducts(products => {
+    shop.getProducts(products => { 
         dispatch(receiveProducts(products));
         return products;
     })
 }
+
+export const getAllCategory = () => dispatch => {
+    dispatch(fetchCategoryBegin());
+    shop.getCategory(category => { 
+        dispatch(receiveCategory(category));
+        return category;
+    })
+}
+
 export const fetchSingleProduct = productId => ({
     type: types.FETCH_SINGLE_PRODUCT,
     productId

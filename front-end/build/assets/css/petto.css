@@ -7,3 +7,9 @@
 .auction-timer span {
   width: 45px;
 }
+.img-noneblock{
+  display: inline !important;
+}
+footer.pet-layout-footer .sub-footer.black-subfooter {
+  background-color: #0072BE !important;
+}

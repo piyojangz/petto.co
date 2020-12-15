@@ -14,7 +14,7 @@ class Register extends Component {
 
         return (
             <div>
-                <Breadcrumb title={'create account'}/>
+                <Breadcrumb title={'สมัครสมาชิก'}/>
                 
                 
                 {/*Regsiter section*/}
@@ -22,33 +22,39 @@ class Register extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
-                                <h3>create account</h3>
+                                <h3>สมัครสมาชิก</h3>
                                 <div className="theme-card">
                                     <form className="theme-form">
                                         <div className="form-row">
                                             <div className="col-md-6">
-                                                <label htmlFor="email">First Name</label>
+                                                <label htmlFor="email">ชื่อ</label>
                                                 <input type="text" className="form-control" id="fname"
-                                                       placeholder="First Name" required="" />
+                                                       placeholder="ชื่อจริง" required="" />
                                             </div>
                                             <div className="col-md-6">
-                                                <label htmlFor="review">Last Name</label>
+                                                <label htmlFor="review">นามสกุล</label>
                                                 <input type="password" className="form-control" id="lname"
-                                                       placeholder="Last Name" required="" />
+                                                       placeholder="นามสกุล" required="" />
                                             </div>
                                         </div>
                                         <div className="form-row">
                                             <div className="col-md-6">
-                                                <label htmlFor="email">email</label>
+                                                <label htmlFor="email">อีเมลล์</label>
                                                 <input type="text" className="form-control" id="email"
-                                                       placeholder="Email" required="" />
+                                                       placeholder="ระบุอีเมลล์" required="" />
                                             </div>
                                             <div className="col-md-6">
-                                                <label htmlFor="review">Password</label>
+                                                <label htmlFor="review">รหัสผ่าน</label>
                                                 <input type="password" className="form-control" id="review"
-                                                       placeholder="Enter your password" required="" />
+                                                       placeholder="ระบุรหัสผ่าน" required="" />
                                             </div>
-                                            <a href="#" className="btn btn-solid">create Account</a>
+                                            <div className="col-md-6">
+                                                <label htmlFor="review">ยืนยันรหัสผ่าน</label>
+                                                <input type="password" className="form-control" id="review"
+                                                       placeholder="ระบุรหัสผ่าน" required="" />
+                                            </div>
+                                            <a href={`${process.env.PUBLIC_URL}/pages/termandcond`} className="text-center tandc">นโยบายและข้อกำหนด</a>
+                                            <a href="#" className="btn-petto-secondcolor  text-center">ยืนยันการสมัครสมาชิก</a>
                                         </div>
                                     </form>
                                 </div>

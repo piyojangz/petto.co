@@ -7,3 +7,44 @@
 .auction-timer span {
   width: 45px;
 }
+.img-noneblock{
+  display: inline !important;
+}
+footer.pet-layout-footer .sub-footer.black-subfooter {
+  background-color: #0072BE !important;
+}
+.cate-box{
+  width: 100%;
+    display: inline-block; 
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+.topnav{
+  border-bottom: #ddd 1px solid;
+}
+
+.btn-petto {
+  width: 100%;
+  padding: 13px 29px;
+  color: #ffffff !important;
+  letter-spacing: 0.05em; 
+  background: #0072BE;
+  background-repeat: no-repeat;
+  background-position: 0;
+}
+
+.btn-petto-secondcolor {
+  width: 100%;
+  padding: 13px 29px;
+  color: #ffffff !important;
+  letter-spacing: 0.05em; 
+  background: #D9B504;
+  background-repeat: no-repeat;
+  background-position: 0;
+}
+.tandc{
+  margin:  0 auto;
+  padding: 25px;
+  text-decoration: underline;
+}
