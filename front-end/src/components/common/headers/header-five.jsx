@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IntlActions } from 'react-redux-multilingual'
 import Pace from 'react-pace-progress'
 
@@ -9,81 +9,81 @@ import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
 import CartContainer from "./../../../containers/CartContainer";
 import TopBar from "./common/topbar";
-import {changeCurrency} from '../../../actions'
-import {connect} from "react-redux";
+import { changeCurrency } from '../../../actions'
+import { connect } from "react-redux";
 import TopBarDark from "./common/topbar-dark";
 import LogoImage from "./common/logo";
 
 class HeaderFive extends Component {
 
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
 		this.state = {
-			isLoading:false
+			isLoading: false
 		}
-    }
-    /*=====================
-         Pre loader
-         ==========================*/
-    componentDidMount() {
-        setTimeout(function() {
-            document.querySelector(".loader-wrapper").style = "display: none";
-        }, 2000);
-    }
-
-    componentWillMount(){
-        window.addEventListener('scroll', this.handleScroll);
 	}
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
-    handleScroll = () => {
-        let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-        if (number >= 300) {
-            if (window.innerWidth < 576) {
-                document.getElementById("sticky").classList.remove('fixed');
-            }else
-                document.getElementById("sticky").classList.add('fixed');
-        } else {
-            document.getElementById("sticky").classList.remove('fixed');
-        }
-    }
-
-    changeLanguage(lang) {
-        store.dispatch(IntlActions.setLocale(lang))
+	/*=====================
+		 Pre loader
+		 ==========================*/
+	componentDidMount() {
+		setTimeout(function () {
+			document.querySelector(".loader-wrapper").style = "display: none";
+		}, 2000);
 	}
 
-    openNav() {
-        var openmyslide = document.getElementById("mySidenav");
-        if(openmyslide){
-            openmyslide.classList.add('open-side')
+	componentWillMount() {
+		window.addEventListener('scroll', this.handleScroll);
+	}
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
+	}
+
+	handleScroll = () => {
+		let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+		if (number >= 300) {
+			if (window.innerWidth < 576) {
+				document.getElementById("sticky").classList.remove('fixed');
+			} else
+				document.getElementById("sticky").classList.add('fixed');
+		} else {
+			document.getElementById("sticky").classList.remove('fixed');
 		}
-    }
-    openSearch() {
-        document.getElementById("search-overlay").style.display = "block";
-    }
+	}
 
-    closeSearch() {
-        document.getElementById("search-overlay").style.display = "none";
-    }
+	changeLanguage(lang) {
+		store.dispatch(IntlActions.setLocale(lang))
+	}
 
-	load = ()=>{
-		this.setState({isLoading: true});
-		fetch().then(()=>{
+	openNav() {
+		var openmyslide = document.getElementById("mySidenav");
+		if (openmyslide) {
+			openmyslide.classList.add('open-side')
+		}
+	}
+	openSearch() {
+		document.getElementById("search-overlay").style.display = "block";
+	}
+
+	closeSearch() {
+		document.getElementById("search-overlay").style.display = "none";
+	}
+
+	load = () => {
+		this.setState({ isLoading: true });
+		fetch().then(() => {
 			// deal with data fetched
-			this.setState({isLoading: false})
+			this.setState({ isLoading: false })
 		})
 	};
-	
+
 	render() {
 
 		return (
 			<div>
 				<header id="sticky" className="sticky">
-					{this.state.isLoading ? <Pace color="#27ae60"/> : null}
+					{this.state.isLoading ? <Pace color="#27ae60" /> : null}
 					<div className="mobile-fix-option"></div>
 					{/*Top Header Component*/}
 					<TopBarDark />
@@ -94,7 +94,7 @@ class HeaderFive extends Component {
 								<div className="main-menu">
 									<div className="menu-left category-nav-right">
 										<div className="brand-logo">
-                                            <LogoImage logo={this.props.logoName} />
+											<LogoImage logo={this.props.logoName} />
 										</div>
 										<div className="navbar">
 											{/* <a href="javascript:void(0)" onClick={this.openNav}>
@@ -119,22 +119,27 @@ class HeaderFive extends Component {
 														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/setting.png`} className="img-fluid" alt="" />
 															<i className="fa fa-cog"></i></div>
 														<div className="show-div setting">
-															<h6>language</h6>
+															<h6>ผู้ใช้</h6>
+															<ul>
+																<li><Link to={`${process.env.PUBLIC_URL}/pages/login`} >เข้าสู่ระบบ</Link></li>
+																<li><a href={`${process.env.PUBLIC_URL}/pages/register`} >สมัครสมาชิก</a> </li>
+															</ul>
+															<h6>ภาษา</h6>
 															<ul>
 																<li><a href={null} onClick={() => this.changeLanguage('en')}>English</a> </li>
-																<li><a href={null} onClick={() => this.changeLanguage('fn')}>French</a> </li>
+																<li><a href={null} onClick={() => this.changeLanguage('th')}>ไทย</a> </li>
 															</ul>
-															<h6>currency</h6>
+															{/* <h6>currency</h6>
 															<ul className="list-inline">
 																<li><a href={null} onClick={() => this.props.changeCurrency('€')}>euro</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('₹')}>rupees</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('£')}>pound</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('$')}>doller</a> </li>
-															</ul>
+															</ul> */}
 														</div>
 													</li>
 													{/*Header Cart Component */}
-													<CartContainer/>
+													<CartContainer />
 												</ul>
 											</div>
 										</div>
@@ -145,30 +150,30 @@ class HeaderFive extends Component {
 					</div>
 				</header>
 
-                <div id="search-overlay" className="search-overlay">
-                    <div>
-                        <span className="closebtn" onClick={this.closeSearch} title="Close Overlay">×</span>
-                        <div className="overlay-content">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-xl-12">
-                                        <form>
-                                            <div className="form-group">
-                                                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Search a Product" />
-                                            </div>
-                                            <button type="submit" className="btn btn-primary"><i className="fa fa-search"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div id="search-overlay" className="search-overlay">
+					<div>
+						<span className="closebtn" onClick={this.closeSearch} title="Close Overlay">×</span>
+						<div className="overlay-content">
+							<div className="container">
+								<div className="row">
+									<div className="col-xl-12">
+										<form>
+											<div className="form-group">
+												<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Search a Product" />
+											</div>
+											<button type="submit" className="btn btn-primary"><i className="fa fa-search"></i></button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			)
+		)
 	}
 }
 
 export default connect(null,
-    { changeCurrency }
+	{ changeCurrency }
 )(HeaderFive);

@@ -56,6 +56,7 @@ import aboutUs from './components/pages/about-us'
 import PageNotFound from './components/pages/404'
 import lookbook from './components/pages/lookbook'
 import Login from './components/pages/login'
+import Termandcond from './components/pages/termandcond'
 import Register from './components/pages/register'
 import Search from './components/pages/search'
 import Collection from './components/pages/collection'
@@ -155,6 +156,8 @@ class Root extends React.Component {
                                     <Route path={`${process.env.PUBLIC_URL}/pages/contact`} component={Contact} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/faq`} component={Faq} />
+
+                                    <Route path={`${process.env.PUBLIC_URL}/pages/termandcond`} component={Termandcond} />
 
                                     {/*Features*/}
                                     {/*Theme Elements*/}

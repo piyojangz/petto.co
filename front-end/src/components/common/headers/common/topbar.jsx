@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withTranslate } from 'react-redux-multilingual'
 
 class TopBar extends Component {
 
     render() {
-        const {translate} = this.props;
+        const translate = function (a) {
+            return a;
+        };
         return (
             <div className="top-header">
                 <div className="container">
@@ -43,4 +45,4 @@ class TopBar extends Component {
 }
 
 
-export default withTranslate(TopBar);
+export default TopBar;

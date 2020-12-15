@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withTranslate } from 'react-redux-multilingual'
+// import { withTranslate } from 'react-redux-multilingual'
 
 class NavBar extends Component {
     constructor(props) {
@@ -64,7 +64,9 @@ class NavBar extends Component {
     }
 
     render() {
-        const { translate } = this.props;
+        const translate = function(a){
+            return a;
+        };
         return (
             <div>
                 <div className="main-navbar">
@@ -293,4 +295,4 @@ class NavBar extends Component {
 }
 
 
-export default withTranslate(NavBar);
+export default NavBar;

@@ -9,7 +9,7 @@ import HeaderThree from './common/headers/header-three';
 import FooterOne from "./common/footers/footer-one";
 import FooterTwo from "./common/footers/footer-two";
 import FooterThree from "./common/footers/footer-three";
-
+import HeaderFive from "./common/headers/header-five"
 // ThemeSettings
 import ThemeSettings from "./common/theme-settings"
 
@@ -20,9 +20,9 @@ class App extends Component {
     render() {
         return (
             <div>
-                <HeaderOne logoName={'logo.png'}/>
+                <HeaderFive logoName={'logo/petto_logo.png'} />
                 {this.props.children}
-                <FooterOne logoName={'logo.png'}/>
+                <FooterTwo logoName={'logo/petto_logo.png'}/>
 
                 <ThemeSettings />
 
