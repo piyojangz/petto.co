@@ -11,7 +11,7 @@ class DetailsWithPrice extends Component {
         this.state = {
             open:false,
             quantity:1,
-            stock: 'InStock',
+            stock: 'มีสินค้า',
             nav3: null
         }
     }
@@ -32,7 +32,7 @@ class DetailsWithPrice extends Component {
 
     minusQty = () => {
         if(this.state.quantity > 1) {
-            this.setState({stock: 'InStock'})
+            this.setState({stock: 'มีสินค้า'})
             this.setState({quantity: this.state.quantity - 1})
         }
     }
@@ -41,7 +41,7 @@ class DetailsWithPrice extends Component {
         if(this.props.item.stock >= this.state.quantity) {
             this.setState({quantity: this.state.quantity+1})
         }else{
-            this.setState({stock: 'Out of Stock !'})
+            this.setState({stock: 'สินค้าหมด !'})
         }
     }
     changeQty = (e) => {
@@ -65,18 +65,19 @@ class DetailsWithPrice extends Component {
                     <h2> {item.name} </h2>
                     <h4>
                         <del>{symbol}{item.price}</del>
-                        <span>{item.discount}% off</span></h4>
+                        {/* <span>ลดไป {item.discount}%</span> */}
+                        </h4>
                     <h3>{symbol}{item.price-(item.price*item.discount/100)} </h3>
-                    {item.variants?
+                    {/* {item.variants?
                     <ul >
                         <Slider {...colorsnav} asNavFor={this.props.navOne} ref={slider => (this.slider1 = slider)} className="color-variant">
                             {item.variants.map((vari, i) => {
                                 return <li className={vari.color} key={i} title={vari.color}></li>
                             })}
                         </Slider>
-                    </ul>:''}
+                    </ul>:''} */}
                     <div className="product-description border-product">
-                        {item.size?
+                        {/* {item.size?
                             <div>
                                 <h6 className="product-title size-text">select size
                                     <span><a href="#" data-toggle="modal"
@@ -109,9 +110,9 @@ class DetailsWithPrice extends Component {
                                 })}
                             </ul>
                         </div>
-                            </div>:''}
+                            </div>:''} */}
                         <span className="instock-cls">{this.state.stock}</span>
-                        <h6 className="product-title">quantity</h6>
+                        <h6 className="product-title">จำนวน</h6>
                         <div className="qty-box">
                             <div className="input-group">
                                   <span className="input-group-prepend">
@@ -129,14 +130,14 @@ class DetailsWithPrice extends Component {
                         </div>
                     </div>
                     <div className="product-buttons" >
-                        <a className="btn btn-solid" onClick={() => addToCartClicked(item, this.state.quantity)}>add to cart</a>
-                        <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >buy now</Link>
+                        <a className="btn btn-solid" onClick={() => addToCartClicked(item, this.state.quantity)}>เพิ่มสินค้าลงตะกร้า</a>
+                        <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >ซื้อเลย</Link>
                     </div>
                     <div className="border-product">
-                        <h6 className="product-title">product details</h6>
+                        <h6 className="product-title">รายละเอียดสินค้า</h6>
                         <p>{item.shortDetails}</p>
                     </div>
-                    <div className="border-product">
+                    {/* <div className="border-product">
                         <h6 className="product-title">share it</h6>
                         <div className="product-icon">
                             <ul className="product-social">
@@ -150,8 +151,8 @@ class DetailsWithPrice extends Component {
                                     className="title-font">Add To WishList</span>
                                 </button>
                         </div>
-                    </div>
-                    <div className="border-product">
+                    </div> */}
+                    {/* <div className="border-product">
                         <h6 className="product-title">Time Reminder</h6>
                         <div className="timer">
                             <p id="demo">
@@ -172,7 +173,7 @@ class DetailsWithPrice extends Component {
                                 </span>
                             </p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <Modal open={this.state.open} onClose={this.onCloseModal} center>
                     <div className="modal-dialog modal-dialog-centered" role="document">

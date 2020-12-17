@@ -10,7 +10,7 @@ class ProductItem extends Component {
 
         this.state = {
             open: false,
-            stock: 'InStock',
+            stock: 'มีสินค้า',
             quantity: 1,
             image: ''
         }
@@ -29,7 +29,7 @@ class ProductItem extends Component {
 
     minusQty = () => {
         if(this.state.quantity > 1) {
-            this.setState({stock: 'InStock'})
+            this.setState({stock: 'มีสินค้า'})
             this.setState({quantity: this.state.quantity - 1})
         }
     }
@@ -38,7 +38,7 @@ class ProductItem extends Component {
         if(this.props.product.stock >= this.state.quantity) {
             this.setState({quantity: this.state.quantity+1})
         }else{
-            this.setState({stock: 'Out of Stock !'})
+            this.setState({stock: 'สินค้าหมด !'})
         }
     }
     changeQty = (e) => {
@@ -48,18 +48,18 @@ class ProductItem extends Component {
     render() {
         const {product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked} = this.props;
 
-        let RatingStars = []
-        for(var i = 0; i < product.rating; i++) {
-            RatingStars.push(<i className="fa fa-star" key={i}></i>)
-        }
+        // let RatingStars = []
+        // for(var i = 0; i < product.rating; i++) {
+        //     RatingStars.push(<i className="fa fa-star" key={i}></i>)
+        // }
         return (
                 <div className="product-box">
                     <div className="img-wrapper">
-                        <div className="lable-block">
-                            {(product.new == true)? <span className="lable3">new</span> : ''}
-                            {(product.sale == true)? <span className="lable4">on sale</span> : ''}
+                        {/* <div className="lable-block">
+                            {(product.new == true)? <span className="lable3">มาใหม่</span> : ''}
+                            {(product.sale == true)? <span className="lable4">ราคาพิเศษ</span> : ''}
 
-                        </div>
+                        </div> */}
                         <div className="front">
                             <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} ><img
                                 src={`${
@@ -70,7 +70,7 @@ class ProductItem extends Component {
                                 className="img-fluid"
                                 alt="" /></Link>
                         </div>
-                        <div className="cart-info cart-wrap">
+                        {/* <div className="cart-info cart-wrap">
                             <button title="Add to cart" onClick={onAddToCartClicked}>
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                             </button>
@@ -83,7 +83,7 @@ class ProductItem extends Component {
                                onClick={this.onOpenModal}><i className="fa fa-search" aria-hidden="true"></i></a>
                             <Link to={`${process.env.PUBLIC_URL}/compare`} title="Compare" onClick={onAddToCompareClicked}>
                                 <i className="fa fa-refresh" aria-hidden="true"></i></Link>
-                        </div>
+                        </div> */}
                         {product.variants?
                         <ul className="product-thumb-list">
                             { product.variants.map((vari, i) =>
@@ -95,24 +95,17 @@ class ProductItem extends Component {
                         </ul>:''}
 
                     </div>
-                    <div className="product-detail">
-                        <div>
-                            <div className="rating">
+                    <div className="product-detail text-center">
+                        <div> 
+                            {/* <div className="rating">
                                 {RatingStars}
-                            </div>
+                            </div> */}
                             <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}>
                                 <h6>{product.name}</h6>
                             </Link>
                             <h4>{symbol}{product.price-(product.price*product.discount/100)}
                                 <del><span className="money">{symbol}{product.price}</span></del>
-                            </h4>
-                            {product.variants?
-                            <ul className="color-variant">
-                                {product.variants.map((vari, i) => {
-                                    return (
-                                        <li className={vari.color} key={i} title={vari.color} onClick={() => this.onClickHandle(vari.images)}></li>)
-                                })}
-                            </ul>:''}
+                            </h4> 
                         </div>
                     </div>
                     <Modal open={this.state.open} onClose={this.onCloseModal} center>

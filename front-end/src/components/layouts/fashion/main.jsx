@@ -17,7 +17,7 @@ import {
 } from "../../../services/script"
 
 
-class Fashion extends Component {
+class Shop extends Component {
 
     componentDidMount() {
         document.getElementById("color").setAttribute("href", `#` );
@@ -193,4 +193,4 @@ class Fashion extends Component {
 	}
 }
 
-export default Fashion;
+export default Shop;

@@ -39,8 +39,7 @@ class CategoryItem extends Component {
 
    
     render() {
-        const {cate} = this.props; 
-        console.log('catecate',cate)
+        const {cate} = this.props;  
         return (
             <div>
                 <div className="cate-box">

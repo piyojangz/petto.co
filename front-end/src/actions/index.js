@@ -4,6 +4,14 @@ import store from "../store";
 import { toast  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+export const fetchLodingBegin = () => ({
+    type: types.FETCH_SHOPLIST_BEGIN
+});
+
+export const fetchSingleShoplist = () => ({
+    type: types.FETCH_SINGLE_SHOPLIST
+});
+
 export const fetchProductsBegin = () => ({
     type: types.FETCH_PRODUCTS_BEGIN
 });
@@ -22,6 +30,12 @@ export const receiveCategory = category => ({
     category
 })
 
+export const receiveShoplist = shoplist => ({
+    type: types.RECEIVE_SHOPLIST,
+    shoplist
+})
+
+
 
 export const getAllProducts = () => dispatch => {
     dispatch(fetchProductsBegin());
@@ -39,6 +53,15 @@ export const getAllCategory = () => dispatch => {
     })
 }
 
+export const getAllShoplist = () => dispatch => {
+    dispatch(fetchCategoryBegin());
+    shop.getShoplist(shoplist => {  
+        dispatch(receiveShoplist(shoplist));
+        return shoplist;
+    })
+}
+
+
 export const fetchSingleProduct = productId => ({
     type: types.FETCH_SINGLE_PRODUCT,
     productId
@@ -49,12 +72,12 @@ export const fetchSingleProduct = productId => ({
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product,qty) => (dispatch) => {
-    toast.success("Item Added to Cart");
+    toast.success("เพิ่มลงตะกร้าแล้ว");
         dispatch(addToCartUnsafe(product, qty))
 
 }
 export const addToCartAndRemoveWishlist = (product,qty) => (dispatch) => {
-    toast.success("Item Added to Cart");
+    toast.success("เพิ่มลงตะกร้าแล้ว");
     dispatch(addToCartUnsafe(product, qty));
     dispatch(removeFromWishlist(product));
 }
@@ -64,14 +87,14 @@ export const addToCartUnsafe = (product, qty) => ({
     qty
 });
 export const removeFromCart = product_id => (dispatch) => {
-    toast.error("Item Removed from Cart");
+    toast.error("ลบสินค้าในตะกร้าแล้ว");
     dispatch({
         type: types.REMOVE_FROM_CART,
         product_id
     })
 };
 export const incrementQty = (product,qty) => (dispatch) => {
-    toast.success("Item Added to Cart");
+    toast.success("เพิ่มลงตะกร้าแล้ว");
     dispatch(addToCartUnsafe(product, qty))
 
 }

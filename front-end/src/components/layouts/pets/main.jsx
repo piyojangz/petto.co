@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet'
 import '../../common/index.scss';
 import Slider from 'react-slick';
-
+import { connect } from 'react-redux'
 // Import custom components
 import Collection from "./collection"
 import CategoryCollection from "./categorycollection"
@@ -22,7 +22,7 @@ class Pets extends Component {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color15.css`);
     }
 
-    render() {
+    render() { 
         return (
             <div>
                 <Helmet>
@@ -226,5 +226,7 @@ class Pets extends Component {
     }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+})
 
-export default Pets;
+export default connect(mapStateToProps)(Pets);

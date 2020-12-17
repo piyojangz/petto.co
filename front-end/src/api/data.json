@@ -1,7 +1,7 @@
 [
 {
   "id": 1,
-  "name": "Flare Dress",
+  "name": "ปลากัด1",
   "price": 120,
   "salePrice": 200,
   "discount": 50,
@@ -32,7 +32,7 @@
 },
 {
   "id": 2,
-  "name": "Wrap Dress",
+  "name": "ปลากัด2",
   "price": 330.00,
   "salePrice": 165.00,
   "discount": 50,
@@ -59,7 +59,7 @@
 },
 {
   "id": 3,
-  "name": "Danim Jeans",
+  "name": "ปลากัด3",
   "price": 500.00,
   "salePrice": 250.00,
   "discount": 50,
@@ -90,7 +90,7 @@
 },
 {
   "id": 4,
-  "name": "Waist Dress",
+  "name": "ปลากัด4",
   "price": 180.00,
   "salePrice": 360.00,
   "discount": 50,
@@ -121,7 +121,7 @@
 },
 {
   "id": 5,
-  "name": "Trim Dress",
+  "name": "ปลากัด5",
   "price": 420.00,
   "salePrice": 840.00,
   "discount": 50,
@@ -152,7 +152,7 @@
 },
 {
   "id": 6,
-  "name": "Cut Dress",
+  "name": "ปลากัด6",
   "price": 290,
   "salePrice": 580,
   "discount": 50,
@@ -183,7 +183,7 @@
 },
 {
   "id": 7,
-  "name": "Sleeveless dress",
+  "name": "ปลากัด7",
   "price": 950.00,
   "salePrice": 425.00,
   "discount": 50,
@@ -214,7 +214,7 @@
 },
 {
   "id": 8,
-  "name": "Maxi Dress",
+  "name": "ปลากัด8",
   "price": 140.00,
   "salePrice": 280.00,
   "discount": 50,
@@ -241,7 +241,7 @@
 },
 {
   "id": 9,
-  "name": "Knit Dress",
+  "name": "ปลากัด9",
   "price": 370.00,
   "salePrice": 720.00,
   "discount": 50,
@@ -268,7 +268,7 @@
 },
 {
   "id": 10,
-  "name": "Cut Top Dress",
+  "name": "ปลากัด10",
   "price": 110.00,
   "salePrice": 220.00,
   "discount": 50,
@@ -299,7 +299,7 @@
 },
 {
   "id": 11,
-  "name": "Sleeveless dress",
+  "name": "ปลากัด11",
   "price": 330.00,
   "salePrice": 660.00,
   "discount": 50,
@@ -330,7 +330,7 @@
 },
 {
   "id": 12,
-  "name": "Overlap Dresss",
+  "name": "ปลากัด12",
   "price": 250.00,
   "salePrice": 500.00,
   "discount": 50,
@@ -357,7 +357,7 @@
 },
 {
   "id": 13,
-  "name": "Trench Dress",
+  "name": "ปลากัด13",
   "price": 660.00,
   "salePrice": 1320.00,
   "discount": 50,
@@ -384,7 +384,7 @@
 },
 {
   "id": 14,
-  "name": "Striped Dress",
+  "name": "ปลากัด14",
   "price": 950.00,
   "salePrice": 425.00,
   "discount": 50,
@@ -415,7 +415,7 @@
 },
 {
   "id": 15,
-  "name": "Cut Top Dress",
+  "name": "ปลากัด15",
   "price": 350.00,
   "salePrice": 700.00,
   "discount": 50,
@@ -450,7 +450,7 @@
 },
 {
   "id": 16,
-  "name": "Floral Dress",
+  "name": "ปลากัด16",
   "price": 556.00,
   "salePrice": 278.00,
   "discount": 50,
@@ -481,7 +481,7 @@
 },
 {
   "id": 20,
-  "name": "Floral Top",
+  "name": "ปลากัด17",
   "price": 800.00,
   "salePrice": 400.00,
   "discount": 50,
@@ -512,7 +512,7 @@
 },
 {
   "id": 21,
-  "name": "Fitted Dress",
+  "name": "ปลากัด18",
   "price": 1050.00,
   "salePrice": 2000.00,
   "discount": 50,
@@ -543,7 +543,7 @@
 },
 {
   "id": 22,
-  "name": "Half T-Shirt",
+  "name": "ปลากัด19",
   "price": 250.00,
   "salePrice": 500.00,
   "discount": 50,
@@ -574,7 +574,7 @@
 },
 {
   "id": 23,
-  "name": "Half Sleeve",
+  "name": "ปลากัด20",
   "price": 130.00,
   "salePrice": 260.00,
   "discount": 50,
@@ -605,7 +605,7 @@
 },
 {
   "id": 24,
-  "name": "Fitted T-Shirt",
+  "name": "ปลากัด21",
   "price": 150.00,
   "salePrice": 300.00,
   "discount": 50,
@@ -632,7 +632,7 @@
 },
 {
   "id": 25,
-  "name": "Fitted T-Shirt",
+  "name": "ปลากัด22",
   "price": 210.00,
   "salePrice": 420.00,
   "discount": 50,
@@ -659,493 +659,6 @@
   {
     "color": "black",
     "images": "/assets/images/fashion/product/55.jpg"
-  }]
-},
-{
-  "id": 26,
-  "name": "Casual Shirt",
-  "price": 420.00,
-  "salePrice": 840.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/63.jpg", "/assets/images/fashion/product/46.jpg", "/assets/images/fashion/product/51.jpg", "/assets/images/fashion/product/52.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": true,
-  "category": "men",
-  "colors": ["pink", "green", "yellow"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "pink",
-    "images": "/assets/images/fashion/product/63.jpg"
-  },
-  {
-    "color": "green",
-    "images": "/assets/images/fashion/product/46.jpg"
-  },
-  {
-    "color": "yellow",
-    "images": "/assets/images/fashion/product/51.jpg"
-  }]
-},
-{
-  "id": 27,
-  "name": "Pocket T-Shirt",
-  "price": 360.00,
-  "salePrice": 720.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/73.jpg", "/assets/images/fashion/product/72.jpg", "/assets/images/fashion/product/80.jpg", "/assets/images/fashion/product/42.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": true,
-  "sale": true,
-  "category": "men",
-  "colors": ["orange", "black", "white"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "orange",
-    "images": "/assets/images/fashion/product/73.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/72.jpg"
-  },
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/80.jpg"
-  }]
-},
-{
-  "id": 28,
-  "name": "Fitted T-Shirt",
-  "price": 900.00,
-  "salePrice": 450.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/55.jpg", "/assets/images/fashion/product/57.jpg", "/assets/images/fashion/product/47.jpg", "/assets/images/fashion/product/76.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["black", "green"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 5,
-  "variants": [
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/55.jpg"
-  },
-  {
-    "color": "green",
-    "images": "/assets/images/fashion/product/47.jpg"
-  }]
-},
-{
-  "id": 29,
-  "name": "Fitted T-Shirt",
-  "price": 680.00,
-  "salePrice": 1360.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/51.jpg", "/assets/images/fashion/product/66.jpg", "/assets/images/fashion/product/62.jpg", "/assets/images/fashion/product/77.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["white", "pink", "gray"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/51.jpg"
-  },
-  {
-    "color": "pink",
-    "images": "/assets/images/fashion/product/66.jpg"
-  },
-  {
-    "color": "gray",
-    "images": "/assets/images/fashion/product/62.jpg"
-  }]
-},
-{
-  "id": 30,
-  "name": "Sweetware T-Shirt",
-  "price": 500.00,
-  "salePrice": 1000.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/78.jpg", "/assets/images/fashion/product/71.jpg", "/assets/images/fashion/product/72.jpg", "/assets/images/fashion/product/53.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": true,
-  "sale": false,
-  "category": "men",
-  "colors": ["blue", "black"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "blue",
-    "images": "/assets/images/fashion/product/78.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/71.jpg"
-  }]
-},
-{
-  "id": 31,
-  "name": "Fitted T-Shirt",
-  "price": 322.00,
-  "salePrice": 161.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/49.jpg", "/assets/images/fashion/product/72.jpg", "/assets/images/fashion/product/60.jpg", "/assets/images/fashion/product/66.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": true,
-  "category": "men",
-  "colors": ["white", "black", "red"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/49.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/72.jpg"
-  },
-  {
-    "color": "red",
-    "images": "/assets/images/fashion/product/60.jpg"
-  }]
-},
-{
-  "id": 32,
-  "name": "Full Sleeve",
-  "price": 390.00,
-  "salePrice": 780.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/47.jpg", "/assets/images/fashion/product/79.jpg", "/assets/images/fashion/product/70.jpg", "/assets/images/fashion/product/42.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": true,
-  "sale": true,
-  "category": "men",
-  "colors": ["green", "yellow"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "green",
-    "images": "/assets/images/fashion/product/47.jpg"
-  },
-  {
-    "color": "yellow",
-    "images": "/assets/images/fashion/product/79.jpg"
-  }]
-},
-{
-  "id": 33,
-  "name": "Full Sleeve",
-  "price": 600.00,
-  "salePrice": 1200.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/51.jpg", "/assets/images/fashion/product/77.jpg", "/assets/images/fashion/product/65.jpg", "/assets/images/fashion/product/74.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  "stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["yellow", "gray", "black"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "yellow",
-    "images": "/assets/images/fashion/product/51.jpg"
-  },
-  {
-    "color": "gray",
-    "images": "/assets/images/fashion/product/77.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/65.jpg"
-  }]
-},
-{
-  "id": 34,
-  "name": "Fitted Jeans",
-  "price": 300.00,
-  "salePrice": 600.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/76.jpg", "/assets/images/fashion/product/60.jpg", "/assets/images/fashion/product/66.jpg", "/assets/images/fashion/product/67.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": true,
-  "sale": true,
-  "category": "men",
-  "colors": ["black", "red"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 5,
-  "variants": [
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/76.jpg"
-  },
-  {
-    "color": "red",
-    "images": "/assets/images/fashion/product/60.jpg"
-  }]
-},
-{
-  "id": 35,
-  "name": "Printed Shirt",
-  "price": 200.00,
-  "salePrice": 400.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/67.jpg", "/assets/images/fashion/product/77.jpg", "/assets/images/fashion/product/71.jpg", "/assets/images/fashion/product/72.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["pink", "gray"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "pink",
-    "images": "/assets/images/fashion/product/67.jpg"
-  },
-  {
-    "color": "gray",
-    "images": "/assets/images/fashion/product/77.jpg"
-  }]
-},
-{
-  "id": 36,
-  "name": "Fitted Danim Jeans",
-  "price": 100.00,
-  "salePrice": 200.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/61.jpg", "/assets/images/fashion/product/75.jpg", "/assets/images/fashion/product/56.jpg", "/assets/images/fashion/product/42.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["blue", "black", "white"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "blue",
-    "images": "/assets/images/fashion/product/61.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/75.jpg"
-  },
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/56.jpg"
-  }]
-},
-{
-  "id": 37,
-  "name": "Casual Jeans",
-  "price": 160.00,
-  "salePrice": 320.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/66.jpg", "/assets/images/fashion/product/75.jpg", "/assets/images/fashion/product/78.jpg", "/assets/images/fashion/product/80.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["red", "white"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "red",
-    "images": "/assets/images/fashion/product/66.jpg"
-  },
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/75.jpg"
-  }]
-},
-{
-  "id": 38,
-  "name": "Full Sleeve",
-  "price": 450.00,
-  "salePrice": 900.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/60.jpg", "/assets/images/fashion/product/74.jpg", "/assets/images/fashion/product/47.jpg", "/assets/images/fashion/product/72.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": true,
-  "category": "men",
-  "colors": ["orange", "gray", "green"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "orange",
-    "images": "/assets/images/fashion/product/60.jpg"
-  },
-  {
-    "color": "gray",
-    "images": "/assets/images/fashion/product/74.jpg"
-  },
-  {
-    "color": "green",
-    "images": "/assets/images/fashion/product/47.jpg"
-  }]
-},
-{
-  "id": 39,
-  "name": "Fitted T-Shirt",
-  "price": 115.00,
-  "salePrice": 230.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/70.jpg", "/assets/images/fashion/product/67.jpg", "/assets/images/fashion/product/64.jpg", "/assets/images/fashion/product/65.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": false,
-  "sale": false,
-  "category": "men",
-  "colors": ["pink", "white"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/70.jpg"
-  },
-  {
-    "color": "pink",
-    "images": "/assets/images/fashion/product/67.jpg"
-  }]
-},
-{
-  "id": 40,
-  "name": "Track Jeans",
-  "price": 480.00,
-  "salePrice": 240.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/69.jpg", "/assets/images/fashion/product/55.jpg", "/assets/images/fashion/product/57.jpg", "/assets/images/fashion/product/75.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": true,
-  "sale": true,
-  "category": "men",
-  "colors": ["black", "gray", "orange"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/69.jpg"
-  }]
-},
-{
-  "id": 41,
-  "name": "Fitted T-Shirt",
-  "price": 110.00,
-  "salePrice": 220.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/49.jpg", "/assets/images/fashion/product/65.jpg", "/assets/images/fashion/product/68.jpg", "/assets/images/fashion/product/69.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-"stock": 10,
-  "new": true,
-  "sale": true,
-  "category": "men",
-  "colors": ["blue", "black"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "blue",
-    "images": "/assets/images/fashion/product/49.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/65.jpg"
-  }]
-},
-{
-  "id": 42,
-  "name": "Half Sleeve",
-  "price": 200.00,
-  "salePrice": 400.00,
-  "discount": 50,
-  "pictures": ["/assets/images/fashion/product/62.jpg", "/assets/images/fashion/product/45.jpg", "/assets/images/fashion/product/48.jpg", "/assets/images/fashion/product/49.jpg"],
-  "shortDetails": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  "stock": 10,
-  "new": false,
-  "sale": true,
-  "category": "men",
-  "colors": ["gray", "black", "white"],
-  "size": ["M", "L", "XL"],
-  "tags": ["lifestyle", "nike"],
-  "rating": 4,
-  "variants": [
-  {
-    "color": "gray",
-    "images": "/assets/images/fashion/product/62.jpg"
-  },
-  {
-    "color": "black",
-    "images": "/assets/images/fashion/product/45.jpg"
-  },
-  {
-    "color": "white",
-    "images": "/assets/images/fashion/product/48.jpg"
   }]
 },
   {

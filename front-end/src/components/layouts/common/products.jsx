@@ -12,17 +12,16 @@ class SpecialProducts extends Component {
         const {bestSeller,mensWear,womensWear, symbol, addToCart, addToWishlist, addToCompare} = this.props
         return (
             <div>
-                <div className="title1 section-t-space">
-                    <h4>exclusive products</h4>
-                    <h2 className="title-inner1">special products</h2>
+                <div className="title1 section-t-space"> 
+                    <h2 className="title-inner1">รายการสินค้า</h2>
                 </div>
                 <section className="section-b-space p-t-0">
                     <div className="container">
                         <Tabs className="theme-tab">
                             <TabList className="tabs tab-title">
-                                <Tab>New Products</Tab>
-                                <Tab>Mens Wear</Tab>
-                                <Tab>Womens Wear</Tab>
+                                <Tab>ปลากัด</Tab>
+                                <Tab>ปลาหางนกยูง</Tab>
+                                <Tab>ปลาหมอสี</Tab>
                             </TabList>
 
                             <TabPanel>

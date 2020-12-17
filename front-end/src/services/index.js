@@ -106,9 +106,16 @@ export const getTrendingCollection = (products, type) => {
 
 // Get Category Collection
 export const getCategoryCollection = (category) => {
-    console.log('category',category)
     const items = category.filter(cate => {
         return cate.id !== 0;
+    })
+    return items.slice(0,8)
+}
+
+// Get Shoplist Collection
+export const getShoplistCollection = (shoplist) => {
+    const items = shoplist.filter(shop => {
+        return shop.id !== 0;
     })
     return items.slice(0,8)
 }

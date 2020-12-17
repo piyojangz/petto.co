@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import { getTrendingCollection } from '../../../services'
+import { getShoplistCollection } from '../../../services'
 import { Product4 } from '../../../services/script'
 import { addToCart, addToWishlist, addToCompare } from "../../../actions";
 import ShopItem from './shop-item';
@@ -11,7 +11,8 @@ import ShopItem from './shop-item';
 class ShopCollection extends Component {
 
     render() {
-        const { items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle } = this.props;
+        const { items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle,shoplist } = this.props; 
+        console.log(shoplist)
         return (
             <div>
                 {/*Paragraph*/}
@@ -32,14 +33,11 @@ class ShopCollection extends Component {
                                     <hr />
                                 </div>
                                 <Slider {...Product4} className="product-4 product-m no-arrow">
-                                    {items.map((product, index) =>
+                                    {shoplist.map((shop, index) =>
                                         <div key={index}>
                                             <ShopItem
-                                                product={product}
-                                                symbol={symbol}
-                                                onAddToCompareClicked={() => addToCompare(product)}
-                                                onAddToWishlistClicked={() => addToWishlist(product)}
-                                                onAddToCartClicked={() => addToCart(product, 1)} key={index} />
+                                                shop={shop}
+                                                key={index} />
                                         </div>)
                                     }
                                 </Slider>
@@ -53,8 +51,7 @@ class ShopCollection extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    items: getTrendingCollection(state.data.products, ownProps.type),
-    symbol: state.data.symbol
+    shoplist: getShoplistCollection(state.shops.shoplist)
 })
 
 export default connect(mapStateToProps, { addToCart, addToWishlist, addToCompare })(ShopCollection);

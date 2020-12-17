@@ -9,11 +9,12 @@ import './index.scss';
 // Import custom components
 import store from './store';
 import translations from './constants/translations'
-import { getAllProducts, getAllCategory } from './actions'
+import { getAllProducts, getAllCategory, getAllShoplist } from './actions'
 import Landing from './components/landing'
 
 
 // Layouts
+import Shop from './components/layouts/shop/main';
 import Fashion from './components/layouts/fashion/main';
 import Vegetables from './components/layouts/vegetables/main';
 import Kids from './components/layouts/kids/main';
@@ -63,6 +64,7 @@ import Collection from './components/pages/collection'
 import ForgetPassword from './components/pages/forget-password'
 import Contact from './components/pages/contact'
 import Dashboard from './components/pages/dashboard'
+import User from './components/pages/user'
 import Faq from './components/pages/faq'
 
 // Blog Pages
@@ -95,6 +97,7 @@ class Root extends React.Component {
     render() {
         store.dispatch(getAllProducts());
         store.dispatch(getAllCategory()); 
+        store.dispatch(getAllShoplist()); 
         return (
             <Provider store={store}>
                 <IntlProvider translations={translations} locale='en'>
@@ -114,7 +117,7 @@ class Root extends React.Component {
 
                                     {/*Routes For Layouts*/}
                                     <Route path={`${process.env.PUBLIC_URL}/fashion`} component={Fashion} />
-
+                                    <Route path={`${process.env.PUBLIC_URL}/shop`} component={Shop} />
                                     {/*Routes For Features (Product Collection) */}
                                     <Route path={`${process.env.PUBLIC_URL}/left-sidebar/collection`} component={CollectionLeftSidebar} />
                                     <Route path={`${process.env.PUBLIC_URL}/no-sidebar/collection`} component={CollectionNoSidebar} />
@@ -155,6 +158,7 @@ class Root extends React.Component {
                                     <Route path={`${process.env.PUBLIC_URL}/pages/forget-password`} component={ForgetPassword} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/contact`} component={Contact} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard} />
+                                    <Route path={`${process.env.PUBLIC_URL}/pages/user`} component={User} /> 
                                     <Route path={`${process.env.PUBLIC_URL}/pages/faq`} component={Faq} />
 
                                     <Route path={`${process.env.PUBLIC_URL}/pages/termandcond`} component={Termandcond} />

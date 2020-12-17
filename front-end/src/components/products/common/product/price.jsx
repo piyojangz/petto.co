@@ -56,7 +56,7 @@ class Price extends Component {
                 <div className="product-right product-form-box">
                     <h4>
                         <del>{symbol}{item.price}</del>
-                        <span>{item.discount}% off</span>
+                        <span>{item.discount}ลดไป % off</span>
                     </h4>
                     <h3>{symbol}{(item.price*item.discount/100)} </h3>
                     <ul className="color-variant">
