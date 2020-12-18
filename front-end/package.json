@@ -1,8 +1,8 @@
 {
-  "name": "react-multikart",
+  "name": "petto.co",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://react.pixelstrap.com/",
+  "homepage": "https://pettodemo.web.app/",
   "basename": "/",
   "dependencies": {
     "@babel/core": "7.1.0",
