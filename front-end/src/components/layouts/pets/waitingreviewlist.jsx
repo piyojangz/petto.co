@@ -69,7 +69,7 @@ class WaitingReviewList extends Component {
                           </div>
                           <div className="row">
                             <div className="col-md-12 text-right">
-                              <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} >
+                              <Link to={`${process.env.PUBLIC_URL}/pages/reviewbox`} >
                                 <button className="btn btn-solid" type="submit">
                                   รีวิวสินค้าชิ้นนี้
                                 </button>

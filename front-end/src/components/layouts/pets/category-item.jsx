@@ -45,7 +45,7 @@ class CategoryItem extends Component {
                 <div className="cate-box">
                     <div className="img-wrapper"> 
                         <div className="front">
-                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${cate.id}`} >
+                            <Link to={`${process.env.PUBLIC_URL}/category`} >
                                 <img  src={`${cate.picture}`}
                                 className="img-fluid lazyload bg-img"
                                 alt="" />

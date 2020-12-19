@@ -14,12 +14,13 @@ import HeaderThree from "../../common/headers/header-three"
 import HeaderFive from "../../common/headers/header-five"
 import FooterTwo from "../../common/footers/footer-two"
 import ThemeSettings from "../../common/theme-settings"
-
+import { changeCurrency } from '../../../actions'
 
 class Pets extends Component {
 
     componentDidMount() {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color15.css`);
+        this.props.changeCurrency('฿')
     }
 
     render() { 
@@ -227,6 +228,7 @@ class Pets extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+    
 })
 
-export default connect(mapStateToProps)(Pets);
+export default connect(mapStateToProps,{ changeCurrency })(Pets);

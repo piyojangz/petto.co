@@ -18,13 +18,13 @@ const CartContainer = ({cartList, total, symbol, removeFromCart}) => (
                 <div>
             <li>
                 <div className="total">
-                    <h5>subtotal : <span>{symbol}{total}</span></h5>
+                    <h5>รวม : <span>{symbol}{total}</span></h5>
                 </div>
             </li>
             <li>
                 <div className="buttons">
-                    <Link to={`${process.env.PUBLIC_URL}/cart`} className="view-cart">view cart</Link>
-                    <Link to={`${process.env.PUBLIC_URL}/checkout`} className="checkout">checkout</Link>
+                    <Link to={`${process.env.PUBLIC_URL}/cart`} className="view-cart">ดูตะกร้า</Link>
+                    <Link to={`${process.env.PUBLIC_URL}/checkout`} className="checkout">เช็คเอาท์</Link>
                 </div>
             </li></div>
                     :

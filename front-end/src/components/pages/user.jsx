@@ -6,6 +6,7 @@ import AuctionList from "../layouts/pets/auctionlist";
 import PaidingList from "../layouts/pets/paidinglist";
 import WaitingList from "../layouts/pets/waitinglist";
 import WaitingReviewList from "../layouts/pets/waitingreviewlist";
+import { Link } from "react-router-dom";
 
 class User extends Component {
   constructor(props) {
@@ -15,13 +16,12 @@ class User extends Component {
   render() {
     return (
       <div>
-        <Breadcrumb title={"Dashboard"} />
+        <Breadcrumb title={"ข้อมูลส่วนตัว"} />
 
         {/*Dashboard section*/}
         <section className="section-b-space">
-          <div className="container">
-            <Shoptop />
-
+          <div className="container"> 
+            <Shoptop /> 
             <Tabs className="theme-tab">
               <TabList className="tabs tab-title">
                 <Tab className="petto-tabs">ข้อมูลส่วนตัว</Tab>

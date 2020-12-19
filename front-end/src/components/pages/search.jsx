@@ -14,7 +14,7 @@ class Search extends Component {
 
         return (
             <div>
-                <Breadcrumb title={'Search'}/>
+                <Breadcrumb title={'ค้นหา'}/>
                 
                 
                 {/*Search section*/}
@@ -28,10 +28,10 @@ class Search extends Component {
                                             <div className="input-group">
                                                 <input type="text" className="form-control"
                                                        aria-label="Amount (to the nearest dollar)"
-                                                       placeholder="Search Products......" />
+                                                       placeholder="พิมพ์ชื่อสินค้า......" />
                                                     <div className="input-group-append">
                                                         <button className="btn btn-solid"><i
-                                                            className="fa fa-search"></i>Search
+                                                            className="fa fa-search"></i>ค้นหาสินค้า
                                                         </button>
                                                     </div>
                                             </div>

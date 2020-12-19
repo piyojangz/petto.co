@@ -21,12 +21,12 @@ class cartComponent extends Component {
             <div>
                 {/*SEO Support*/}
                 <Helmet>
-                    <title>MultiKart | Cart List Page</title>
+                    <title>Petto.co | ตะกร้า</title>
                     <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
                 </Helmet>
                 {/*SEO Support End */}
 
-                <Breadcrumb title={'Cart Page'}/>
+                <Breadcrumb title={'ตะกร้าสินค้า'}/>
 
                 {cartItems.length>0 ?
                 <section className="cart-section section-b-space">
@@ -36,12 +36,12 @@ class cartComponent extends Component {
                                 <table className="table cart-table table-responsive-xs">
                                     <thead>
                                     <tr className="table-head">
-                                        <th scope="col">image</th>
-                                        <th scope="col">product name</th>
-                                        <th scope="col">price</th>
-                                        <th scope="col">quantity</th>
+                                        <th scope="col">รูปภาพ</th>
+                                        <th scope="col">ชื่อสินค้า</th>
+                                        <th scope="col">ราคา</th>
+                                        <th scope="col">จำนวน</th>
                                         <th scope="col">action</th>
-                                        <th scope="col">total</th>
+                                        <th scope="col">รวม</th>
                                     </tr>
                                     </thead>
                                     {cartItems.map((item, index) => {
@@ -109,7 +109,7 @@ class cartComponent extends Component {
                                 <table className="table cart-table table-responsive-md">
                                     <tfoot>
                                     <tr>
-                                        <td>total price :</td>
+                                        <td>ยอดรวม :</td>
                                         <td><h2>{symbol} {total} </h2></td>
                                     </tr>
                                     </tfoot>
@@ -118,10 +118,10 @@ class cartComponent extends Component {
                         </div>
                         <div className="row cart-buttons">
                             <div className="col-6">
-                                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} className="btn btn-solid">continue shopping</Link>
+                                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} className="btn btn-solid">เลือกสินค้าต่อ</Link>
                             </div>
                             <div className="col-6">
-                                <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid">check out</Link>
+                                <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid">เช็คเอาท์</Link>
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import '../../common/index.scss';
 import Slider from 'react-slick';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Import custom components
 import TopCollection from './top-collection';
@@ -11,34 +11,36 @@ import BlogSection from "../common/blogsection";
 import Instagram from "../common/instagram";
 import LogoBlock from "../common/logo-block";
 import {
-    svgFreeShipping,
-    svgservice,
-    svgoffer
+  svgFreeShipping,
+  svgservice,
+  svgoffer
 } from "../../../services/script"
 import Shoptop from "../../products/common/shop-top";
 
 class Shop extends Component {
 
-    componentDidMount() {
-        document.getElementById("color").setAttribute("href", `#` );
-    }
+  componentDidMount() {
+    document.getElementById("color").setAttribute("href", `#`);
+  }
 
-	render() {
-		return (
-			<div>
-                <Helmet>
-                    <title>Petto.co | ร้านขายปลาสวยงาม ราชพฤกษ์ ตลาดเทพเจริญ9 Fish Ville
+  render() {
+    return (
+      <div>
+        <Helmet>
+          <title>Petto.co | ร้านขายปลาสวยงาม ราชพฤกษ์ ตลาดเทพเจริญ9 Fish Ville
                               Ratchaphruek</title>
-                    <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
-                </Helmet>
-                {/*Home Slider*/}
-                <section className="p-0">
-                <Shoptop />
-                </section>
-                {/*Home Section End*/}
+          <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
+        </Helmet>
+        {/*Home Slider*/}
+        <section className="section-b-space">
+          <div className="container">
+            <Shoptop />
+          </div>
+        </section>
+        {/*Home Section End*/}
 
-                {/*collection banner*/}
-                {/* <section className="pb-0">
+        {/*collection banner*/}
+        {/* <section className="pb-0">
                     <div className="container">
                         <div className="row partition2">
                             <div className="col-md-6">
@@ -70,12 +72,12 @@ class Shop extends Component {
                         </div>
                     </div>
                 </section> */}
-                {/*collection banner end*/}
+        {/*collection banner end*/}
 
-                {/* <TopCollection type={'pets'} /> */}
+        {/* <TopCollection type={'pets'} /> */}
 
-                {/*Parallax banner*/}
-                {/* <section className="p-0">
+        {/*Parallax banner*/}
+        {/* <section className="p-0">
                     <div className="full-banner parallax-banner1 parallax text-center p-left">
                         <div className="container">
                             <div className="row">
@@ -90,12 +92,12 @@ class Shop extends Component {
                         </div>
                     </div>
                 </section> */}
-                {/*Parallax banner End*/}
+        {/*Parallax banner End*/}
 
-                <SpecialProducts />
+        <SpecialProducts />
 
-                {/*service layout*/}
-                {/* <div className="container">
+        {/*service layout*/}
+        {/* <div className="container">
                     <section className="service border-section small-section ">
                         <div className="row">
                             <div className="col-md-4 service-block">
@@ -128,8 +130,8 @@ class Shop extends Component {
                         </div>
                     </section>
                 </div> */}
-                {/*Blog Section end*/}
-                {/* <div className="container">
+        {/*Blog Section end*/}
+        {/* <div className="container">
                     <div className="row">
                         <div className="col">
                             <div className="title1 section-t-space">
@@ -139,67 +141,36 @@ class Shop extends Component {
                         </div>
                     </div>
                 </div> */}
-                {/* <section className="blog p-t-0">
+        {/* <section className="blog p-t-0">
                     <BlogSection />
                 </section> */}
-                {/*Blog Section End*/}
+        {/*Blog Section End*/}
 
-                {/* <Instagram /> */}
+        {/* <Instagram /> */}
 
-                {/*logo section*/}
-                {/* <LogoBlock /> */}
-                {/*logo section end*/}
+        {/*logo section*/}
+        {/* <LogoBlock /> */}
+        {/*logo section end*/}
 
-                <div className="col-12">
-                <form className="theme-form mt-4 mb-4">
-                  <div className="form-row">
-                    <div className="col-md-12 ">
-                      <div className="title1 title5">
-                        <div className="row">
-                          <div className="col-8">
-                            <div className="row">
-                              <div className="ml-3">
-                                <h2 className="title-inner1 text-left vertical-center">
-                                  {"รีวิว"}
-                                </h2>
-                              </div>
-                              <div className="ml-1">
-                                <p>4.5/5.0</p>
-                              </div>
-                              <div className="ml-1">
-                                <div className="media-body">
-                                  <div className="rating three-star vertical-center">
-                                    <i className="fa fa-star" />
-                                    <i className="fa fa-star" />
-                                    <i className="fa fa-star" />
-                                    <i className="fa fa-star" />
-                                    <i className="fa fa-star" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-4">
-                            <h5 className="title-inner1 text-right vertical-center">
-                              {"ดูเพิ่มเติม >"}
-                            </h5>
-                          </div>
+        <div className="col-12">
+          <form className="theme-form mt-4 mb-4">
+            <div className="form-row">
+              <div className="col-md-12 ">
+                <div className="title1 title5">
+                  <div className="row">
+                    <div className="col-8">
+                      <div className="row">
+                        <div className="ml-3">
+                          <h2 className="title-inner1 text-left vertical-center">
+                            {"รีวิว"}
+                          </h2>
                         </div>
-                        <hr />
-                      </div>
-                      <div className="media m-0">
-                        <img
-                          src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/118582591_10218072880599813_1509440737429185966_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeF__0Kl8lGrZmsYDOp5WDYM6GDEov0ROXDoYMSi_RE5cAJXxbRVcdmaEty7Nc3oDM4&_nc_ohc=XgSV3-WYxZ0AX_LbX1l&_nc_ht=scontent.fbkk5-5.fna&oh=161e70082bd4dd389d171e54583d575d&oe=60009F2E`}
-                          className="rounded-circle"
-                          style={{ width: 35, height: 35 }}
-                          alt=""
-                        />
-                        <div className="col-md-12 ">
-                          <label style={{ marginBottom: 0 }}>
-                            วีระยุทธ ตะสูงเนิน
-                          </label>
+                        <div className="ml-1">
+                          <p>4.5/5.0</p>
+                        </div>
+                        <div className="ml-1">
                           <div className="media-body">
-                            <div className="rating three-star">
+                            <div className="rating three-star vertical-center">
                               <i className="fa fa-star" />
                               <i className="fa fa-star" />
                               <i className="fa fa-star" />
@@ -210,55 +181,86 @@ class Shop extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <p>
-                        ได้รับสินค้าถูกต้องตามที่สั่ง ใส่ภาชนะมาอย่างดี
-                        ปลาไม่ช้ำ แนะนำร้านนี้เลย ถูก ดี ไม่แพง
-                      </p>
-                      <div className="row">
-                        <div className="col-4">
-                          <div key={1}>
-                            <div className="embed-responsive embed-responsive-16by9">
-                              <iframe
-                                height="100"
-                                src="https://www.youtube.com/embed/ubK-U9HgTIo"
-                                allow="autoplay; encrypted-media"
-                                allowFullScreen
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-4">
-                          <div key={1}>
-                            <img
-                              src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/118582591_10218072880599813_1509440737429185966_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeF__0Kl8lGrZmsYDOp5WDYM6GDEov0ROXDoYMSi_RE5cAJXxbRVcdmaEty7Nc3oDM4&_nc_ohc=XgSV3-WYxZ0AX_LbX1l&_nc_ht=scontent.fbkk5-5.fna&oh=161e70082bd4dd389d171e54583d575d&oe=60009F2E`}
-                              key={1}
-                              alt=""
-                              className="img-fluid"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-4">
-                          <div key={1}>
-                            <img
-                              src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/118582591_10218072880599813_1509440737429185966_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeF__0Kl8lGrZmsYDOp5WDYM6GDEov0ROXDoYMSi_RE5cAJXxbRVcdmaEty7Nc3oDM4&_nc_ohc=XgSV3-WYxZ0AX_LbX1l&_nc_ht=scontent.fbkk5-5.fna&oh=161e70082bd4dd389d171e54583d575d&oe=60009F2E`}
-                              key={1}
-                              alt=""
-                              className="img-fluid"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div> 
+                    <div className="col-4">
+                      <h5 className="title-inner1 text-right vertical-center">
+                        {"ดูเพิ่มเติม >"}
+                      </h5>
+                    </div>
                   </div>
-                </form>
+                  <hr />
                 </div>
+                <div className="media m-0">
+                  <img
+                    src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/118582591_10218072880599813_1509440737429185966_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeF__0Kl8lGrZmsYDOp5WDYM6GDEov0ROXDoYMSi_RE5cAJXxbRVcdmaEty7Nc3oDM4&_nc_ohc=XgSV3-WYxZ0AX_LbX1l&_nc_ht=scontent.fbkk5-5.fna&oh=161e70082bd4dd389d171e54583d575d&oe=60009F2E`}
+                    className="rounded-circle"
+                    style={{ width: 35, height: 35 }}
+                    alt=""
+                  />
+                  <div className="col-md-12 ">
+                    <label style={{ marginBottom: 0 }}>
+                      วีระยุทธ ตะสูงเนิน
+                          </label>
+                    <div className="media-body">
+                      <div className="rating three-star">
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <p>
+                  ได้รับสินค้าถูกต้องตามที่สั่ง ใส่ภาชนะมาอย่างดี
+                  ปลาไม่ช้ำ แนะนำร้านนี้เลย ถูก ดี ไม่แพง
+                      </p>
+                <div className="row">
+                  <div className="col-4">
+                    <div key={1}>
+                      <div className="embed-responsive embed-responsive-16by9">
+                        <iframe
+                          height="100"
+                          src="https://www.youtube.com/embed/ubK-U9HgTIo"
+                          allow="autoplay; encrypted-media"
+                          allowFullScreen
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <div key={1}>
+                      <img
+                        src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/118582591_10218072880599813_1509440737429185966_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeF__0Kl8lGrZmsYDOp5WDYM6GDEov0ROXDoYMSi_RE5cAJXxbRVcdmaEty7Nc3oDM4&_nc_ohc=XgSV3-WYxZ0AX_LbX1l&_nc_ht=scontent.fbkk5-5.fna&oh=161e70082bd4dd389d171e54583d575d&oe=60009F2E`}
+                        key={1}
+                        alt=""
+                        className="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <div key={1}>
+                      <img
+                        src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/118582591_10218072880599813_1509440737429185966_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeF__0Kl8lGrZmsYDOp5WDYM6GDEov0ROXDoYMSi_RE5cAJXxbRVcdmaEty7Nc3oDM4&_nc_ohc=XgSV3-WYxZ0AX_LbX1l&_nc_ht=scontent.fbkk5-5.fna&oh=161e70082bd4dd389d171e54583d575d&oe=60009F2E`}
+                        key={1}
+                        alt=""
+                        className="img-fluid"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
 
-			</div>
-			)
+      </div>
+    )
 
 
-	}
+  }
 }
 
 export default Shop;

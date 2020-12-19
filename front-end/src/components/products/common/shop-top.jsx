@@ -14,12 +14,14 @@ class Shoptop extends Component {
               <div className="form-row">
                 <div className="col-md-12 ">
                   <div className="media m-0">
+                  <Link to={`${process.env.PUBLIC_URL}/shop`}>
                     <img
                       src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t31.0-8/21427327_1662269207125713_6840415808923796799_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeHzVqbIeITQAxNXS4ThrYH9zdD0ZQzUEILN0PRlDNQQgvTSH9TRWZJ0eKhj8jO0rjM&_nc_ohc=u87hRn6TGoAAX8rP_Pb&_nc_ht=scontent.fbkk5-5.fna&oh=33de20e8e470d5b8668c555354e6a258&oe=60018DE1`}
                       className="rounded"
                       style={{ width: 60, height: 60 }}
                       alt=""
                     />
+                    </Link>
                     <div className="col-md-12 ">
                       <div className="row">
                         <div className="col-6 ">

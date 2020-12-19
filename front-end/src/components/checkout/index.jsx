@@ -114,12 +114,12 @@ class checkOut extends Component {
 
                 {/*SEO Support*/}
                 <Helmet>
-                    <title>MultiKart | CheckOut Page</title>
+                    <title>Petto.co | เช็คเอาท์</title>
                     <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
                 </Helmet>
                 {/*SEO Support End */}
 
-                <Breadcrumb  title={'Checkout'}/>
+                <Breadcrumb  title={'เช็คเอาท์'}/>
 
                 <section className="section-b-space">
                     <div className="container padding-cls">
@@ -127,7 +127,7 @@ class checkOut extends Component {
                             <div className="checkout-form">
                                 <form>
                                     <div className="checkout row">
-                                        <div className="col-lg-6 col-sm-12 col-xs-12">
+                                        {/* <div className="col-lg-6 col-sm-12 col-xs-12">
                                             <div className="checkout-title">
                                                 <h3>Billing Details</h3>
                                             </div>
@@ -188,12 +188,12 @@ class checkOut extends Component {
                                                     {this.validator.message('checkbox', this.state.create_account, 'create_account')}
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="col-lg-6 col-sm-12 col-xs-12">
                                             <div className="checkout-details">
                                                 <div className="order-box">
                                                     <div className="title-box">
-                                                        <div>Product <span> Total</span></div>
+                                                        <div>รายการ <span> รวม</span></div>
                                                     </div>
                                                     <ul className="qty">
                                                         {cartItems.map((item, index) => {
@@ -201,22 +201,22 @@ class checkOut extends Component {
                                                         }
                                                     </ul>
                                                     <ul className="sub-total">
-                                                        <li>Subtotal <span className="count">{symbol}{total}</span></li>
-                                                        <li>Shipping <div className="shipping">
+                                                        <li>รวม <span className="count">{symbol}{total}</span></li>
+                                                        <li>การจัดส่ง <div className="shipping">
                                                             <div className="shopping-option">
-                                                                <input type="checkbox" name="free-shipping" id="free-shipping" />
-                                                                    <label htmlFor="free-shipping">Free Shipping</label>
+                                                                <input type="radio" name="free-shipping" id="free-shipping"  defaultChecked={true} />
+                                                                    <label htmlFor="free-shipping">พัสดุลงทะเบียน</label>
                                                             </div>
                                                             <div className="shopping-option">
-                                                                <input type="checkbox" name="local-pickup" id="local-pickup" />
-                                                                    <label htmlFor="local-pickup">Local Pickup</label>
+                                                                <input type="radio" name="local-pickup" id="local-pickup" />
+                                                                    <label htmlFor="local-pickup">ไปรษณี</label>
                                                             </div>
                                                         </div>
                                                         </li>
                                                     </ul>
 
                                                     <ul className="total">
-                                                        <li>Total <span className="count">{symbol}{total}</span></li>
+                                                        <li>รวมทั้งหมด <span className="count">{symbol}{total}</span></li>
                                                     </ul>
                                                 </div>
 
@@ -227,29 +227,30 @@ class checkOut extends Component {
                                                                 <li>
                                                                     <div className="radio-option stripe">
                                                                         <input type="radio" name="payment-group" id="payment-2" defaultChecked={true} onClick={() => this.checkhandle('stripe')} />
-                                                                        <label htmlFor="payment-2">Stripe</label>
+                                                                        <label htmlFor="payment-2">โอนเงิน เลขบัญชี 2343959944 ธนาคารกสิกร</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div className="radio-option paypal">
-                                                                        <input type="radio" name="payment-group" id="payment-1" onClick={() => this.checkhandle('paypal')} />
-                                                                            <label htmlFor="payment-1">PayPal<span className="image"><img src={`${process.env.PUBLIC_URL}/assets/images/paypal.png`} alt=""/></span></label>
+                                                                    <div className="radio-option stripe">
+                                                                        <input type="radio" name="payment-group" id="payment-2" defaultChecked={true} onClick={() => this.checkhandle('stripe')} />
+                                                                        <label htmlFor="payment-3">โอนเงิน เลขบัญชี 8782283728 ธนาคารไทยพาณิชย์</label>
                                                                     </div>
                                                                 </li>
                                                             </ul>
                                                         </div>
+                                                        <a href={`${process.env.PUBLIC_URL}/pages/user`} className="btn-petto-secondcolor  text-center">ยืนยัน</a>
                                                     </div>
-                                                    {(total !== 0)?
+                                                    {/* {(total !== 0)?
                                                     <div className="text-right">
                                                         {(this.state.payment === 'stripe')? <button type="button" className="btn-solid btn" onClick={() => this.StripeClick()} >Place Order</button>:
                                                          <PaypalExpressBtn env={'sandbox'} client={client} currency={'USD'} total={total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />}
                                                     </div>
-                                                    : ''}
+                                                    : ''} */}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="row section-t-space">
+                                    {/* <div className="row section-t-space">
                                         <div className="col-lg-6">
                                             <div className="stripe-section">
                                                 <h5>stripe js example</h5>
@@ -298,7 +299,7 @@ class checkOut extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </form>
                             </div>
                         </div>

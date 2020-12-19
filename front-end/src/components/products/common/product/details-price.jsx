@@ -175,7 +175,7 @@ class DetailsWithPrice extends Component {
                         </div>
                     </div> */}
                 </div>
-                <Modal open={this.state.open} onClose={this.onCloseModal} center>
+                {/* <Modal open={this.state.open} onClose={this.onCloseModal} center>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -186,7 +186,7 @@ class DetailsWithPrice extends Component {
                             </div>
                         </div>
                     </div>
-                </Modal>
+                </Modal> */}
             </div>
         )
     }
