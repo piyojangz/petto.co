@@ -192,9 +192,9 @@ class Root extends React.Component {
                                     <Route path={`${process.env.PUBLIC_URL}/features/portfolio-masonary/:columns`} component={MasonaryGridCols} /> */}
 
                                     {/*Blog Pages*/}
-                                    {/* <Route path={`${process.env.PUBLIC_URL}/blog/right-sidebar`} component={RightSide} />
+                                    {/* <Route path={`${process.env.PUBLIC_URL}/blog/right-sidebar`} component={RightSide} />*/}
                                     <Route path={`${process.env.PUBLIC_URL}/blog/details`} component={Details} />
-                                    <Route path={`${process.env.PUBLIC_URL}/blog/blog-page`} component={BlogPage} /> */}
+                                    <Route path={`${process.env.PUBLIC_URL}/blog/blog-page`} component={BlogPage} /> 
 
                                     {/* <Route exact path="*" component={PageNotFound} /> */}
                                 </Layout>

@@ -205,12 +205,12 @@ class Pets extends Component {
                 </section> */}
                 {/*Parallax banner end*/}
                 {/* Blog Section Section*/}
-                {/* <div className="container ">
+                <div className="container ">
                     <div className="row">
                         <div className="col">
                             <div className="title1 title5">
-                                <h4>Recent Story</h4>
-                                <h2 className="title-inner1">from the blog</h2>
+                                <h4>บทความ</h4>
+                                {/* <h2 className="title-inner1">from the blog</h2> */}
                                 <hr role="tournament6" />
                             </div>
                         </div>
@@ -218,7 +218,7 @@ class Pets extends Component {
                 </div>
                 <section className="section-b-space p-t-0 ratio2_3">
                     <BlogSection />
-                </section> */}
+                </section>
                 {/* Blog Section End*/}
                 {/* <ThemeSettings/> */}
                 <FooterTwo logoName={'logo/petto_logo.png'} />

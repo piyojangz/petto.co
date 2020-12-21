@@ -12,7 +12,7 @@ class BlogDetails extends Component {
 
         return (
             <div>
-                <Breadcrumb title={'Blog - Details'}/>
+                <Breadcrumb title={'หัวข้อบทความ'}/>
                 
                 
                 {/*Blog Details section*/}
@@ -20,52 +20,22 @@ class BlogDetails extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 blog-detail">
-                                <img src={`${process.env.PUBLIC_URL}/assets/images/about/about%20us.jpg`} className="img-fluid" alt=""/>
-                                <h3>Remaining essentially unchanged.</h3>
+                                <img src={`${process.env.PUBLIC_URL}/assets/images/blog/2.jpg`} className="img-fluid" alt=""/>
+                                <h3>หัวข้อบทความ</h3>
                                 <ul className="post-social">
-                                    <li>25 January 2018</li>
-                                    <li>Posted By : Admin Admin</li>
-                                    <li><i className="fa fa-heart"></i> 5 Hits</li>
-                                    <li><i className="fa fa-comments"></i> 10 Comment</li>
+                                    <li>25 มกราคม 2021</li>
+                                    <li>โดย : วีระยุทธ ต.</li>
+                                    {/* <li><i className="fa fa-heart"></i> 5 Hits</li>
+                                    <li><i className="fa fa-comments"></i> 10 Comment</li> */}
                                 </ul>
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <p>Fusce scelerisque augue a viverra semper. Etiam nisi nibh, vestibulum quis augue id,
-                                            imperdiet fringilla dolor. Nulla sed nisl vel nisi cursus finibus. Vivamus ut augue
-                                            nec justo viverra laoreet. Nunc efficitur, arcu ac cursus gravida, lorem elit
-                                            commodo urna, id viverra libero tellus non ipsum. Fusce molestie ultrices nibh
-                                            feugiat pretium. Donec pulvinar arcu metus, et dapibus odio condimentum id. Quisque
-                                            malesuada mauris sit amet dui feugiat, ut pretium mauris luctus. Ut aliquam, tellus
-                                            nec molestie condimentum, tellus arcu dignissim quam, a gravida nunc nulla vel
-                                            magna. Sed pulvinar tortor et euismod blandit. Proin accumsan orci ac nunc fermentum
-                                            vehicula.</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <p>Fusce scelerisque augue a viverra semper. Etiam nisi nibh, vestibulum quis augue id,
-                                            imperdiet fringilla dolor. Nulla sed nisl vel nisi cursus finibus. Vivamus ut augue
-                                            nec justo viverra laoreet. Nunc efficitur, arcu ac cursus gravida, lorem elit
-                                            commodo urna, id viverra libero tellus non ipsum. Fusce molestie ultrices nibh
-                                            feugiat pretium. Donec pulvinar arcu metus, et dapibus odio condimentum id. Quisque
-                                            malesuada mauris sit amet dui feugiat, ut pretium mauris luctus. Ut aliquam, tellus
-                                            nec molestie condimentum, tellus arcu dignissim quam, a gravida nunc nulla vel
-                                            magna. Sed pulvinar tortor et euismod blandit. Proin accumsan orci ac nunc fermentum
-                                            vehicula.</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <p>Fusce scelerisque augue a viverra semper. Etiam nisi nibh, vestibulum quis augue id,
-                                            imperdiet fringilla dolor. Nulla sed nisl vel nisi cursus finibus. Vivamus ut augue
-                                            nec justo viverra laoreet. Nunc efficitur, arcu ac cursus gravida, lorem elit
-                                            commodo urna, id viverra libero tellus non ipsum. Fusce molestie ultrices nibh
-                                            feugiat pretium. Donec pulvinar arcu metus, et dapibus odio condimentum id. Quisque
-                                            malesuada mauris sit amet dui feugiat, ut pretium mauris luctus. Ut aliquam, tellus
-                                            nec molestie condimentum, tellus arcu dignissim quam, a gravida nunc nulla vel
-                                            magna. Sed pulvinar tortor et euismod blandit. Proin accumsan orci ac nunc fermentum
-                                            vehicula.</p>
-                                    </div>
+                                    <div class="col">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
-                        <div className="row section-b-space blog-advance">
+                        {/* <div className="row section-b-space blog-advance">
                             <div className="col-lg-6">
                                 <img src={`${process.env.PUBLIC_URL}/assets/images/blog/1.jpg`} className="img-fluid" alt=""/>
                             </div>
@@ -195,7 +165,7 @@ class BlogDetails extends Component {
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
 

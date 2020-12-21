@@ -44,6 +44,14 @@ class CateBlock extends Component {
                                         </a>
                                     </div>
                                 </div> 
+                                <div>
+                                    <div className="logo-block" >
+                                        <a href={`${process.env.PUBLIC_URL}/blog/blog-page`}>
+                                            <img style={{width:70}}  src={`${process.env.PUBLIC_URL}/assets/images/logos/ic_content.png`} alt="" />
+                                            <center><h5>บทความ</h5></center>
+                                        </a>
+                                    </div>
+                                </div> 
                             </Slider>
                         </div>
                     </div>
