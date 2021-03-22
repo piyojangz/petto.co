@@ -2928,7 +2928,7 @@ r
 .product-box .product-detail .rating i, .product-box .product-info .rating i, .product-wrap .product-detail .rating i, .product-wrap .product-info .rating i {
   padding-right: 5px;
 }
-.product-box .product-detail .rating i:nth-child(-n + 5), .product-box .product-info .rating i:nth-child(-n + 5), .product-wrap .product-detail .rating i:nth-child(-n + 5), .product-wrap .product-info .rating i:nth-child(-n + 5) {
+.product-box .product-detail .rating i:nth-child(-n + 4), .product-box .product-info .rating i:nth-child(-n + 4), .product-wrap .product-detail .rating i:nth-child(-n + 4), .product-wrap .product-info .rating i:nth-child(-n + 4) {
   color: #ffa200;
 }
 .product-box .product-detail .rating i:last-child, .product-box .product-info .rating i:last-child, .product-wrap .product-detail .rating i:last-child, .product-wrap .product-info .rating i:last-child {
