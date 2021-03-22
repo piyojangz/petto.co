@@ -3,10 +3,15 @@ import { Siteurl } from "../../services/script";
 import Breadcrumb from "../common/breadcrumb";
 import { connect } from "react-redux";
 import CryptoJS from "crypto-js";
+const liff = window.liff;
 class Register extends Component {
   constructor() {
     super();
     this.state = {
+      name: "",
+      userLineID: "",
+      pictureUrl: "",
+      statusMessage: "",
       firstname: "",
       lastname: "",
       email: "",
@@ -17,6 +22,37 @@ class Register extends Component {
   }
   componentDidMount() {
     this.setState({ isaccept: this.props.isaccept == "true" ? true : false });
+
+    console.log("liff", liff);
+    this.getProfile();
+  }
+
+  getProfile() {
+    liff.init({ liffId: "1655781149-9byNMe1M" }, async () => {
+      let getProfile = await liff.getProfile();
+      this.setState({
+        name: getProfile.displayName,
+        userLineID: getProfile.userId,
+        pictureUrl: getProfile.pictureUrl,
+        statusMessage: getProfile.statusMessage,
+        email: liff.getDecodedIDToken().email,
+      });
+    });
+  }
+  sendMessage() {
+    liff
+      .sendMessages([
+        {
+          type: "text",
+          text: "Hi LIFF , " + this.state.userLineID,
+        },
+      ])
+      .then(() => {
+        liff.closeWindow();
+      });
+  }
+  closeLIFF() {
+    liff.closeWindow();
   }
 
   Register = () => {
@@ -42,6 +78,9 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       repassword: this.state.repassword,
+      userLineID: this.state.userLineID,
+      pictureUrl: this.state.userLineID,
+      name: this.state.name,
     };
 
     if (
@@ -75,9 +114,10 @@ class Register extends Component {
     })
       .then((res) => res.json())
       .then(
-        (result) => { 
-          if (result !=  false ) {
-            window.location = "/pages/login/true";
+        (result) => {
+          if (result != false) {
+            this.closeLIFF();
+            // window.location = "/pages/login/true";
           } else {
             alert("อีเมลล์นี้มีผู้ใช้งานแล้ว");
             return;
@@ -85,6 +125,7 @@ class Register extends Component {
         },
         (error) => {
           console.log(error);
+          alert(error);
           this.setState({
             isLoaded: true,
             error,
@@ -119,6 +160,7 @@ class Register extends Component {
                           className="form-control"
                           id="fname"
                           placeholder="ชื่อจริง"
+                          value={this.state.firstname}
                           required
                           onChange={(e) =>
                             this.setState({ firstname: e.target.value })
@@ -148,6 +190,8 @@ class Register extends Component {
                           id="email"
                           placeholder="ระบุอีเมลล์"
                           required
+                          // disabled={this.state.email != '' ? 'disabled' : ''}
+                          value={this.state.email}
                           onChange={(e) =>
                             this.setState({ email: e.target.value })
                           }
@@ -207,6 +251,12 @@ class Register extends Component {
                       >
                         ยืนยันการสมัครสมาชิก
                       </a>
+                      {/* <a 
+                        onClick={this.sendMessage.bind(this)}
+                        style={{ marginRight: "20px" }}
+                      >
+                        Send Message
+                      </a> */}
                     </div>
                   </form>
                 </div>
