@@ -52,6 +52,7 @@ class Register extends Component {
       });
   }
   closeLIFF() {
+    // ปิด
     liff.closeWindow();
   }
 
