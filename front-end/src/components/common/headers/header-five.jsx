@@ -1,178 +1,267 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { IntlActions } from 'react-redux-multilingual'
-import Pace from 'react-pace-progress'
+import React, { Component } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { IntlActions } from "react-redux-multilingual";
+import Pace from "react-pace-progress";
 
 // Import custom components
-import store from '../../../store';
+import store from "../../../store";
 import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
 import CartContainer from "./../../../containers/CartContainer";
 import TopBar from "./common/topbar";
-import { changeCurrency } from '../../../actions'
+import { changeCurrency } from "../../../actions";
 import { connect } from "react-redux";
 import TopBarDark from "./common/topbar-dark";
 import LogoImage from "./common/logo";
 
 class HeaderFive extends Component {
+  constructor(props) {
+    super(props);
 
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			isLoading: false
-		}
-	}
-	/*=====================
+    this.state = {
+      isLoading: false,
+      customer: undefined,
+    };
+  }
+  /*=====================
 		 Pre loader
 		 ==========================*/
-	componentDidMount() {
-		setTimeout(function () {
-			document.querySelector(".loader-wrapper").style = "display: none";
-		}, 2000);
-	}
+  componentDidMount() {
+    setTimeout(function() {
+      document.querySelector(".loader-wrapper").style = "display: none";
+    }, 2000);
 
-	componentWillMount() {
-		window.addEventListener('scroll', this.handleScroll);
-	}
-	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll);
-	}
+    const customer = sessionStorage.getItem("customer");
+    if (customer) {
+      this.setState({ customer: JSON.parse(customer) });
+    }
+  }
 
-	handleScroll = () => {
-		let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  componentWillMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
 
-		if (number >= 300) {
-			if (window.innerWidth < 576) {
-				document.getElementById("sticky").classList.remove('fixed');
-			} else
-				document.getElementById("sticky").classList.add('fixed');
-		} else {
-			document.getElementById("sticky").classList.remove('fixed');
-		}
-	}
+  handleScroll = () => {
+    let number =
+      window.pageXOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
-	changeLanguage(lang) {
-		store.dispatch(IntlActions.setLocale(lang))
-	}
+    if (number >= 300) {
+      if (window.innerWidth < 576) {
+        document.getElementById("sticky").classList.remove("fixed");
+      } else document.getElementById("sticky").classList.add("fixed");
+    } else {
+      document.getElementById("sticky").classList.remove("fixed");
+    }
+  };
 
-	openNav() {
-		var openmyslide = document.getElementById("mySidenav");
-		if (openmyslide) {
-			openmyslide.classList.add('open-side')
-		}
-	}
-	openSearch() {
-		document.getElementById("search-overlay").style.display = "block";
-	}
+  changeLanguage(lang) {
+    store.dispatch(IntlActions.setLocale(lang));
+  }
 
-	closeSearch() {
-		document.getElementById("search-overlay").style.display = "none";
-	}
+  openNav() {
+    var openmyslide = document.getElementById("mySidenav");
+    if (openmyslide) {
+      openmyslide.classList.add("open-side");
+    }
+  }
+  openSearch() {
+    document.getElementById("search-overlay").style.display = "block";
+  }
 
-	load = () => {
-		this.setState({ isLoading: true });
-		fetch().then(() => {
-			// deal with data fetched
-			this.setState({ isLoading: false })
-		})
-	};
+  closeSearch() {
+    document.getElementById("search-overlay").style.display = "none";
+  }
 
-	render() {
-		return (
-			<div>
-				<header id="sticky" className="sticky">
-					{this.state.isLoading ? <Pace color="#27ae60" /> : null}
-					<div className="mobile-fix-option"></div>
-					{/*Top Header Component*/}
-					<TopBarDark />
+  load = () => {
+    this.setState({ isLoading: true });
+    fetch().then(() => {
+      // deal with data fetched
+      this.setState({ isLoading: false });
+    });
+  };
 
-					<div className="container topnav">
-						<div className="row">
-							<div className="col-sm-12">
-								<div className="main-menu">
-									<div className="menu-left category-nav-right">
-										<div className="brand-logo">
-											<LogoImage logo={this.props.logoName} />
-										</div>
-										<div className="navbar">
-											{/* <a href="javascript:void(0)" onClick={this.openNav}>
+  render() {
+	  const {customer} = this.state;
+	  console.log('customercustomercustomer',customer)
+    return (
+      <div>
+        <header id="sticky" className="sticky">
+          {this.state.isLoading ? <Pace color="#27ae60" /> : null}
+          <div className="mobile-fix-option" />
+          {/*Top Header Component*/}
+          <TopBarDark />
+
+          <div className="container topnav">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="main-menu">
+                  <div className="menu-left category-nav-right">
+                    <div className="brand-logo">
+                      <LogoImage logo={this.props.logoName} />
+                    </div>
+                    <div className="navbar">
+                      {/* <a href="javascript:void(0)" onClick={this.openNav}>
 												<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>
 											</a> */}
-											{/*SideBar Navigation Component*/}
-											{/* <SideBar/> */}
-										</div>
-									</div>
-									<div className="menu-right pull-right">
-										{/*Top Navigation Bar Component*/}
-										{/* <NavBar/> */}
+                      {/*SideBar Navigation Component*/}
+                      {/* <SideBar/> */}
+                    </div>
+                  </div>
+                  <div className="menu-right pull-right">
+                    {/*Top Navigation Bar Component*/}
+                    {/* <NavBar/> */}
 
-										<div>
-											<div className="icon-nav">
-												<ul>
-													<li className="onhover-div mobile-search">
-														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={this.openSearch} className="img-fluid" alt="" />
-															<i className="fa fa-search" onClick={this.openSearch}></i></div>
-													</li>
-													<li className="onhover-div mobile-setting">
-														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/setting.png`} className="img-fluid" alt="" />
-															<i className="fa fa-cog"></i></div>
-														<div className="show-div setting">
-															<h6>ผู้ใช้</h6>
-															<ul>
-																<li><Link to={`${process.env.PUBLIC_URL}/pages/login`} >เข้าสู่ระบบ</Link></li>
-																<li><a href={`${process.env.PUBLIC_URL}/pages/register`} >สมัครสมาชิก</a> </li>
-															</ul>
-															<h6>ภาษา</h6>
-															<ul>
-																<li><a href={null} onClick={() => this.changeLanguage('en')}>English</a> </li>
-																<li><a href={null} onClick={() => this.changeLanguage('th')}>ไทย</a> </li>
-															</ul>
-															{/* <h6>currency</h6>
+                    <div>
+                      <div className="icon-nav">
+                        <ul>
+                          <li className="onhover-div mobile-search">
+                            <div>
+                              <img
+                                src={`${
+                                  process.env.PUBLIC_URL
+                                }/assets/images/icon/search.png`}
+                                onClick={this.openSearch}
+                                className="img-fluid"
+                                alt=""
+                              />
+                              <i
+                                className="fa fa-search"
+                                onClick={this.openSearch}
+                              />
+                            </div>
+                          </li>
+                          <li className="onhover-div mobile-setting">
+                            <div>
+                              <img
+                                src={`${
+                                  process.env.PUBLIC_URL
+                                }/assets/images/icon/setting.png`}
+                                className="img-fluid"
+                                alt=""
+                              />
+                              <i className="fa fa-cog" />
+                            </div>
+                            <div className="show-div setting">
+                              <h6>ผู้ใช้</h6>
+                              {this.state.customer != undefined ? (
+                                <ul>
+                                  <li>
+                                    <Link
+                                      to={`${
+                                        process.env.PUBLIC_URL
+                                      }/pages/user`}
+                                    >
+                                      {this.state.customer.firstname}  {this.state.customer.lastname}
+                                    </Link>
+                                  </li>
+                                </ul>
+                              ) : (
+                                <ul>
+                                  <li>
+                                    <Link
+                                      to={`${
+                                        process.env.PUBLIC_URL
+                                      }/pages/login/false`}
+                                    >
+                                      เข้าสู่ระบบ
+                                    </Link>
+                                  </li>
+                                  <li>
+                                    <a
+                                      href={`${
+                                        process.env.PUBLIC_URL
+                                      }/pages/register/false`}
+                                    >
+                                      สมัครสมาชิก
+                                    </a>{" "}
+                                  </li>
+                                </ul>
+                              )}
+
+                              <h6>ภาษา</h6>
+                              <ul>
+                                <li>
+                                  <a
+                                    href={null}
+                                    onClick={() => this.changeLanguage("en")}
+                                  >
+                                    English
+                                  </a>{" "}
+                                </li>
+                                <li>
+                                  <a
+                                    href={null}
+                                    onClick={() => this.changeLanguage("th")}
+                                  >
+                                    ไทย
+                                  </a>{" "}
+                                </li>
+                              </ul>
+                              {/* <h6>currency</h6>
 															<ul className="list-inline">
 																<li><a href={null} onClick={() => this.props.changeCurrency('€')}>euro</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('₹')}>rupees</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('£')}>pound</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('$')}>doller</a> </li>
 															</ul> */}
-														</div>
-													</li>
-													{/*Header Cart Component */}
-													<CartContainer />
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</header>
+                            </div>
+                          </li>
+                          {/*Header Cart Component */}
+                          <CartContainer />
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
 
-				<div id="search-overlay" className="search-overlay">
-					<div>
-						<span className="closebtn" onClick={this.closeSearch} title="Close Overlay">×</span>
-						<div className="overlay-content">
-							<div className="container">
-								<div className="row">
-									<div className="col-xl-12">
-										<form>
-											<div className="form-group">
-												<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Search a Product" />
-											</div>
-											<button type="submit" className="btn btn-primary"><i className="fa fa-search"></i></button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	}
+        <div id="search-overlay" className="search-overlay">
+          <div>
+            <span
+              className="closebtn"
+              onClick={this.closeSearch}
+              title="Close Overlay"
+            >
+              ×
+            </span>
+            <div className="overlay-content">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <form>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleInputPassword1"
+                          placeholder="Search a Product"
+                        />
+                      </div>
+                      <button type="submit" className="btn btn-primary">
+                        <i className="fa fa-search" />
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default connect(null,
-	{ changeCurrency }
+export default connect(
+  null,
+  { changeCurrency }
 )(HeaderFive);

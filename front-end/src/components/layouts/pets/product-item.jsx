@@ -1,92 +1,117 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import Modal from 'react-responsive-modal';
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Modal from "react-responsive-modal";
+import { connect } from "react-redux";
 
-
-
-import {getRelatedItems} from "../../../services";
-
+import { getRelatedItems } from "../../../services";
 
 class ProductItem extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props){
-        super(props)
-
-        this.state = {
-            open: false,
-            cartModalopen:false,
-            stock: 'InStock',
-            quantity: 1,
-            image: ''
-        }
-    }
-
-    onClickHandle(img) {
-        this.setState({ image : img} );
-    }
-    onOpenModal = () => {
-        this.setState({ open: true });
+    this.state = {
+      open: false,
+      cartModalopen: false,
+      stock: "InStock",
+      quantity: 1,
+      image: "",
     };
-    onCloseModal = () => {
-        this.setState({ open: false });
-    };
+  }
 
-    onOpenCartModal = () => {
-        this.setState({ cartModalopen: true });
-        this.props.onAddToCartClicked();
-    };
-    onCloseCartModal = () => {
-        this.setState({ cartModalopen: false });
-    };
+  onClickHandle(img) {
+    this.setState({ image: img });
+  }
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
 
-    minusQty = () => {
-        if(this.state.quantity > 1) {
-            this.setState({stock: 'InStock'})
-            this.setState({quantity: this.state.quantity - 1})
-        }
+  onOpenCartModal = () => {
+    this.setState({ cartModalopen: true });
+    this.props.onAddToCartClicked();
+  };
+  onCloseCartModal = () => {
+    this.setState({ cartModalopen: false });
+  };
+
+  minusQty = () => {
+    if (this.state.quantity > 1) {
+      this.setState({ stock: "InStock" });
+      this.setState({ quantity: this.state.quantity - 1 });
     }
+  };
 
-    plusQty = () => {
-        if(this.props.product.stock >= this.state.quantity) {
-            this.setState({quantity: this.state.quantity+1})
-        }else{
-            this.setState({stock: 'Out of Stock !'})
-        }
+  plusQty = () => {
+    if (this.props.product.stock >= this.state.quantity) {
+      this.setState({ quantity: this.state.quantity + 1 });
+    } else {
+      this.setState({ stock: "Out of Stock !" });
     }
-    changeQty = (e) => {
-        this.setState({ quantity: parseInt(e.target.value) })
+  };
+  changeQty = (e) => {
+    this.setState({ quantity: parseInt(e.target.value) });
+  };
+
+  render() {
+    const {
+      product,
+      symbol,
+      onAddToCartClicked,
+      onAddToWishlistClicked,
+      onAddToCompareClicked,
+      relatedItems,
+    } = this.props;
+    let images = product.image.split("#");
+
+    let RatingStars = [];
+    for (var i = 0; i < product.rating; i++) {
+      RatingStars.push(<i className="fa fa-star" key={i} />);
     }
-
-    render() {
-        const {product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked, relatedItems} = this.props;
-
-
-        let RatingStars = []
-        for(var i = 0; i < product.rating; i++) {
-            RatingStars.push(<i className="fa fa-star" key={i}></i>)
-        }
-        return (
-            <div>
-                <div className="product-box">
-                    <div className="img-wrapper">
-                        <div className="lable-block">
-                            {(product.new == true)? <span className="lable3">new</span> : ''}
-                            {(product.sale == true)? <span className="lable4">on sale</span> : ''}
-
-                        </div>
-                        <div className="front">
-                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} >
-                                <img src={`${
-                                    product.variants?
-                                        this.state.image?this.state.image:product.variants[0].images
-                                        :product.pictures[0]
-                                    }`}
-                                className="img-fluid lazyload bg-img"
-                                alt="" />
-                            </Link>
-                        </div>
-                        {/* <div className="cart-info cart-wrap">
+    return (
+      <div>
+        <div className="product-box">
+          <div className="img-wrapper">
+            {product.isoffer == 1 && (
+              <div
+                className="pl-1 pr-1 m-1"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  background: "#d93b42",
+                  color: "#fff",
+                  borderRadius: 5,
+                }}
+              >
+                <i className="fa fa-flash" />
+                <span style={{ fontSize: 12 }}>แนะนำ</span>
+              </div>
+            )}
+            {/* <div className="lable-block">
+              {product.new == true ? <span className="lable3">new</span> : ""}
+              {product.sale == true ? (
+                <span className="lable4">on sale</span>
+              ) : (
+                ""
+              )}
+            </div> */}
+            <div className="front">
+              <Link
+                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                  product.id
+                }`}
+              >
+                <img
+                  src={`${images[0]}`}
+                  style={{ width: "100%" }}
+                  className="img-fluid lazyload bg-img"
+                  alt=""
+                />
+              </Link>
+            </div>
+            {/* <div className="cart-info cart-wrap">
                             <button title="Add to cart" onClick={() => this.onOpenCartModal()}>
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                             </button>
@@ -100,23 +125,42 @@ class ProductItem extends Component {
                             <Link to={`${process.env.PUBLIC_URL}/compare`} title="Compare" onClick={onAddToCompareClicked}>
                                 <i className="fa fa-refresh" aria-hidden="true"></i></Link>
                         </div> */}
-                    </div>
-                    <div className="product-detail ">
-                        <div>
-                            <div className="rating">
-                                {RatingStars}
-                            </div>
-                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}>
-                                <h6>{product.name}</h6>
-                            </Link>
-                            <h4 style={{color:'#0072BE'}}>{'฿'}{product.price-(product.price*product.discount/100)}
-                                <del><span className="money">{'฿'}{product.price}</span></del>
-                            </h4>
-                        </div>
-                    </div>
+          </div>
+          <div className="product-detail ">
+            <div>
+              <div className="rating">{RatingStars}</div>
+              <Link
+                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                  product.id
+                }`}
+              >
+                <h6>{product.name}</h6>
+              </Link>
 
-                    {/*Quick-view modal popup Start*/}
-                    <Modal open={this.state.open} onClose={this.onCloseModal} center>
+              <h4 style={{ color: "#0072BE" }}>
+                <span style={{ fontSize: 14 }}>{symbol}</span>
+                {(product.discount > 0
+                  ? product.discount
+                  : product.price
+                ).toLocaleString(navigator.language, {
+                  minimumFractionDigits: 2,
+                })}
+                {product.discount > 0 && (
+                  <del>
+                    <span className="money">
+                      <span style={{ fontSize: 14 }}>{symbol}</span>
+                      {product.price.toLocaleString(navigator.language, {
+                        minimumFractionDigits: 2,
+                      })}
+                    </span>
+                  </del>
+                )}
+              </h4>
+            </div>
+          </div>
+
+          {/*Quick-view modal popup Start*/}
+          {/* <Modal open={this.state.open} onClose={this.onCloseModal} center>
                         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div className="modal-content quick-view-modal">
                                 <div className="modal-body">
@@ -180,11 +224,11 @@ class ProductItem extends Component {
                                 </div>
                             </div>
                         </div>
-                    </Modal>
-                    {/*Quick-view modal popup End*/}
+                    </Modal> */}
+          {/*Quick-view modal popup End*/}
 
-                    {/* Add to cart modal popup start */}
-                    <Modal open={this.state.cartModalopen} onClose={this.onCloseCartModal} center className="cart-modal">
+          {/* Add to cart modal popup start */}
+          {/* <Modal open={this.state.cartModalopen} onClose={this.onCloseCartModal} center className="cart-modal">
                         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-body modal1">
@@ -258,19 +302,17 @@ class ProductItem extends Component {
                                 </div>
                             </div>
                         </div>
-                    </Modal>
-                    {/*Add to cart modal popup End*/}
-
-
-                </div>
-            </div>
-        )
-    }
+                    </Modal> */}
+          {/*Add to cart modal popup End*/}
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    relatedItems: getRelatedItems(state.data.products, ownProps.product.category),
-    symbol: state.data.symbol
-})
+  relatedItems: getRelatedItems(state.data.products, ownProps.product.category),
+  symbol: state.data.symbol,
+});
 
-export default connect(mapStateToProps) (ProductItem);
+export default connect(mapStateToProps)(ProductItem);

@@ -1,125 +1,135 @@
-import React, { Component } from 'react';
-import { Helmet } from 'react-helmet'
-import '../../common/index.scss';
-import Slider from 'react-slick';
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import "../../common/index.scss";
+import Slider from "react-slick";
+import { connect } from "react-redux";
 // Import custom components
-import Collection from "./collection"
-import CategoryCollection from "./categorycollection"
-import AuctionCollection from "./auctioncollection"
-import ShopCollection from "./shopcollection"
-import CateBlock from "../common/cate-block"
+import Productoffer from "./productoffer";
+import Productrecent from "./producrecent";
+import CategoryCollection from "./categorycollection";
+import AuctionCollection from "./auctioncollection";
+import ShopCollection from "./shopcollection";
+import CateBlock from "../common/cate-block";
 import BlogSection from "../common/blogsection";
-import HeaderThree from "../../common/headers/header-three"
-import HeaderFive from "../../common/headers/header-five"
-import FooterTwo from "../../common/footers/footer-two"
-import ThemeSettings from "../../common/theme-settings"
-
-
+import HeaderThree from "../../common/headers/header-three";
+import HeaderFive from "../../common/headers/header-five";
+import FooterTwo from "../../common/footers/footer-two";
+import ThemeSettings from "../../common/theme-settings";
+import { Siteurl } from "../../../services/script";
+import { Link } from "react-router-dom";
 class Pets extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bannerlist: [],
+      contentlist: [],
+    };
+  }
 
-    componentDidMount() {
-        document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color15.css`);
-    }
+  componentDidMount() {
+    document
+      .getElementById("color")
+      .setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color15.css`);
 
-    render() { 
-        return (
-            <div>
-                <Helmet>
-                    <title>Petto.co | หน้าหลัก</title>
-                </Helmet>
-                <HeaderFive logoName={'logo/petto_logo.png'} />
-                <section className="p-0 small-slider">
-                    <Slider className="slide-1 home-slider">
-                        <div>
-                            <div className="home">
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col">
-                                            <div className="slider-contain">
-                                                <img src={`https://image.shutterstock.com/image-vector/1212-shopping-day-sale-banner-600w-1572000139.jpg`} alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="home">
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col">
-                                            <div className="slider-contain">
-                                                <img src={`https://image.shutterstock.com/image-vector/1212-shopping-day-sale-banner-600w-1572000139.jpg`} alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Slider>
-                </section>
+    this.getbanner();
+    this.getcontentlist();
+  }
 
-                {/*Logo Block section*/}
-                <CateBlock />
-                {/*Logo Block section end*/}
-                {/*Product Slider*/}
-                <Collection type={'pets'} title="สินค้าแนะนำ" />
-                <AuctionCollection type={'pets'} title="รายการประมูล" />
-                <ShopCollection type={'pets'} title="ร้านค้าแนะนำ" />
-                {/*Product Slider End*/}
+  getbanner = () => {
+    fetch(Siteurl + "service/getbanner", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({ bannerlist: result.result });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
 
-                {/*Banner Section*/}
-                <section className="pt-0 banner-6 ratio2_1">
-                    <div className="container">
-                        <div className="row partition3">
-                            <div className="col-md-4">
-                                <a href="#">
-                                    <div className="collection-banner p-left">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/pets/banner/1.jpg`}
-                                                className="img-fluid blur-up lazyload bg-img" alt="" />
-                                        </div>
-                                        <div className="contain-banner banner-3">
-                                            <div>
-                                                <h2>แบนเนอร์1</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="col-md-4">
-                                <a href="#">
-                                    <div className="collection-banner p-right text-right">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/pets/banner/2.jpg`}
-                                                className="img-fluid blur-up lazyload bg-img" alt="" />
-                                        </div>
-                                        <div className="contain-banner banner-3">
-                                            <div>
-                                                <h2>แบนเนอร์2</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="col-md-4">
-                                <a href="#">
-                                    <div className="collection-banner p-left">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/pets/banner/3.jpg`}
-                                                className="img-fluid blur-up lazyload bg-img" alt="" />
-                                        </div>
-                                        <div className="contain-banner banner-3">
-                                            <div>
-                                                <h2>แบนเนอร์3</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        {/* <div className="row partition3 banner-top-cls">
+  getcontentlist = () => {
+    fetch(Siteurl + "service/getcontentlist", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ limit: 10 }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({ contentlist: result.result });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
+
+  banner(value, index) {
+    return (
+      <div key={"banner-" + index}>
+        <div className="home">
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <div className="slider-contain">
+                  <img src={value.image} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div>
+        <Helmet>
+          <title>Petto.co | หน้าหลัก</title>
+        </Helmet>
+        <HeaderFive logoName={"logo/petto_logo.png"} />
+        <section className="p-0 small-slider">
+          <Slider className="slide-1 home-slider">
+            {this.state.bannerlist.map((value, index) => {
+              return this.banner(value, index);
+            })}
+          </Slider>
+        </section>
+
+        {/*Logo Block section*/}
+        <CateBlock />
+        {/*Logo Block section end*/}
+        {/*Product Slider*/}
+        <Productoffer type={"pets"} title="สินค้าแนะนำ" />
+        <Productrecent type={"pets"} title="สินค้าล่าสุด" />
+        <AuctionCollection type={"pets"} title="รายการประมูล" />
+        <ShopCollection type={"pets"} title="ร้านค้าแนะนำ" />
+        {/*Product Slider End*/}
+
+        {/*Banner Section*/}
+        {/* <section className="pt-0 banner-6 ratio2_1">
+          <div className="container">  */}
+        {/* <div className="row partition3 banner-top-cls">
                             <div className="col-md-4">
                                 <a href="#">
                                     <div className="collection-banner p-right">
@@ -166,20 +176,20 @@ class Pets extends Component {
                                 </a>
                             </div>
                         </div> */}
-                    </div>
-                </section>
-                {/*Banner Section End*/}
+        {/* </div>
+        </section> */}
+        {/*Banner Section End*/}
 
-                {/*Category Section*/}
-                <CategoryCollection   title="หมวดหมู่"  />
-                {/*Category Section End*/}
+        {/*Category Section*/}
+        <CategoryCollection title="หมวดหมู่" />
+        {/*Category Section End*/}
 
-                {/*Product Section*/}
-                {/* <Collection type={'pets'} title="TOP COLLECTION" subtitle="Special Offer" /> */}
-                {/*Product Section End*/}
+        {/*Product Section*/}
+        {/* <Collection type={'pets'} title="TOP COLLECTION" subtitle="Special Offer" /> */}
+        {/*Product Section End*/}
 
-                {/*Parallax banner*/}
-                {/* <section className="p-0 pet-parallax">
+        {/*Parallax banner*/}
+        {/* <section className="p-0 pet-parallax">
                     <div className="full-banner parallax parallax-banner19  text-center p-center">
                         <div className="container">
                             <div className="row">
@@ -202,9 +212,59 @@ class Pets extends Component {
                         </div>
                     </div>
                 </section> */}
-                {/*Parallax banner end*/}
-                {/* Blog Section Section*/}
-                {/* <div className="container ">
+        {/*Parallax banner end*/}
+        {/* Blog Section Section*/}
+        <div className="container">
+          <div className="title1 title5">
+            <div className="row">
+              <div className="col-6">
+                <h2 className="title-inner1 text-left">{"บทความ"}</h2>
+              </div>
+              <div className="col-6">
+                <Link to={`${process.env.PUBLIC_URL}/blog/blog-page`}>
+                  <h5 className="title-inner1 text-right">{"ดูเพิ่มเติม >"}</h5>
+                </Link>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <section className="section-b-space p-t-0 ratio2_3">
+          {/* <BlogSection /> */}
+
+          <div className="container ">
+            {this.state.contentlist.map((row, index) => {
+              return (
+                <div key={"div-" + index}>
+                  <div className="col-md-12">
+                    <Link
+                      to={`${process.env.PUBLIC_URL}/blog/details/${row.id}`}
+                    >
+                      <div className="classic-effect">
+                        <img
+                          style={{ width: "100%" }}
+                          src={`${row.image}`}
+                          className="img"
+                          alt=""
+                        />
+                        <span />
+                      </div>
+                    </Link>
+                    <div className="blog-details">
+                      <h4>{`${row.createdate}`}</h4>
+                      <Link to={`${process.env.PUBLIC_URL}/blog/details`}>
+                        <p>{`${row.title}`}</p>
+                      </Link>
+                      <hr className="style1" />
+                      {/*   <h6>by: John Dio , 2 Comment</h6> */}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* <div className="container ">
                     <div className="row">
                         <div className="col">
                             <div className="title1 title5">
@@ -216,17 +276,16 @@ class Pets extends Component {
                     </div>
                 </div>
                 <section className="section-b-space p-t-0 ratio2_3">
-                    <BlogSection />
-                </section> */}
-                {/* Blog Section End*/}
-                {/* <ThemeSettings/> */}
-                <FooterTwo logoName={'logo/petto_logo.png'} />
-            </div>
-        )
-    }
+                    <BlogSection />*/}
+        </section>
+        {/* Blog Section End*/}
+        {/* <ThemeSettings/> */}
+        <FooterTwo logoName={"logo/petto_logo.png"} />
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-})
+const mapStateToProps = (state, ownProps) => ({});
 
 export default connect(mapStateToProps)(Pets);

@@ -1,71 +1,226 @@
-import React, {Component} from 'react';
-
+import React, { Component } from "react";
+import { Siteurl } from "../../services/script";
 import Breadcrumb from "../common/breadcrumb";
-
+import { connect } from "react-redux";
+import CryptoJS from "crypto-js";
 class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      repassword: "",
+      isaccept: false,
+    };
+  }
+  componentDidMount() {
+    this.setState({ isaccept: this.props.isaccept == "true" ? true : false });
+  }
 
-    constructor (props) {
-        super (props)
+  Register = () => {
+    const { isaccept } = this.state;
+    if (isaccept == true) {
+      this.doRegister();
+      return true;
+    } else {
+      alert("กรุณาอ่านนโยบายและข้อกำหนดและติ๊กเครื่องหมายยอมรับ");
+      return false;
+    }
+  };
 
+  validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  doRegister = () => {
+    const prms = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      password: this.state.password,
+      repassword: this.state.repassword,
+    };
+
+    if (
+      prms.firstname == "" ||
+      prms.lastname == "" ||
+      prms.email == "" ||
+      prms.password == "" ||
+      prms.repassword == ""
+    ) {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      return;
+    }
+    if (!this.validateEmail(prms.email)) {
+      alert("รูปแบบอีเมลล์ไม่ถูกต้อง");
+      return;
     }
 
-    render (){
+    if (prms.password != prms.repassword) {
+      alert("รหัสผ่านไม่ตรงกัน");
+      return;
+    }
 
+    prms.password = CryptoJS.MD5(prms.password).toString();
+    prms.repassword = CryptoJS.MD5(prms.repassword).toString();
+    fetch(Siteurl + "service/registercust", {
+      method: "POST",
+      headers: {
+        // "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify(prms),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => { 
+          if (result !=  false ) {
+            window.location = "/pages/login/true";
+          } else {
+            alert("อีเมลล์นี้มีผู้ใช้งานแล้ว");
+            return;
+          }
+        },
+        (error) => {
+          console.log(error);
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
 
-        return (
-            <div>
-                <Breadcrumb title={'สมัครสมาชิก'}/>
-                
-                
-                {/*Regsiter section*/}
-                <section className="register-page section-b-space">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <h3>สมัครสมาชิก</h3>
-                                <div className="theme-card">
-                                    <form className="theme-form">
-                                        <div className="form-row">
-                                            <div className="col-md-6">
-                                                <label htmlFor="email">ชื่อ</label>
-                                                <input type="text" className="form-control" id="fname"
-                                                       placeholder="ชื่อจริง" required="" />
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label htmlFor="review">นามสกุล</label>
-                                                <input type="password" className="form-control" id="lname"
-                                                       placeholder="นามสกุล" required="" />
-                                            </div>
-                                        </div>
-                                        <div className="form-row">
-                                            <div className="col-md-6">
-                                                <label htmlFor="email">อีเมลล์</label>
-                                                <input type="text" className="form-control" id="email"
-                                                       placeholder="ระบุอีเมลล์" required="" />
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label htmlFor="review">รหัสผ่าน</label>
-                                                <input type="password" className="form-control" id="review"
-                                                       placeholder="ระบุรหัสผ่าน" required="" />
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label htmlFor="review">ยืนยันรหัสผ่าน</label>
-                                                <input type="password" className="form-control" id="review"
-                                                       placeholder="ระบุรหัสผ่าน" required="" />
-                                            </div>
-                                            <a href={`${process.env.PUBLIC_URL}/pages/termandcond`} className="text-center tandc">นโยบายและข้อกำหนด</a>
-                                            <a href="#" className="btn-petto-secondcolor  text-center">ยืนยันการสมัครสมาชิก</a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+  handleChange = () => {
+    this.setState({ isaccept: !this.state.isaccept });
+  };
+
+  render() {
+    console.log("this.props.isaccept", this.props.isaccept);
+    return (
+      <div>
+        <Breadcrumb title={"สมัครสมาชิก"} />
+
+        {/*Regsiter section*/}
+        <section className="register-page section-b-space">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <h3>สมัครสมาชิก</h3>
+                <div className="theme-card">
+                  <form className="theme-form">
+                    <div className="form-row">
+                      <div className="col-md-6">
+                        <label htmlFor="email">ชื่อ</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="fname"
+                          placeholder="ชื่อจริง"
+                          required
+                          onChange={(e) =>
+                            this.setState({ firstname: e.target.value })
+                          }
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <label htmlFor="lname">นามสกุล</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="lname"
+                          placeholder="นามสกุล"
+                          required
+                          onChange={(e) =>
+                            this.setState({ lastname: e.target.value })
+                          }
+                        />
+                      </div>
                     </div>
-                </section>
-
+                    <div className="form-row">
+                      <div className="col-md-6">
+                        <label htmlFor="email">อีเมลล์</label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="email"
+                          placeholder="ระบุอีเมลล์"
+                          required
+                          onChange={(e) =>
+                            this.setState({ email: e.target.value })
+                          }
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <label htmlFor="passw">รหัสผ่าน</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="passw"
+                          placeholder="ระบุรหัสผ่าน"
+                          required=""
+                          onChange={(e) =>
+                            this.setState({ password: e.target.value })
+                          }
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <label htmlFor="repassw">ยืนยันรหัสผ่าน</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="repassw"
+                          placeholder="ระบุรหัสผ่าน"
+                          required=""
+                          onChange={(e) =>
+                            this.setState({ repassword: e.target.value })
+                          }
+                        />
+                      </div>
+                      <div className="col-md-6">
+                        <span>
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={
+                                this.state.isaccept == true ? "checked" : ""
+                              }
+                              ref="complete"
+                              onChange={this.handleChange}
+                            />
+                            {" ยอมรับ"}
+                          </label>
+                        </span>{" "}
+                        <a
+                          href={`${process.env.PUBLIC_URL}/pages/termandcond`}
+                          className="text-center tandc"
+                        >
+                          นโยบายและข้อกำหนด
+                        </a>
+                      </div>
+                      <a
+                        href="javascript:;"
+                        className="btn-petto-secondcolor  text-center"
+                        onClick={() => this.Register()}
+                      >
+                        ยืนยันการสมัครสมาชิก
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-        )
-    }
+          </div>
+        </section>
+      </div>
+    );
+  }
 }
 
-export default Register
+const mapStateToProps = (state, ownProps) => ({
+  isaccept: ownProps.match.params.isaccept,
+});
+
+export default connect(mapStateToProps)(Register);

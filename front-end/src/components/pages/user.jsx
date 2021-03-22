@@ -20,7 +20,7 @@ class User extends Component {
         {/*Dashboard section*/}
         <section className="section-b-space">
           <div className="container">
-            <Shoptop />
+            {/* <Shoptop /> */}
 
             <Tabs className="theme-tab">
               <TabList className="tabs tab-title">

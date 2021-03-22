@@ -26,7 +26,7 @@ class Termandcond extends Component {
                                 </div>
                             </div>
                         </div>
-                        <a href={`${process.env.PUBLIC_URL}/pages/register`} className="btn btn-petto-secondcolor">รับทราบ</a>
+                        <a href={`${process.env.PUBLIC_URL}/pages/register/true`} className="btn btn-petto-secondcolor">รับทราบ</a>
                     </div>
                 </section> 
             </div>

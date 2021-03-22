@@ -1,4 +1,6 @@
 
+
+export const  Siteurl = 'http://localhost/petto/';
 export const Cate6 = {
     infinite: true,
     speed: 300,

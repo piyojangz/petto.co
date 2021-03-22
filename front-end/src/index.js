@@ -32,6 +32,14 @@ import CollectionRightSidebar from "./components/collection/collection-right-sid
 import CollectionFullWidth from "./components/collection/collection-full-width";
 import CollectionMetro from "./components/collection/collection-metro";
 
+
+import Category from "./components/collection/category";
+import Productlistrecent from "./components/collection/product-list-recent";
+import Productlistoffer from "./components/collection/product-list-offer";
+import Productlistauction from "./components/collection/product-list-action";
+
+
+
 // Product Pages
 import LeftSideBar from "./components/products/left-sidebar";
 import RightSideBar from "./components/products/right-sidebar";
@@ -117,13 +125,22 @@ class Root extends React.Component {
 
                                     {/*Routes For Layouts*/}
                                     <Route path={`${process.env.PUBLIC_URL}/fashion`} component={Fashion} />
-                                    <Route path={`${process.env.PUBLIC_URL}/shop`} component={Shop} />
+                                    <Route path={`${process.env.PUBLIC_URL}/shop/:id`} component={Shop} />
                                     {/*Routes For Features (Product Collection) */}
                                     <Route path={`${process.env.PUBLIC_URL}/left-sidebar/collection`} component={CollectionLeftSidebar} />
                                     <Route path={`${process.env.PUBLIC_URL}/no-sidebar/collection`} component={CollectionNoSidebar} />
                                     <Route path={`${process.env.PUBLIC_URL}/right-sidebar/collection`} component={CollectionRightSidebar} />
                                     <Route path={`${process.env.PUBLIC_URL}/full-width/collection`} component={CollectionFullWidth} />
                                     <Route path={`${process.env.PUBLIC_URL}/metro/collection`} component={CollectionMetro} />
+                                    <Route path={`${process.env.PUBLIC_URL}/category/:id/:name`} component={Category} />
+
+                                    <Route path={`${process.env.PUBLIC_URL}/recent`} component={Productlistrecent} />
+                                    <Route path={`${process.env.PUBLIC_URL}/offer`} component={Productlistoffer} />
+                                    <Route path={`${process.env.PUBLIC_URL}/auction`} component={Productlistauction} />
+                                    
+
+                                    
+                                    
 
                                     {/*Routes For Single Product*/}
                                     <Route path={`${process.env.PUBLIC_URL}/left-sidebar/product/:id`} component={LeftSideBar} />
@@ -150,9 +167,9 @@ class Root extends React.Component {
                                     {/*Routes For Extra Pages*/}
                                     <Route path={`${process.env.PUBLIC_URL}/pages/about-us`} component={aboutUs} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/404`} component={PageNotFound} />
-                                    <Route path={`${process.env.PUBLIC_URL}/pages/lookbook`} component={lookbook} />
-                                    <Route path={`${process.env.PUBLIC_URL}/pages/login`} component={Login} />
-                                    <Route path={`${process.env.PUBLIC_URL}/pages/register`} component={Register} />
+                                    <Route path={`${process.env.PUBLIC_URL}/pages/lookbook`} component={lookbook} /> 
+                                    <Route path={`${process.env.PUBLIC_URL}/pages/login/:isregistersuccess`} component={Login} /> 
+                                    <Route path={`${process.env.PUBLIC_URL}/pages/register/:isaccept`} component={Register} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/search`} component={Search} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/collection`} component={Collection} />
                                     <Route path={`${process.env.PUBLIC_URL}/pages/forget-password`} component={ForgetPassword} />
@@ -185,7 +202,7 @@ class Root extends React.Component {
 
                                     {/*Blog Pages*/}
                                     <Route path={`${process.env.PUBLIC_URL}/blog/right-sidebar`} component={RightSide} />
-                                    <Route path={`${process.env.PUBLIC_URL}/blog/details`} component={Details} />
+                                    <Route path={`${process.env.PUBLIC_URL}/blog/details/:id`} component={Details} />
                                     <Route path={`${process.env.PUBLIC_URL}/blog/blog-page`} component={BlogPage} />
 
                                     {/* <Route exact path="*" component={PageNotFound} /> */}

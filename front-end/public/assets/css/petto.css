@@ -1,3 +1,7 @@
+body {
+  /* max-width: 480px   !important; */
+  margin: 0 auto;
+}
 .auction-timer {
   padding: 5px;
 }
@@ -158,11 +162,42 @@ footer.pet-layout-footer .sub-footer.black-subfooter {
 .react-tabs__tab--selected .nav-link {
   color: #fff !important;
 }
-.tab-product .nav-material.nav-tabs .nav-item .material-border, .product-full-tab .nav-material.nav-tabs .nav-item .material-border {
+.tab-product .nav-material.nav-tabs .nav-item .material-border,
+.product-full-tab .nav-material.nav-tabs .nav-item .material-border {
   border-bottom: 2px solid #2e96e0 !important;
   opacity: 0;
 }
 
+.AuctionDate {
+  font-size: 12px;
+  font-weight: bold;
+  color: #e8434a;
+  line-height: 17px;
+  float: left;
+}
+.AuctionDate2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e8434a;
+  line-height: 17px;
+  float: left;
+}
+.AuctionPrice {
+  color: #000;
+  font-weight: bold;
+  line-height: 17px;
+  float: right;
+}
+.iAuction {
+  background: rgb(0, 114, 190);
+  color: rgb(255, 255, 255);
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+}
 .tab-content.nav-material .react-tabs__tab--selected {
   border-bottom: 2px solid #2e96e0 !important;
 }

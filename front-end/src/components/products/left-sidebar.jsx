@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import Slider from "react-slick";
 import "../common/index.scss";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 // import custom Components
 import Service from "./common/service";
 import BrandBlock from "./common/brand-block";
@@ -15,7 +15,7 @@ import Shoptop from "./common/shop-top";
 import { addToCart, addToCartUnsafe, addToWishlist } from "../../actions";
 import ImageZoom from "./common/product/image-zoom";
 import SmallImages from "./common/product/small-image";
-
+import { Siteurl } from "../../services/script";
 class LeftSideBar extends Component {
   constructor() {
     super();
@@ -23,6 +23,12 @@ class LeftSideBar extends Component {
       open: false,
       nav1: null,
       nav2: null,
+      productdetail: {
+        name: "",
+        category: "",
+        image: "",
+      },
+      shop: {},
     };
   }
 
@@ -33,6 +39,8 @@ class LeftSideBar extends Component {
       nav1: this.slider1,
       nav2: this.slider2,
     });
+
+    this.getproductbyid(this.props.productId);
   }
 
   filterClick() {
@@ -41,6 +49,52 @@ class LeftSideBar extends Component {
   backClick() {
     document.getElementById("filter").style.left = "-365px";
   }
+
+  getproductbyid = (productId) => {
+    fetch(Siteurl + "service/getproductbyid", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ id: productId }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({ productdetail: result.result });
+          this.getshop(result.result.merchantid);
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
+
+  getshop = (id) => {
+    fetch(Siteurl + "service/getshop", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ id: id }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log("result", result.result);
+          this.setState({ shop: result.result });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
 
   render() {
     const {
@@ -65,24 +119,27 @@ class LeftSideBar extends Component {
       focusOnSelect: true,
     };
 
+    let productdetail = this.state.productdetail;
+
+    let images = productdetail.image.split("#");
     return (
       <div>
         {/*SEO Support*/}
         <Helmet>
           <title>
-            MultiKart | {item.category} | {item.name}
+            Pettogo.co | {productdetail.category} | {productdetail.name}
           </title>
-          <meta
-            name="description"
-            content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
-          />
+          <meta name="description" content="Pettogo.co – ตลาดสัตว์เลี้ยง." />
         </Helmet>
         {/*SEO Support End */}
 
-        <Breadcrumb parent={"Product"} title={item.name} />
+        <Breadcrumb
+          parent={productdetail.category}
+          title={productdetail.name}
+        />
 
         {/*Section Start*/}
-        {item ? (
+        {productdetail ? (
           <section className="section-b-space">
             <div className="collection-wrapper">
               <div className="container">
@@ -116,18 +173,23 @@ class LeftSideBar extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-lg-12 product-thumbnail">
-                          <div className="embed-responsive embed-responsive-16by9">
-                            <iframe
-                              src="https://www.youtube.com/embed/ubK-U9HgTIo"
-                              allow="autoplay; encrypted-media"
-                              allowFullScreen
-                            />
+                      {productdetail.video && (
+                        <div>
+                          <div className="row">
+                            <div className="col-lg-12 product-thumbnail">
+                              <div className="embed-responsive embed-responsive-16by9">
+                                <iframe
+                                  src={productdetail.video}
+                                  allow="autoplay; encrypted-media"
+                                  allowFullScreen
+                                />
+                              </div>
+                            </div>
                           </div>
+                          <hr />
                         </div>
-                      </div>
-                      <hr />
+                      )}
+
                       <div className="row">
                         <div className="col-lg-6 product-thumbnail">
                           <Slider
@@ -136,7 +198,15 @@ class LeftSideBar extends Component {
                             ref={(slider) => (this.slider1 = slider)}
                             className="product-slick"
                           >
-                            {item.variants
+                            {images.map((vari, index) => (
+                              <div key={index}>
+                                <ImageZoom image={vari} />
+                              </div>
+                            ))}
+                            {/* <div key={1}>
+                              <ImageZoom image={images} />
+                            </div> */}
+                            {/* {item.variants
                               ? item.variants.map((vari, index) => (
                                   <div key={index}>
                                     <ImageZoom image={vari.images} />
@@ -146,26 +216,26 @@ class LeftSideBar extends Component {
                                   <div key={index}>
                                     <ImageZoom image={vari} />
                                   </div>
-                                ))}
+                                ))} */}
                           </Slider>
                           <SmallImages
-                            item={item}
+                            item={productdetail}
                             settings={productsnav}
                             navOne={this.state.nav1}
                           />
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}
-                          item={item}
+                          item={productdetail}
                           navOne={this.state.nav1}
                           addToCartClicked={addToCart}
                           BuynowClicked={addToCartUnsafe}
                           addToWishlistClicked={addToWishlist}
                         />
                       </div>
-                    </div>
-                    <Shoptop />
-                    <DetailsTopTabs item={item} />
+                    </div> 
+                      <Shoptop shop={this.state.shop} /> 
+                    <DetailsTopTabs item={productdetail} />
                     {/* <BrandBlock/> */}
                     {/* <Service /> */}
                     {/*side-bar single product slider start*/}
@@ -188,7 +258,8 @@ class LeftSideBar extends Component {
 const mapStateToProps = (state, ownProps) => {
   let productId = ownProps.match.params.id;
   return {
-    item: state.data.products.find((el) => el.id == productId),
+    productId: productId,
+    // item: state.data.products.find((el) => el.id == productId),
     symbol: state.data.symbol,
   };
 };
