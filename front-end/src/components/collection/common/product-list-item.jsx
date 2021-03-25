@@ -57,7 +57,7 @@ class ProductListItem extends Component {
     let images = product.image.split("#");
 
     return (
-      <div className="product-box">
+      <div className="product-box box-underline">
         <div className="row">
           <div className="col-5">
             <div className="img-wrapper">
@@ -95,16 +95,23 @@ class ProductListItem extends Component {
                   product.id
                 }`}
               >
-                <h5>{product.name}</h5>
+                <h5  className="two-line-ellipsis">{product.name}</h5>
               </Link>
               <h3 style={{ color: "rgb(0, 114, 190)", fontWeight: "bold" }}>
                 <span style={{ fontSize: 18 }}>{symbol}</span>
-                {(product.price - (product.price * product.discount) / 100).toLocaleString(navigator.language, { minimumFractionDigits: 2 })}
+                {(product.discount
+                  ? product.discount
+                  : product.price
+                ).toLocaleString(navigator.language, {
+                  minimumFractionDigits: 2,
+                })}
                 {product.discount > 0 && (
                   <del>
                     <span className="money">
                       <span style={{ fontSize: 18 }}>{symbol}</span>
-                      {product.price.toLocaleString(navigator.language, { minimumFractionDigits: 2 })}
+                      {product.price.toLocaleString(navigator.language, {
+                        minimumFractionDigits: 2,
+                      })}
                     </span>
                   </del>
                 )}

@@ -134,7 +134,7 @@ class ProductItem extends Component {
                   product.id
                 }`}
               >
-                <h6>{product.name}</h6>
+                <h6 >{product.name}</h6>
               </Link>
 
               <h4 style={{ color: "#0072BE" }}>

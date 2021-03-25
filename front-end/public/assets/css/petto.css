@@ -201,6 +201,26 @@ footer.pet-layout-footer .sub-footer.black-subfooter {
 .tab-content.nav-material .react-tabs__tab--selected {
   border-bottom: 2px solid #2e96e0 !important;
 }
+.box-underline {
+  padding-bottom: 15px;
+  border-bottom: 1px #ddd solid;
+}
+.two-line-ellipsis {
+  /* padding-left: 2vw; */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding-top: 15px;
+}
+.j-box .product-box .product-detail {
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 15px;
+  background-color: #fff;
+}
 @media (max-width: 420px) {
   .no-slider .product-box {
     flex: 0 0 100%;
