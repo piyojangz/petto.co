@@ -79,7 +79,7 @@ class ProductListItem extends Component {
               )}
               <div className="front">
                 <Link
-                  to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                  to={`${process.env.PUBLIC_URL}/product/${
                     product.id
                   }`}
                 >
@@ -91,7 +91,7 @@ class ProductListItem extends Component {
           <div className="col-7 ">
             <div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                to={`${process.env.PUBLIC_URL}/product/${
                   product.id
                 }`}
               >
@@ -111,7 +111,7 @@ class ProductListItem extends Component {
               </h3>
 
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                to={`${process.env.PUBLIC_URL}/product/${
                   product.id
                 }`}
                 className="btn btn-primary"

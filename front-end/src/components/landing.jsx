@@ -465,7 +465,7 @@ class Landing extends Component {
                                             </Link>
                                         </div>
                                         <div className="col-xl-3 col-sm-6 col-12 demo-box">
-                                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/1`} target="_blank">
+                                            <Link to={`${process.env.PUBLIC_URL}/product/1`} target="_blank">
                                                 <img src={`${process.env.PUBLIC_URL}/assets/images/landing-page/special features/product/6.jpg`}
                                                     className="img-fluid lazyload" />
                                                 <h3>left sidebar</h3>

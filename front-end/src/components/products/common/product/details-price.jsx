@@ -29,7 +29,7 @@ class DetailsWithPrice extends Component {
 
     setTimeout(() => {
       const { item } = this.props;
-      this.setState({ quantity: parseInt(item.stock) });
+      // this.setState({ quantity: parseInt(item.stock) });
     }, 500);
   }
 
@@ -41,7 +41,7 @@ class DetailsWithPrice extends Component {
   };
 
   plusQty = () => {
-    if (this.props.item.stock >= this.state.quantity) {
+    if (this.props.item.stock > this.state.quantity) {
       this.setState({ quantity: this.state.quantity + 1 });
     } else {
       this.setState({ stock: "สินค้าหมด !" });
@@ -67,6 +67,8 @@ class DetailsWithPrice extends Component {
       dots: false,
       focusOnSelect: true,
     };
+
+    console.log('item',item)
 
     return (
       <div className="col-lg-6 rtl-text">
@@ -137,7 +139,7 @@ class DetailsWithPrice extends Component {
             <h6 className="product-title">จำนวน</h6>
             <div className="qty-box">
               <div className="input-group">
-                {this.state.quantity > 1 && (
+                {/* {this.state.quantity > item.stock && ( */}
                   <span className="input-group-prepend">
                     <button
                       type="button"
@@ -149,17 +151,17 @@ class DetailsWithPrice extends Component {
                       <i className="fa fa-angle-left" />
                     </button>
                   </span>
-                )}
+                 {/* )} */}
 
                 <input
-                  disabled={this.state.quantity <= 1}
+                  // disabled={this.state.quantity <= item.stock}
                   type="text"
                   name="quantity"
                   value={this.state.quantity}
                   onChange={this.changeQty}
                   className="form-control input-number"
                 />
-                {this.state.quantity > 1 && (
+                {/* {this.state.quantity > item.stock && ( */}
                   <span className="input-group-prepend">
                     <button
                       type="button"
@@ -171,7 +173,7 @@ class DetailsWithPrice extends Component {
                       <i className="fa fa-angle-right" />
                     </button>
                   </span>
-                )}
+                {/* )} */}
               </div>
             </div>
           </div>

@@ -48,7 +48,7 @@ class AuctionlistItem extends Component {
               <div className="img-wrapper">
                 <div className="front">
                   <Link
-                    to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                    to={`${process.env.PUBLIC_URL}/product/${
                       product.id
                     }`}
                   >
@@ -60,7 +60,7 @@ class AuctionlistItem extends Component {
             <div className="col-7 ">
               <div>
                 <Link
-                  to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                  to={`${process.env.PUBLIC_URL}/product/${
                     product.id
                   }`}
                 >
@@ -79,7 +79,7 @@ class AuctionlistItem extends Component {
                 <br />
                 {this.state.countdown != "จบแล้ว" && (
                   <Link
-                    to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                    to={`${process.env.PUBLIC_URL}/product/${
                       product.id
                     }`}
                     className="btn btn-primary"

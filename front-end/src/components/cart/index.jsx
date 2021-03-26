@@ -17,16 +17,17 @@ class cartComponent extends Component {
     render (){
 
         const {cartItems, symbol, total} = this.props;
+        console.log('cartItems',cartItems);
         return (
             <div>
                 {/*SEO Support*/}
                 <Helmet>
-                    <title>MultiKart | Cart List Page</title>
+                    <title>Pettogo.co | ตะกร้าของฉัน</title>
                     <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
                 </Helmet>
                 {/*SEO Support End */}
 
-                <Breadcrumb title={'Cart Page'}/>
+                <Breadcrumb title={'ตะกร้า'}/>
 
                 {cartItems.length>0 ?
                 <section className="cart-section section-b-space">
@@ -36,26 +37,25 @@ class cartComponent extends Component {
                                 <table className="table cart-table table-responsive-xs">
                                     <thead>
                                     <tr className="table-head">
-                                        <th scope="col">image</th>
-                                        <th scope="col">product name</th>
-                                        <th scope="col">price</th>
-                                        <th scope="col">quantity</th>
+                                        <th scope="col">รูป</th>
+                                        <th scope="col">ชื่อสินค้า</th>
+                                        <th scope="col">ราคา</th>
+                                        <th scope="col">จำนวน</th>
                                         <th scope="col">action</th>
-                                        <th scope="col">total</th>
+                                        <th scope="col">สรุปยอด</th>
                                     </tr>
                                     </thead>
                                     {cartItems.map((item, index) => {
+                                        let images  = item.image.split('#');
                                         return (
                                         <tbody key={index}>
                                             <tr>
                                                 <td>
-                                                    <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}>
-                                                        <img src={item.variants?
-                                                                  item.variants[0].images
-                                                                  :item.pictures[0]} alt="" />
+                                                    <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
+                                                        <img src={images[0]} alt="" />
                                                     </Link>
                                                 </td>
-                                                <td><Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}>{item.name}</Link>
+                                                <td><Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>{item.name}</Link>
                                                     <div className="mobile-cart-content row">
                                                         <div className="col-xs-3">
                                                             <div className="qty-box">
@@ -66,7 +66,7 @@ class cartComponent extends Component {
                                                             </div>
                                                         </div>
                                                         <div className="col-xs-3">
-                                                            <h2 className="td-color">{symbol}{item.price-(item.price*item.discount/100)}</h2>
+                                                            <h2 className="td-color">{symbol}{item.discount?item.discount:item.price}</h2>
                                                         </div>
                                                         <div className="col-xs-3">
                                                             <h2 className="td-color">
@@ -77,7 +77,7 @@ class cartComponent extends Component {
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><h2>{symbol}{item.price-(item.price*item.discount/100)}</h2></td>
+                                                <td><h2>{symbol}{item.price}</h2></td>
                                                 <td>
                                                     <div className="qty-box">
                                                         <div className="input-group">
@@ -109,8 +109,8 @@ class cartComponent extends Component {
                                 <table className="table cart-table table-responsive-md">
                                     <tfoot>
                                     <tr>
-                                        <td>total price :</td>
-                                        <td><h2>{symbol} {total} </h2></td>
+                                        <td>ยอดรวม :</td>
+                                        <td><h2>{symbol}{total}</h2></td>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -118,10 +118,10 @@ class cartComponent extends Component {
                         </div>
                         <div className="row cart-buttons">
                             <div className="col-6">
-                                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} className="btn btn-solid">continue shopping</Link>
+                                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} className="btn btn-solid">เลือกสินค้าต่อ</Link>
                             </div>
                             <div className="col-6">
-                                <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid">check out</Link>
+                                <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid">เช็คเอาท์</Link>
                             </div>
                         </div>
                     </div>
