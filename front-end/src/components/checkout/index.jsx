@@ -62,7 +62,7 @@ class checkOut extends Component {
             var handler = (window).StripeCheckout.configure({
                 key: 'pk_test_glxk17KhP7poKIawsaSgKtsL',
                 locale: 'auto',
-                token: (token: any) => {
+                token: (token) => {
                     console.log(token)
                       this.props.history.push({
                           pathname: '/order-success',
@@ -114,12 +114,12 @@ class checkOut extends Component {
 
                 {/*SEO Support*/}
                 <Helmet>
-                    <title>MultiKart | CheckOut Page</title>
+                    <title>Pettogo.co | เช็คเอาท์</title>
                     <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
                 </Helmet>
                 {/*SEO Support End */}
 
-                <Breadcrumb  title={'Checkout'}/>
+                <Breadcrumb  title={'เช็คเอาท์'}/>
 
                 <section className="section-b-space">
                     <div className="container padding-cls">
@@ -129,9 +129,9 @@ class checkOut extends Component {
                                     <div className="checkout row">
                                         <div className="col-lg-6 col-sm-12 col-xs-12">
                                             <div className="checkout-title">
-                                                <h3>Billing Details</h3>
+                                                <h3>ยืนยันข้อมูล</h3>
                                             </div>
-                                            <div className="row check-out">
+                                            {/* <div className="row check-out">
                                                 <div className="form-group col-md-6 col-sm-6 col-xs-12">
                                                     <div className="field-label">First Name</div>
                                                     <input type="text" name="first_name" value={this.state.first_name} onChange={this.setStateFromInput} />
@@ -187,20 +187,20 @@ class checkOut extends Component {
                                                     &ensp; <label htmlFor="account-option">Create An Account?</label>
                                                     {this.validator.message('checkbox', this.state.create_account, 'create_account')}
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="col-lg-6 col-sm-12 col-xs-12">
                                             <div className="checkout-details">
                                                 <div className="order-box">
                                                     <div className="title-box">
-                                                        <div>Product <span> Total</span></div>
+                                                        <div>สินค้า <span> จำนวน</span></div>
                                                     </div>
                                                     <ul className="qty">
                                                         {cartItems.map((item, index) => {
                                                             return <li key={index}>{item.name} × {item.qty} <span>{symbol} {item.sum}</span></li> })
                                                         }
                                                     </ul>
-                                                    <ul className="sub-total">
+                                                    {/* <ul className="sub-total">
                                                         <li>Subtotal <span className="count">{symbol}{total}</span></li>
                                                         <li>Shipping <div className="shipping">
                                                             <div className="shopping-option">
@@ -213,14 +213,14 @@ class checkOut extends Component {
                                                             </div>
                                                         </div>
                                                         </li>
-                                                    </ul>
+                                                    </ul> */}
 
                                                     <ul className="total">
-                                                        <li>Total <span className="count">{symbol}{total}</span></li>
+                                                        <li>ยอดที่ต้องชำระ <span className="count">{symbol}{total}</span></li>
                                                     </ul>
                                                 </div>
 
-                                                <div className="payment-box">
+                                                {/* <div className="payment-box">
                                                     <div className="upper-box">
                                                         <div className="payment-options">
                                                             <ul>
@@ -245,11 +245,11 @@ class checkOut extends Component {
                                                          <PaypalExpressBtn env={'sandbox'} client={client} currency={'USD'} total={total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />}
                                                     </div>
                                                     : ''}
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="row section-t-space">
+                                    {/* <div className="row section-t-space">
                                         <div className="col-lg-6">
                                             <div className="stripe-section">
                                                 <h5>stripe js example</h5>
@@ -298,7 +298,7 @@ class checkOut extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </form>
                             </div>
                         </div>

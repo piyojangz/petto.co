@@ -23,8 +23,8 @@ const CartContainer = ({cartList, total, symbol, removeFromCart}) => (
             </li>
             <li>
                 <div className="buttons">
-                    <Link to={`${process.env.PUBLIC_URL}/cart`} className="view-cart">view cart</Link>
-                    <Link to={`${process.env.PUBLIC_URL}/checkout`} className="checkout">checkout</Link>
+                    <Link to={`${process.env.PUBLIC_URL}/cart`} className="view-cart">ดูตะกร้า</Link>
+                    <Link to={`${process.env.PUBLIC_URL}/checkout`} className="checkout">เช็คเอาท์</Link>
                 </div>
             </li></div>
                     :

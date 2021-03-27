@@ -52,7 +52,7 @@ class AuctionItem extends Component {
           <div className="img-wrapper">
             <div className="front">
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                to={`${process.env.PUBLIC_URL}/product/${
                   product.id
                 }`}
               >
@@ -67,7 +67,7 @@ class AuctionItem extends Component {
           <div className="product-detail text-left mt-1 pr-1 pl-1">
             <div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                to={`${process.env.PUBLIC_URL}/product/${
                   product.id
                 }`}
               >

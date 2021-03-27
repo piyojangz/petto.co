@@ -99,7 +99,7 @@ class ProductItem extends Component {
             </div> */}
             <div className="front">
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                to={`${process.env.PUBLIC_URL}/product/${
                   product.id
                 }`}
               >
@@ -130,7 +130,7 @@ class ProductItem extends Component {
             <div>
               <div className="rating">{RatingStars}</div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                to={`${process.env.PUBLIC_URL}/product/${
                   product.id
                 }`}
               >
@@ -216,7 +216,7 @@ class ProductItem extends Component {
                                                 </div>
                                                 <div className="product-buttons">
                                                     <button  className="btn btn-solid" onClick={() => onAddToCartClicked(product, this.state.quantity)} >add to cart</button>
-                                                    <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} className="btn btn-solid">view detail</Link>
+                                                    <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`} className="btn btn-solid">view detail</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -276,7 +276,7 @@ class ProductItem extends Component {
                                                                 <div className="product-box col-sm-3 col-6" key={i}>
                                                                     <div className="img-wrapper">
                                                                         <div className="front">
-                                                                            <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`} >
+                                                                            <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`} >
                                                                                 <img src={`${
                                                                                     item.variants?
                                                                                         item.variants[0].images
@@ -285,7 +285,7 @@ class ProductItem extends Component {
                                                                             </Link>
                                                                         </div>
                                                                         <div className="product-detail">
-                                                                            <h6><Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`} >
+                                                                            <h6><Link to={`${process.env.PUBLIC_URL}/product/${item.id}`} >
                                                                                     <span>{item.name}</span>
                                                                             </Link></h6>
                                                                             <h4><span>{symbol}{item.price}</span></h4>

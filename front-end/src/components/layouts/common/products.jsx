@@ -39,7 +39,7 @@ class SpecialProducts extends Component {
                   </div> */}
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+              to={`${process.env.PUBLIC_URL}/product/${
                 product.id
               }`}
             >
@@ -53,7 +53,7 @@ class SpecialProducts extends Component {
                           {RatingStars}
                       </div> */}
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+              to={`${process.env.PUBLIC_URL}/product/${
                 product.id
               }`}
             >

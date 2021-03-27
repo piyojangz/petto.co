@@ -10,6 +10,13 @@ import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
 import { Siteurl, Cate6 } from "../../services/script";
 import CategoryItem from "../layouts/pets/category-item";
+
+import NewProduct from "../common/new-product";
+import Filter from "./common/filter";
+import FilterBar from "./common/filter-bar";
+import StickyBox from "react-sticky-box";
+
+
 class Category extends Component {
   constructor(props) {
     super(props);
@@ -89,11 +96,40 @@ class Category extends Component {
             <div className="col-12 mt-3">
               <Slider {...Cate6} className="product-4 product-m no-arrow">
                 {this.state.cate.map((cate, index) => (
-                  <div key={index} style={{maxWidth:87}}>
+                  <div key={index} style={{ maxWidth: 87 }}>
                     <CategoryItem cate={cate} key={index} />
                   </div>
                 ))}
               </Slider>
+            </div>
+          </div>
+          <div class="row">
+            <div className="col-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                 
+                    <div class="form-group">
+                      <label class="filter-col" style={{ margin: 0 }}>ช่วงราคา</label>
+                      <select id="pref-perpage" class="form-control">
+                        <option value="2">0 - 100</option>
+                        <option value="3">101 - 1000</option>
+                        <option value="4">1001 - 5000</option>
+                        <option value="5">5001 10,000</option>
+                        <option value="6">10,000 ขึ้นไป</option> 
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="filter-col"   for="pref-orderby">เรียงลำดับ:</label>
+                      <select id="pref-orderby" class="form-control">
+                        <option>มากไปน้อย</option>
+                        <option>น้อยไปมาก</option>
+                      </select>
+                    </div> 
+                    <div class="form-group">
+                      <button className="btn btn-petto">ยืนยัน</button>
+                      </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="row">
@@ -102,14 +138,14 @@ class Category extends Component {
                 {products.length > 0 ? (
                   <InfiniteScroll
                     dataLength={this.state.limit} //This is important field to render the next data
-                    // next={this.fetchMoreItems}
-                    // hasMore={this.state.hasMoreItems}
-                    // loader={<div className="loading-cls" />}
-                    // endMessage={
-                    //   <p className="seen-cls seen-it-cls">
-                    //     <b>Yay! You have seen it all</b>
-                    //   </p>
-                    // }
+                  // next={this.fetchMoreItems}
+                  // hasMore={this.state.hasMoreItems}
+                  // loader={<div className="loading-cls" />}
+                  // endMessage={
+                  //   <p className="seen-cls seen-it-cls">
+                  //     <b>Yay! You have seen it all</b>
+                  //   </p>
+                  // }
                   >
                     <div className="isotopeContainer row">
                       {products
@@ -139,9 +175,8 @@ class Category extends Component {
                   <div className="row">
                     <div className="col-sm-12 text-center section-b-space mt-5 no-found">
                       <img
-                        src={`${
-                          process.env.PUBLIC_URL
-                        }/assets/images/empty-search.jpg`}
+                        src={`${process.env.PUBLIC_URL
+                          }/assets/images/empty-search.jpg`}
                         className="img-fluid mb-4"
                       />
                       <h3>ขออภัย ยังไม่มีสินค้าในหมวดนี้ </h3>

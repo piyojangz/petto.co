@@ -116,7 +116,7 @@ class NavBar extends Component {
                                     <span className="sub-arrow"></span>
                                 </Link>
                                 <ul className="nav-submenu">
-                                    <li><Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/1`} >{translate('left_sidebar')}</Link></li>
+                                    <li><Link to={`${process.env.PUBLIC_URL}/product/1`} >{translate('left_sidebar')}</Link></li>
                                     <li><Link to={`${process.env.PUBLIC_URL}/right-sidebar/product/1`} >{translate('right_sidebar')}</Link></li>
                                     <li><Link to={`${process.env.PUBLIC_URL}/no-sidebar/product/1`} >{translate('no_sidebar')}</Link></li>
                                     <li><Link to={`${process.env.PUBLIC_URL}/col-left/product/1`} >{translate('three_col_thumbnail_left')}</Link></li>

@@ -143,7 +143,7 @@ class Root extends React.Component {
                                     
 
                                     {/*Routes For Single Product*/}
-                                    <Route path={`${process.env.PUBLIC_URL}/left-sidebar/product/:id`} component={LeftSideBar} />
+                                    <Route path={`${process.env.PUBLIC_URL}/product/:id`} component={LeftSideBar} />
                                     <Route path={`${process.env.PUBLIC_URL}/right-sidebar/product/:id`} component={RightSideBar} />
                                     <Route path={`${process.env.PUBLIC_URL}/no-sidebar/product/:id`} component={NoSideBar} />
                                     <Route path={`${process.env.PUBLIC_URL}/col-left/product/:id`} component={ColumnLeft} />
