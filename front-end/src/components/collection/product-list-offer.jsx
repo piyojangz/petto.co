@@ -22,7 +22,7 @@ class Productlistoffer extends Component {
     };
   }
 
-  componentWillMount() { 
+  componentWillMount() {
     this.getproduct(this.props.cateId);
   }
 
@@ -49,16 +49,46 @@ class Productlistoffer extends Component {
       );
   };
 
-   
-
   render() {
     const { symbol } = this.props;
     const { products } = this.state;
 
     return (
       <div>
-        <Breadcrumb title={"สินค้าแนะนำ"} /> 
-        <div className="container-fluid"> 
+        <Breadcrumb title={"สินค้าแนะนำ"} />
+        <div className="container-fluid">
+          <div class="row">
+            <div className="col-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label class="filter-col" style={{ margin: 0 }}>
+                      ช่วงราคา
+                    </label>
+                    <select id="pref-perpage" class="form-control">
+                      <option value="2">0 - 100</option>
+                      <option value="3">101 - 1000</option>
+                      <option value="4">1001 - 5000</option>
+                      <option value="5">5001 10,000</option>
+                      <option value="6">10,000 ขึ้นไป</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="filter-col" for="pref-orderby">
+                      เรียงลำดับ:
+                    </label>
+                    <select id="pref-orderby" class="form-control">
+                      <option>มากไปน้อย</option>
+                      <option>น้อยไปมาก</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <button className="btn btn-petto">ยืนยัน</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-12">
               <div className="section-t-space portfolio-section portfolio-padding metro-section port-col">
@@ -78,10 +108,7 @@ class Productlistoffer extends Component {
                       {products
                         .slice(0, this.state.limit)
                         .map((product, index) => (
-                          <div
-                            className="col-12 mb-3"
-                            key={index}
-                          >
+                          <div className="col-12 mb-3" key={index}>
                             <ProductListItem
                               product={product}
                               symbol={symbol}
