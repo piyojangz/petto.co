@@ -1,7 +1,7 @@
 
 
-export const  Siteurl = 'http://localhost/petto/';
-// export const  Siteurl = 'https://seller.pettogo.co/';
+// export const  Siteurl = 'http://localhost/petto/';
+export const  Siteurl = 'https://seller.pettogo.co/';
 export const Cate6 = {
     infinite: true,
     speed: 300,
