@@ -9,7 +9,7 @@ import {
 export default function cartReducer(state = {
     cart: []
 }, action) {
-    console.log('action.type',action.type)
+    // console.log('action.type',action.type)
     switch (action.type) { 
         case ADD_TO_CART:
             const productId = action.product.id 
@@ -25,9 +25,8 @@ export default function cartReducer(state = {
                 }, [])
 
                 return { ...state, cart }
-            }
-
-            return { ...state, cart: [...state.cart, { ...action.product, qty: action.qty, sum: (parseFloat(action.discount) > 0 ? parseFloat(action.discount) : parseFloat(action.price)) * action.qty }] }
+            } 
+            return { ...state, cart: [...state.cart, { ...action.product, qty: action.qty, sum: (parseFloat(action.product.discount) > 0 ? parseFloat(action.product.discount) : parseFloat(action.product.price)) * action.qty }] }
 
         case DECREMENT_QTY:
 
@@ -45,7 +44,7 @@ export default function cartReducer(state = {
                 return { ...state, cart }
             }
 
-            return { ...state, cart: [...state.cart, { ...action.product, qty: action.qty, sum: (parseFloat(action.discount) > 0 ? parseFloat(action.discount) : parseFloat(action.price)) * action.qty }] }
+            return { ...state, cart: [...state.cart, { ...action.product, qty: action.qty, sum: (parseFloat(action.product.discount) > 0 ? parseFloat(action.product.discount) : parseFloat(action.product.price)) * action.qty }] }
 
         case REMOVE_FROM_CART:
             return {

@@ -1,137 +1,169 @@
-import React, {Component} from 'react';
-import {Helmet} from 'react-helmet'
-import { connect } from 'react-redux'
-import {Link, Redirect } from 'react-router-dom'
-import PaypalExpressBtn from 'react-paypal-express-checkout';
-import SimpleReactValidator from 'simple-react-validator';
-
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import PaypalExpressBtn from "react-paypal-express-checkout";
+import SimpleReactValidator from "simple-react-validator";
+import { toast } from "react-toastify";
 import Breadcrumb from "../common/breadcrumb";
-import {removeFromWishlist} from '../../actions'
-import {getCartTotal} from "../../services";
-
+import { removeFromWishlist } from "../../actions";
+import { getCartTotal } from "../../services";
+import { groupByKey, Siteurl } from "../../services/script";
+import resolve from "resolve";
 class checkOut extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor (props) {
-        super (props)
+    this.state = {
+        customer: undefined,
+      merchantlist: [],
+      cartItems: [],
+    };
+  }
 
-        this.state = {
-            payment:'stripe',
-            first_name:'',
-            last_name:'',
-            phone:'',
-            email:'',
-            country:'',
-            address:'',
-            city:'',
-            state:'',
-            pincode:'',
-            create_account: ''
-        }
-        this.validator = new SimpleReactValidator();
+  async componentDidMount() {
+
+    const customer = sessionStorage.getItem("customer");
+    if (customer) {
+      this.setState({ customer: JSON.parse(customer) });
     }
+ 
+    const { cartItems, symbol, total } = this.props;
+    const _uniqMerchant = [
+      ...new Set(cartItems.map((item) => item.merchantid)),
+    ];
+    const _cartItems = groupByKey(cartItems, "merchantid", { omitKey: false });
 
-    setStateFromInput = (event) => {
-        var obj = {};
-        obj[event.target.name] = event.target.value;
-        this.setState(obj);
+    const mlist = new Array();
+    await _uniqMerchant.map(async (id) => {
+      mlist.push(this.getshop(id));
+    });
 
-      }
+    const result = await Promise.all(mlist);
 
-      setStateFromCheckbox = (event) => {
-          var obj = {};
-          obj[event.target.name] = event.target.checked;
-          this.setState(obj);
+    await this.setState({ merchantlist: result });
+    await this.setState({ cartItems: _cartItems });
+  }
 
-          if(!this.validator.fieldValid(event.target.name))
-          {
-              this.validator.showMessages();
+  getshop = (id) => {
+    return new Promise((resolve, reject) => {
+      fetch(Siteurl + "service/getshop", {
+        method: "POST",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: JSON.stringify({ id: id }),
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            resolve(new Object(result.result));
+          },
+          (error) => {
+            reject(error);
           }
+        );
+    });
+  };
+
+  renderOrderlist() {
+    const { symbol, total } = this.props;
+    const { merchantlist, cartItems } = this.state;
+
+    const uiview = [];
+    merchantlist.map((merchant, index) => {
+      console.log("merchant,", merchant);
+      uiview.push(
+        <li key={index}>
+          <img src={merchant.image} alt="" style={{ width: 30 }} />{" "}
+          {merchant.name != "" ? merchant.name : merchant.title}
+        </li>
+      );
+
+      const Items = cartItems[merchant.id];
+      {
+        if (Items != undefined) {
+          Items.map((item, index) => {
+            let images = item.image.split("#");
+            uiview.push(
+              <li key={index}>
+                <img src={images[0]} alt="" style={{ width: 40 }} />
+                {item.name} × {item.qty}{" "}
+                <span>
+                  {symbol} {item.sum}
+                </span>
+              </li>
+            );
+          });
         }
+      }
+      //   uiview.push(
+      //     <li className="pt-1">
+      //       <b>ค่าจัดส่ง</b>
+      //       <span style={{ color: "rgb(62 103 255)" }}>
+      //         {symbol} {100}
+      //       </span>
+      //     </li>
+      //   );
+      uiview.push(<li className="pt-2" />);
+    });
+    return uiview;
+  }
 
-    checkhandle(value) {
-        this.setState({
-            payment: value
-        })
-    }
+  submitorder() {
+    const { cartItems, symbol, total } = this.props;
+    const { merchantlist, customer } = this.state;
 
-    StripeClick = () => {
+    console.log(customer)
 
-        if (this.validator.allValid()) {
-            alert('You submitted the form and stuff!');
-
-            var handler = (window).StripeCheckout.configure({
-                key: 'pk_test_glxk17KhP7poKIawsaSgKtsL',
-                locale: 'auto',
-                token: (token) => {
-                    console.log(token)
-                      this.props.history.push({
-                          pathname: '/order-success',
-                              state: { payment: token, items: this.props.cartItems, orderTotal: this.props.total, symbol: this.props.symbol }
-                      })
-                }
-              });
-              handler.open({
-                name: 'Multikart',
-                description: 'Online Fashion Store',
-                amount: this.amount * 100
-              })
-        } else {
-          this.validator.showMessages();
-          // rerender to show messages for the first time
-          this.forceUpdate();
+    fetch(Siteurl + "service/createorder", {
+      method: "POST",
+      headers: {
+        // "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({
+        cartItems: cartItems,
+        merchantlist: merchantlist,
+        userid: customer.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => { 
+          toast.success("ยืนยันรายการเรียบร้อย");
+        },
+        (error) => {
+          toast.warn(error);
         }
-    }
+      );
+  }
+  render() {
+    const { symbol, total } = this.props;
+    return (
+      <div>
+        {/*SEO Support*/}
+        <Helmet>
+          <title>Pettogo.co | เช็คเอาท์</title>
+          <meta
+            name="description"
+            content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
+          />
+        </Helmet>
+        {/*SEO Support End */}
 
-    render (){
-        const {cartItems, symbol, total} = this.props;
+        <Breadcrumb title={"เช็คเอาท์"} />
 
-        // Paypal Integration
-        const onSuccess = (payment) => {
-            console.log("The payment was succeeded!", payment);
-            this.props.history.push({
-                pathname: '/order-success',
-                    state: { payment: payment, items: cartItems, orderTotal: total, symbol: symbol }
-            })
-
-        }
-
-        const onCancel = (data) => {
-            console.log('The payment was cancelled!', data);
-        }
-
-        const onError = (err) => {
-            console.log("Error!", err);
-        }
-
-        const client = {
-            sandbox:    'AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_',
-            production: 'AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_',
-        }
-
-
-        return (
-            <div>
-
-                {/*SEO Support*/}
-                <Helmet>
-                    <title>Pettogo.co | เช็คเอาท์</title>
-                    <meta name="description" content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses." />
-                </Helmet>
-                {/*SEO Support End */}
-
-                <Breadcrumb  title={'เช็คเอาท์'}/>
-
-                <section className="section-b-space">
-                    <div className="container padding-cls">
-                        <div className="checkout-page">
-                            <div className="checkout-form">
-                                <form>
-                                    <div className="checkout row">
-                                        <div className="col-lg-6 col-sm-12 col-xs-12">
-                                            <div className="checkout-title">
-                                                <h3>ยืนยันข้อมูล</h3>
-                                            </div>
-                                            {/* <div className="row check-out">
+        <section className="section-b-space">
+          <div className="container padding-cls">
+            <div className="checkout-page">
+              <div className="checkout-form">
+                {/* <form> */}
+                <div className="checkout row">
+                  <div className="col-lg-6 col-sm-12 col-xs-12">
+                    <div className="checkout-title">
+                      <h3>ยืนยันข้อมูล</h3>
+                    </div>
+                    {/* <div className="row check-out">
                                                 <div className="form-group col-md-6 col-sm-6 col-xs-12">
                                                     <div className="field-label">First Name</div>
                                                     <input type="text" name="first_name" value={this.state.first_name} onChange={this.setStateFromInput} />
@@ -188,19 +220,17 @@ class checkOut extends Component {
                                                     {this.validator.message('checkbox', this.state.create_account, 'create_account')}
                                                 </div>
                                             </div> */}
-                                        </div>
-                                        <div className="col-lg-6 col-sm-12 col-xs-12">
-                                            <div className="checkout-details">
-                                                <div className="order-box">
-                                                    <div className="title-box">
-                                                        <div>สินค้า <span> จำนวน</span></div>
-                                                    </div>
-                                                    <ul className="qty">
-                                                        {cartItems.map((item, index) => {
-                                                            return <li key={index}>{item.name} × {item.qty} <span>{symbol} {item.sum}</span></li> })
-                                                        }
-                                                    </ul>
-                                                    {/* <ul className="sub-total">
+                  </div>
+                  <div className="col-lg-6 col-sm-12 col-xs-12">
+                    <div className="checkout-details">
+                      <div className="order-box">
+                        <div className="title-box">
+                          <div>
+                            สินค้า <span> จำนวน</span>
+                          </div>
+                        </div>
+                        <ul className="qty">{this.renderOrderlist()}</ul>
+                        {/* <ul className="sub-total">
                                                         <li>Subtotal <span className="count">{symbol}{total}</span></li>
                                                         <li>Shipping <div className="shipping">
                                                             <div className="shopping-option">
@@ -215,12 +245,26 @@ class checkOut extends Component {
                                                         </li>
                                                     </ul> */}
 
-                                                    <ul className="total">
-                                                        <li>ยอดที่ต้องชำระ <span className="count">{symbol}{total}</span></li>
-                                                    </ul>
-                                                </div>
-
-                                                {/* <div className="payment-box">
+                        <ul className="total">
+                          <li>
+                            รวม<code>(ยังไม่รวมค่าจัดส่ง)</code>{" "}
+                            <span className="count">
+                              {symbol}
+                              {total}
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="payment-box">
+                        <button
+                          onClick={() => this.submitorder()}
+                          className="btn btn-primary full"
+                          style={{ width: "100%" }}
+                        >
+                          ยืนยันข้อมูลการสั่งสินค้า
+                        </button>
+                      </div>
+                      {/* <div className="payment-box">
                                                     <div className="upper-box">
                                                         <div className="payment-options">
                                                             <ul>
@@ -246,10 +290,10 @@ class checkOut extends Component {
                                                     </div>
                                                     : ''}
                                                 </div> */}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <div className="row section-t-space">
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="row section-t-space">
                                         <div className="col-lg-6">
                                             <div className="stripe-section">
                                                 <h5>stripe js example</h5>
@@ -299,22 +343,22 @@ class checkOut extends Component {
                                             </div>
                                         </div>
                                     </div> */}
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {/* </form> */}
+              </div>
             </div>
-        )
-    }
+          </div>
+        </section>
+      </div>
+    );
+  }
 }
 const mapStateToProps = (state) => ({
-    cartItems: state.cartList.cart,
-    symbol: state.data.symbol,
-    total: getCartTotal(state.cartList.cart)
-})
+  cartItems: state.cartList.cart,
+  symbol: state.data.symbol,
+  total: getCartTotal(state.cartList.cart),
+});
 
 export default connect(
-    mapStateToProps,
-    {removeFromWishlist}
-)(checkOut)
+  mapStateToProps,
+  { removeFromWishlist }
+)(checkOut);

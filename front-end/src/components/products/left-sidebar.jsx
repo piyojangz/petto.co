@@ -233,8 +233,8 @@ class LeftSideBar extends Component {
                           addToWishlistClicked={addToWishlist}
                         />
                       </div>
-                    </div> 
-                      <Shoptop shop={this.state.shop} /> 
+                    </div>
+                    <Shoptop shop={this.state.shop} />
                     <DetailsTopTabs item={productdetail} />
                     {/* <BrandBlock/> */}
                     {/* <Service /> */}

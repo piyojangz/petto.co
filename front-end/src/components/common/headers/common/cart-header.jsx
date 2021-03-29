@@ -14,7 +14,7 @@ const CartHeader = ({ item, total, symbol, removeFromCart }) => (
         </Link>
         <h4>
           <span>
-            {item.qty} x {symbol} {(item.price * item.discount) / 100}
+            {item.qty} x {symbol} {item.discount ? item.discount : item.price}
           </span>
         </h4>
       </div>

@@ -109,7 +109,7 @@ class cartComponent extends Component {
                                 <table className="table cart-table table-responsive-md">
                                     <tfoot>
                                     <tr>
-                                        <td>ยอดรวม :</td>
+                                        <td>ยอดรวม : <br/>(ยังไม่รวมค่าจัดส่ง) </td>
                                         <td><h2>{symbol}{total}</h2></td>
                                     </tr>
                                     </tfoot>
