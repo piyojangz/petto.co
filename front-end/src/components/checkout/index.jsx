@@ -15,19 +15,18 @@ class checkOut extends Component {
     super(props);
 
     this.state = {
-        customer: undefined,
+      customer: undefined,
       merchantlist: [],
       cartItems: [],
     };
   }
 
   async componentDidMount() {
-
     const customer = sessionStorage.getItem("customer");
     if (customer) {
       this.setState({ customer: JSON.parse(customer) });
     }
- 
+
     const { cartItems, symbol, total } = this.props;
     const _uniqMerchant = [
       ...new Set(cartItems.map((item) => item.merchantid)),
@@ -114,7 +113,7 @@ class checkOut extends Component {
     const { cartItems, symbol, total } = this.props;
     const { merchantlist, customer } = this.state;
 
-    console.log(customer)
+    //console.log(customer)
 
     fetch(Siteurl + "service/createorder", {
       method: "POST",
@@ -129,8 +128,9 @@ class checkOut extends Component {
     })
       .then((res) => res.json())
       .then(
-        (result) => { 
+        (result) => {
           toast.success("ยืนยันรายการเรียบร้อย");
+          window.location = "/pages/user";
         },
         (error) => {
           toast.warn(error);
@@ -144,10 +144,7 @@ class checkOut extends Component {
         {/*SEO Support*/}
         <Helmet>
           <title>Pettogo.co | เช็คเอาท์</title>
-          <meta
-            name="description"
-            content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
-          />
+          <meta name="description" content="Pettogo.co เช็คเอาท์" />
         </Helmet>
         {/*SEO Support End */}
 
