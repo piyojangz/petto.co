@@ -66,19 +66,30 @@ export const fetchSingleProduct = (productId) => ({
 });
 
 //it seems that I should probably use this as the basis for "Cart"
-export const addToCart = (product, qty) => (dispatch) => {
-  if (qty > 0) {
-    toast.success("เพิ่มลงตะกร้าแล้ว");
-    dispatch(addToCartUnsafe(product, qty));
+const customer = sessionStorage.getItem("customer");
+export const addToCart = (product, qty) => (dispatch) => { 
+  if (qty > 0) { 
+    if (!customer) {
+      window.location.href = '/pages/login/false';
+    }
+    else {
+      toast.success("เพิ่มลงตะกร้าแล้ว");
+      dispatch(addToCartUnsafe(product, qty));
+    }
   } else {
     toast.warn("กรุณาระบุจำนวนมากกว่า 0");
   }
 };
 export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
   if (qty > 0) {
-    toast.success("เพิ่มลงตะกร้าแล้ว");
-    dispatch(addToCartUnsafe(product, qty));
-    dispatch(removeFromWishlist(product));
+    if (!customer) {
+      window.location.href = '/pages/login/false';
+    }
+    else {
+      toast.success("เพิ่มลงตะกร้าแล้ว");
+      dispatch(addToCartUnsafe(product, qty));
+      dispatch(removeFromWishlist(product));
+    }
   } else {
     toast.warn("กรุณาระบุจำนวนมากกว่า 0");
   }
@@ -95,6 +106,14 @@ export const removeFromCart = (product_id) => (dispatch) => {
     product_id,
   });
 };
+
+export const removeAllCart = () => (dispatch) => { 
+  dispatch({
+    type: types.REMOVE_ALL_CART, 
+  });
+  window.location.href = '/pages/user';
+};
+
 export const incrementQty = (product, qty) => (dispatch) => {
   if (qty > 0) {
     toast.success("เพิ่มลงตะกร้าแล้ว");

@@ -9,6 +9,7 @@ import Breadcrumb from "../common/breadcrumb";
 import { removeFromWishlist } from "../../actions";
 import { getCartTotal } from "../../services";
 import { groupByKey, Siteurl } from "../../services/script";
+import { removeAllCart} from "../../actions";
 import resolve from "resolve";
 class checkOut extends Component {
   constructor(props) {
@@ -71,7 +72,7 @@ class checkOut extends Component {
 
     const uiview = [];
     merchantlist.map((merchant, index) => {
-      console.log("merchant,", merchant);
+      // console.log("merchant,", merchant);
       uiview.push(
         <li key={index}>
           <img src={merchant.image} alt="" style={{ width: 30 }} />{" "}
@@ -112,8 +113,9 @@ class checkOut extends Component {
   submitorder() {
     const { cartItems, symbol, total } = this.props;
     const { merchantlist, customer } = this.state;
-
-    //console.log(customer)
+    const {
+      removeAllCart
+    } = this.props; 
 
     fetch(Siteurl + "service/createorder", {
       method: "POST",
@@ -130,7 +132,7 @@ class checkOut extends Component {
       .then(
         (result) => {
           toast.success("ยืนยันรายการเรียบร้อย");
-          window.location = "/pages/user";
+          removeAllCart();
         },
         (error) => {
           toast.warn(error);
@@ -357,5 +359,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { removeFromWishlist }
+  { removeFromWishlist ,removeAllCart}
 )(checkOut);

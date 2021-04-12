@@ -184,13 +184,13 @@ class DetailsWithPrice extends Component {
             >
               เพิ่มสินค้าลงตะกร้า
             </a>
-            <Link
+            {/* <Link
               to={`${process.env.PUBLIC_URL}/checkout`}
               className="btn btn-solid"
               onClick={() => BuynowClicked(item, this.state.quantity)}
             >
               ซื้อเลย
-            </Link>
+            </Link> */}
           </div>
           <div className="border-product">
             <h6 className="product-title">รายละเอียดสินค้า</h6>
