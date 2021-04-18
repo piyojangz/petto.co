@@ -54,12 +54,13 @@ class Auctiondetail extends Component {
       await this.setState({
         customer: _customer,
       });
+    } else {
+      window.location.href = "/pages/login/false";
     }
-
     this.getacutionbyid(this.props.auctionid);
-    this._updateauctioninterval = setInterval(() => {
-      this.updateauctioninterval(this.props.auctionid);
-    }, 5000);
+    // this._updateauctioninterval = setInterval(() => {
+    //   this.updateauctioninterval(this.props.auctionid);
+    // }, 5000);
   }
 
   componentWillUnmount() {
@@ -150,10 +151,10 @@ class Auctiondetail extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
-          let auction = result.result;
-          this.setState({ auction: auction });
+          let _auction = result.result;
+          this.setState({ auction: _auction });
 
-          let dateto = moment(auction.dto).format("YYYY-MM-DD HH:mm:ss");
+          let dateto = moment(_auction.dto).format("YYYY-MM-DD HH:mm:ss");
           let difftime = moment(dateto).diff(moment(), "seconds");
 
           var countDownDate = moment().add(difftime, "seconds");
@@ -165,11 +166,11 @@ class Auctiondetail extends Component {
           this.setState({ intervalId });
 
           let auctionprice =
-            auction.currentprice > 0
-              ? auction.currentprice
-              : auction.startprice;
+            _auction.currentprice > 0
+              ? _auction.currentprice
+              : _auction.startprice;
           let minprice =
-            parseFloat(auctionprice) + parseFloat(auction.minimumbidamount);
+            parseFloat(auctionprice) + parseFloat(_auction.minimumbidamount);
           this.setState({
             bidprice: minprice,
             minprice: minprice,
@@ -207,7 +208,7 @@ class Auctiondetail extends Component {
     const { symbol } = this.props;
     let { auctionname } = this.props;
     let { auction, auctionprice, minprice } = this.state;
-
+    console.log("auction", auction);
     return (
       <div>
         {/*SEO Support*/}
@@ -220,7 +221,7 @@ class Auctiondetail extends Component {
         <Breadcrumb parent={"ประมูล"} title={auctionname} />
 
         {/*Section Start*/}
-        {auction ? (
+        {auction != undefined ? (
           <section className="section-b-space">
             <div className="collection-wrapper">
               <div className="container">
@@ -393,11 +394,8 @@ class Auctiondetail extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let auctionid = ownProps.match.params.id;
-  let name = ownProps.match.params.name;
   return {
     auctionid: auctionid,
-    auctionname: name,
-    // item: state.data.products.find((el) => el.id == productId),
     symbol: state.data.symbol,
   };
 };

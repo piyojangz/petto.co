@@ -188,8 +188,21 @@ footer.pet-layout-footer .sub-footer.black-subfooter {
   line-height: 17px;
   float: right;
 }
+
+.auctionprice-box {
+  background: #ebf2ff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.min-bid {
+  font-weight: bold;
+  font-size: 20px;
+  color: #e8434a;
+}
 .iAuction {
-  background: rgb(0, 114, 190);
+  background: rgb(59 208 64);
   color: rgb(255, 255, 255);
   width: 20px;
   height: 20px;
@@ -220,6 +233,16 @@ footer.pet-layout-footer .sub-footer.black-subfooter {
   padding-right: 2px;
   padding-bottom: 15px;
   background-color: #fff;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #fff;
+  background-color: #0073bf;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+  border-bottom: 1px #e8e8e8 solid;
 }
 @media (max-width: 420px) {
   .no-slider .product-box {

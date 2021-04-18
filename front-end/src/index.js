@@ -146,7 +146,7 @@ class Root extends React.Component {
                                     <Route path={`${process.env.PUBLIC_URL}/recent`} component={Productlistrecent} />
                                     <Route path={`${process.env.PUBLIC_URL}/offer`} component={Productlistoffer} />
                                     <Route path={`${process.env.PUBLIC_URL}/auction`} component={Productlistauction} />
-                                    <Route path={`${process.env.PUBLIC_URL}/auctiondetail/:id/:name`} component={Auctiondetail} />
+                                    <Route path={`${process.env.PUBLIC_URL}/auctiondetail/:id`} component={Auctiondetail} />
                                     <Route path={`${process.env.PUBLIC_URL}/bestseller`} component={Shopoffer} />
                                     <Route path={`${process.env.PUBLIC_URL}/promotion`} component={Promotion} />
                                     

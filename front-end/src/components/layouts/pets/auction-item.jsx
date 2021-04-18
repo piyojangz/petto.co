@@ -54,7 +54,7 @@ class AuctionItem extends Component {
         <div className="product-box">
           <div className="img-wrapper">
             <div className="front">
-            <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/ประมูล`}>
+            <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}`}>
                 <img
                   src={`${product.image}`}
                   style={{ width: "100%" }}
@@ -66,7 +66,7 @@ class AuctionItem extends Component {
           </div>
           <div className="product-detail text-left mt-1 pr-1 pl-1">
             <div>
-              <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/ประมูล`}>
+              <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}`}>
                 <h6>{product.name}</h6>
               </Link>
               <div className="row mt-2">
