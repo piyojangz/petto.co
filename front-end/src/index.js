@@ -39,8 +39,16 @@ import Productlistoffer from "./components/collection/product-list-offer";
 import Productlistauction from "./components/collection/product-list-action";
 
 
+import Shopoffer from "./components/collection/shopoffeer";
+import Promotion from "./components/collection/promotion";
+
+
+
+
+
 
 // Product Pages
+import Auctiondetail from "./components/products/auctiondetail";
 import LeftSideBar from "./components/products/left-sidebar";
 import RightSideBar from "./components/products/right-sidebar";
 import NoSideBar from "./components/products/no-sidebar";
@@ -98,6 +106,7 @@ import ElementProductTab from "./components/features/product/element-product-tab
 // Portfolio Features
 import GridCols from "./components/features/portfolio/grid-cols"
 import MasonaryGridCols from "./components/features/portfolio/masonary-grid-cols"
+import Shoptop from './components/products/common/shop-top';
 
 
 class Root extends React.Component {
@@ -137,8 +146,10 @@ class Root extends React.Component {
                                     <Route path={`${process.env.PUBLIC_URL}/recent`} component={Productlistrecent} />
                                     <Route path={`${process.env.PUBLIC_URL}/offer`} component={Productlistoffer} />
                                     <Route path={`${process.env.PUBLIC_URL}/auction`} component={Productlistauction} />
+                                    <Route path={`${process.env.PUBLIC_URL}/auctiondetail/:id/:name`} component={Auctiondetail} />
+                                    <Route path={`${process.env.PUBLIC_URL}/bestseller`} component={Shopoffer} />
+                                    <Route path={`${process.env.PUBLIC_URL}/promotion`} component={Promotion} />
                                     
-
                                     
                                     
 

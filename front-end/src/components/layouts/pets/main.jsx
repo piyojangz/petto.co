@@ -232,36 +232,36 @@ class Pets extends Component {
         <section className="section-b-space p-t-0 ratio2_3">
           {/* <BlogSection /> */}
 
-          <div className="container ">
-            {this.state.contentlist.map((row, index) => {
-              return (
-                <div key={"div-" + index}>
-                  <div className="col-md-12">
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/blog/details/${row.id}`}
-                    >
-                      <div className="classic-effect">
-                        <img
-                          style={{ width: "100%" }}
-                          src={`${row.image}`}
-                          className="img"
-                          alt=""
-                        />
-                        <span />
-                      </div>
-                    </Link>
-                    <div className="blog-details">
-                      <h4>{`${row.createdate}`}</h4>
-                      <Link to={`${process.env.PUBLIC_URL}/blog/details`}>
-                        <p>{`${row.title}`}</p>
+          <div className="container">
+            <div className="row">
+              {this.state.contentlist.map((row, index) => {
+                return ( 
+                    <div className="col-md-3 col-6" key={"div-" + index}>
+                      <Link
+                        to={`${process.env.PUBLIC_URL}/blog/details/${row.id}`}
+                      >
+                        <div className="classic-effect">
+                          <img
+                            style={{ width: "100%" }}
+                            src={`${row.image}`}
+                            className="img"
+                            alt=""
+                          />
+                          <span />
+                        </div>
                       </Link>
-                      <hr className="style1" />
-                      {/*   <h6>by: John Dio , 2 Comment</h6> */}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                      <div className="blog-details">
+                        <h4>{`${row.createdate}`}</h4>
+                        <Link to={`${process.env.PUBLIC_URL}/blog/details`}>
+                          <p>{`${row.title}`}</p>
+                        </Link>
+                        <hr className="style1" />
+                        {/*   <h6>by: John Dio , 2 Comment</h6> */}
+                      </div>
+                    </div> 
+                );
+              })}
+            </div>
           </div>
 
           {/* <div className="container ">

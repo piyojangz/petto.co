@@ -86,7 +86,7 @@ class ProductItem extends Component {
                 }}
               >
                 <i className="fa fa-flash" />
-                <span style={{ fontSize: 12 }}>แนะนำ</span>
+                <span style={{ fontSize: 12 }}>สินค้าแนะนำ</span>
               </div>
             )}
             {/* <div className="lable-block">

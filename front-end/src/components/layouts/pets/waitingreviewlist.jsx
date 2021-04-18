@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
-
+import ReactStars from "react-rating-stars-component";
 import {
   getBestSeller,
   getMensWear,
@@ -12,79 +12,287 @@ import ProductItem from "./product-item";
 import AuctionItem from "./auction-item";
 import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
+import { Siteurl } from "../../../services/script";
+import { toast } from "react-toastify";
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 class WaitingReviewList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ismodal: false,
+      customer: undefined,
+      file: [null],
+      confirmreview: {
+        orderid: "",
+        itemid: "",
+        itemname: "",
+        rating: 5,
+      },
+    };
+    this.fileObj = [];
+    this.fileArray = [];
+
+    this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
+    this.uploadFiles = this.uploadFiles.bind(this);
+  }
+
+  async componentDidMount() {
+    const customer = sessionStorage.getItem("customer");
+    if (customer) {
+      const _customer = JSON.parse(customer);
+      await this.setState({
+        customer: _customer,
+      });
+    }
+  }
+
+  makereview(row, orderid) {
+    console.log(row);
+    let confirmreview = {
+      orderid: orderid,
+      itemid: row.itemid,
+      itemname: row.name,
+      rating: 5,
+    };
+    this.fileObj = [];
+    this.fileArray = [];
+    this.setState({ ismodal: true, confirmreview: confirmreview });
+  }
+
+  closeModal() {
+    this.setState({ ismodal: false });
+  }
+
+  ratingChanged(newRating) {
+    this.setState({
+      confirmreview: {
+        ...this.state.confirmreview,
+        rating: newRating,
+      },
+    });
+  }
+
+  async uploadMultipleFiles(e) {
+    this.fileObj.push(e.target.files);
+    this.fileArray = [];
+    for (let i = 0; i < this.fileObj.length; i++) {
+      const base64 = await this.convertBase64(this.fileObj[i][0]);
+      this.fileArray.push(base64);
+    }
+    this.setState({ file: this.fileArray });
+  }
+
+  uploadFiles(e) {
+    e.preventDefault();
+  }
+
+  convertBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+
+  makeconfirmreview(event) {
+    event.preventDefault();
+    const { confirmreview, customer } = this.state;
+
+    fetch(Siteurl + "service/addreview", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({
+        custid: customer.id,
+        orderid: confirmreview.orderid,
+        itemid: confirmreview.itemid,
+        itemname: confirmreview.itemname,
+        message: confirmreview.message,
+        rating: confirmreview.rating,
+        pictures: this.state.file,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          toast.success("ยืนยันข้อมูลเรียบร้อย");
+          this.setState({ ismodal: false });
+          this.props.onsubmit();
+        },
+        (error) => {
+          console.log(error);
+          //this.setState({ ismodal: false });
+        }
+      );
+  }
+
   render() {
-    const {
-      bestSeller,
-      mensWear,
-      womensWear,
-      symbol,
-      addToCart,
-      addToWishlist,
-      addToCompare,
-    } = this.props;
+    const { reviewdata } = this.props;
+    const { customer, ismodal, fulladdress, confirmreview } = this.state;
     return (
       <div>
         <div className="title1 section-t-space">
-          <h2 className="title-inner1">รายการสินค้าที่ต้องได้รับ</h2>
+          <h2 className="title-inner1">รีวิวสินค้า</h2>
         </div>
         <section className="section-b-space p-t-0">
           <div className="container">
-            {bestSeller.map((product, index) => (
+            {reviewdata.map((product, index) => (
               <div className="row mb-2">
                 <div className="col-12 card">
                   <div className="media mr-2 bb-1">
                     <img
-                      src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t31.0-8/21427327_1662269207125713_6840415808923796799_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeHzVqbIeITQAxNXS4ThrYH9zdD0ZQzUEILN0PRlDNQQgvTSH9TRWZJ0eKhj8jO0rjM&_nc_ohc=u87hRn6TGoAAX8rP_Pb&_nc_ht=scontent.fbkk5-5.fna&oh=33de20e8e470d5b8668c555354e6a258&oe=60018DE1`}
+                      src={product.image}
                       className="rounded mt-2 mr-2"
                       style={{ width: 30, height: 30 }}
                       alt=""
                     />{" "}
                     <label className="mt-2">
-                      ร้านขายปลาสวยงาม ราชพฤกษ์ ตลาดเทพเจริญ9 Fish Ville
-                      Ratchaphruek
+                      {product.name ? product.name : product.webname}
                     </label>
                   </div>
+                  <div className="media mr-2 bb-1">
+                    Orderno : <b>#{product.orderno}</b>
+                  </div>
                   <div className="m-0 mt-3">
-                    <div className="row pb-3">
-                      <div className="col-4">
-                        <img
-                          src={`https://upload.wikimedia.org/wikipedia/commons/e/ec/Betta_reflected.jpg`}
-                          className="img-fluid lazyload rounded"
-                          alt=""
-                        />
-                      </div>
-                      <div className="col-8">
-                        <div className="front">
-                          <label>เพศเมีย หางสั้น เกิด 28 กันยายน 2563</label>
-                          <div className="row">
-                            <div className="col-4">x1</div>
-                            <div className="col-8 text-right">
-                              <p>
-                                ยอดคำสั่งซื้อทั้งหมด:{" "}
-                                <p className="petto-price">฿30,900</p>
-                              </p>
-                            </div>
+                    {product.orderdetails.map((row, index) => {
+                      return (
+                        <div className="row pb-3">
+                          <div className="col-4">
+                            <img
+                              src={row.image}
+                              className="img-fluid lazyload rounded"
+                              alt=""
+                            />
                           </div>
-                          <div className="row">
-                            <div className="col-md-12 text-right">
-                              <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} >
-                                <button className="btn btn-solid" type="submit">
-                                  รีวิวสินค้าชิ้นนี้
-                                </button>
-                              </Link>
+                          <div className="col-8">
+                            <div className="front">
+                              <label>{row.name}</label>
+                              <div className="row">
+                                <div className="col-md-12 text-right">
+                                  <button
+                                    className="btn btn-solid"
+                                    onClick={() =>
+                                      this.makereview(row, product.id)
+                                    }
+                                  >
+                                    รีวิวสินค้าชิ้นนี้
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </section>
+        <Modal isOpen={ismodal} style={customStyles}>
+          <form method="post" onSubmit={(e) => this.makeconfirmreview(e)}>
+            <div class="modal-header">
+              <h5 class="modal-title">
+                <b>{confirmreview.itemname}</b>{" "}
+              </h5>
+            </div>
+            <div
+              className="modal-body"
+              className="form-group"
+              style={{ maxHeight: 500, overflowY: "scroll" }}
+            >
+              <div className="form-group mt-2">
+                <label>กรุณาเขียนรีวิวให้กับสินค้าชิ้นนี้</label>
+                <textarea
+                  className="form-control"
+                  onChange={(v) =>
+                    this.setState({
+                      confirmreview: {
+                        ...this.state.confirmreview,
+                        message: v.target.value,
+                      },
+                    })
+                  }
+                  type="text"
+                  required="required"
+                  placeholder=""
+                  value={this.state.payamount}
+                />
+              </div>
+              <div className="form-group mt-2">
+                <label>คะแนน</label>
+                <ReactStars
+                  count={5}
+                  onChange={this.ratingChanged.bind(this)}
+                  size={24}
+                  value={5}
+                  isHalf={false}
+                  emptyIcon={<i className="far fa-star" />}
+                  halfIcon={<i className="fa fa-star-half-alt" />}
+                  fullIcon={<i className="fa fa-star" />}
+                  activeColor="#ffd700"
+                />
+              </div>
+              <div className="form-group multi-preview">
+                <div className="row">
+                  {(this.fileArray || []).map((url) => (
+                    <div className="col-4">
+                      <img
+                        src={url}
+                        alt=""
+                        style={{ width: "100%" }}
+                        className="m-2"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="form-group mt-2">
+                <label>รูปภาพ</label>
+                <div className="form-group">
+                  <input
+                    type="file"
+                    className="form-control"
+                    onChange={this.uploadMultipleFiles}
+                    accept="image/png, image/jpeg"
+                    // multiple
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                ยืนยัน
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onClick={() => this.closeModal()}
+              >
+                ปิดหน้านี้
+              </button>
+            </div>
+          </form>
+        </Modal>
       </div>
     );
   }

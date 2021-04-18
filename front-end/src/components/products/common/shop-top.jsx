@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 
 class Shoptop extends Component {
   render() {
-    const { shop } = this.props;
+    const { shop, shoprating } = this.props;
     return (
       <section className="tab-product m-0">
         <div className="row">
           <div className="col-sm-12 col-lg-12">
             <form className="theme-form mt-4">
-              <hr />
+              {/* <hr /> */}
               <div className="form-row">
                 <div className="col-md-12 ">
                   <div className="media m-0">
                     <Link to={`${process.env.PUBLIC_URL}/shop/${shop.id}`}>
                       <img
                         src={`${shop.image}`}
-                        className="rounded"
+                        className="rounded ml-2"
                         style={{ width: 60, height: 60 }}
                         alt=""
                       />
@@ -40,12 +40,8 @@ class Shoptop extends Component {
                           )}
                         </div>
                         <div className="col-6 text-right">
-                          <i
-                            className="fa fa-star"
-                            style={{ color: "#ffc107" }}
-                          />
-                          <label style={{ marginBottom: 0, color: "#f63b3b" }}>
-                            {`${shop.rating}/5.0`}
+                          <label style={{ marginBottom: 0, color: "#f63b3b",marginTop:-10 }}>
+                            {shoprating}
                           </label>
                         </div>
                       </div>
@@ -90,7 +86,7 @@ class Shoptop extends Component {
                             aria-hidden="true"
                             style={{ color: "red" }}
                           />
-                          <label style={{ marginBottom: 0 }}>xxx ขายแล้ว</label>
+                          <label style={{ marginBottom: 0 }}>{shop.sold || '0'} ขายแล้ว</label>
                         </div>
                       </div>
                     </div>

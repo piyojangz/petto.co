@@ -45,15 +45,7 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 
 class AuctionList extends Component {
   render() {
-    const {
-      bestSeller,
-      mensWear,
-      womensWear,
-      symbol,
-      addToCart,
-      addToWishlist,
-      addToCompare,
-    } = this.props;
+    const { symbol, auctionlist } = this.props;
     return (
       <div>
         <div className="title1 section-t-space">
@@ -61,47 +53,9 @@ class AuctionList extends Component {
         </div>
         <section className="section-b-space p-t-0">
           <div className="container">
-            {bestSeller.map((product, index) => (
-              <div className="row mb-2">
-                <div className="col-12 card">
-                  <div className="media mr-2 bb-1">
-                    <img
-                      src={`https://scontent.fbkk5-5.fna.fbcdn.net/v/t31.0-8/21427327_1662269207125713_6840415808923796799_o.jpg?_nc_cat=104&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeHzVqbIeITQAxNXS4ThrYH9zdD0ZQzUEILN0PRlDNQQgvTSH9TRWZJ0eKhj8jO0rjM&_nc_ohc=u87hRn6TGoAAX8rP_Pb&_nc_ht=scontent.fbkk5-5.fna&oh=33de20e8e470d5b8668c555354e6a258&oe=60018DE1`}
-                      className="rounded mt-2 mr-2"
-                      style={{ width: 30, height: 30 }}
-                      alt=""
-                    />{" "}
-                    <label className="mt-2">
-                      ร้านขายปลาสวยงาม ราชพฤกษ์ ตลาดเทพเจริญ9 Fish Ville
-                      Ratchaphruek
-                    </label>
-                  </div>
-                  <div className="m-0 mt-3">
-                    <div className="row">
-                      <div className="col-4">
-                        <img
-                          src={`https://upload.wikimedia.org/wikipedia/commons/e/ec/Betta_reflected.jpg`}
-                          className="img-fluid lazyload rounded"
-                          alt=""
-                        />
-                      </div>
-                      <div className="col-8">
-                        <div className="front">
-                          <label>เพศเมีย หางสั้น เกิด 28 กันยายน 2563</label>
-                          <div>
-                            <Countdown
-                              date={Date.now() + 5000}
-                              renderer={renderer}
-                            />
-                          </div>
-                          <div className="petto-auction-rank">
-                            <p className="m-0">1</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            {auctionlist.map((product, index) => (
+              <div key={index}  className="card p-2">
+                <AuctionItem product={product} symbol={symbol} key={index} />
               </div>
             ))}
           </div>

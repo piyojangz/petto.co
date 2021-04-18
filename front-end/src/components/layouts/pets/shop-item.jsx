@@ -60,6 +60,19 @@ class ShopItem extends Component {
       <div>
         <div className="product-box">
           <div className="img-wrapper">
+          <div
+                              style={{
+                                position: "absolute",
+                                top: 5,
+                                right: 5,
+                                padding: 2,
+                                borderRadius: 5,
+                                color: "#fff",
+                                background: "#e74c3c",
+                              }}
+                            >
+                              ร้านค้าแนะนำ
+                            </div>
             <div className="front">
               <Link to={`${process.env.PUBLIC_URL}/shop/${shop.id}`}>
                 <img

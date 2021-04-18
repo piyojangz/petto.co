@@ -27,7 +27,7 @@ class Productoffer extends Component {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
       },
-      body: JSON.stringify({ limit: 5 }),
+      body: JSON.stringify({ limit: 5, pricelength: 0, pricesort: "" }),
     })
       .then((res) => res.json())
       .then(

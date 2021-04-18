@@ -24,7 +24,7 @@ class CateBlock extends Component {
               <Slider {...Slider6} className="slide-6">
                 <div>
                   <div className="logo-block">
-                    <a href={null}>
+                    <Link to={`${process.env.PUBLIC_URL}/bestseller`}>
                       <img
                         style={{ width: 70 }}
                         src={`${
@@ -33,14 +33,14 @@ class CateBlock extends Component {
                         alt=""
                       />
                       <center>
-                        <h5>ร้านขายดี</h5>
+                        <h5>ร้านแนะนำ</h5>
                       </center>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div>
                   <div className="logo-block">
-                    <a href={null}>
+                    <Link to={`${process.env.PUBLIC_URL}/auction`}>
                       <img
                         style={{ width: 70 }}
                         src={`${
@@ -51,7 +51,7 @@ class CateBlock extends Component {
                       <center>
                         <h5>ประมูล</h5>
                       </center>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div>
@@ -72,7 +72,7 @@ class CateBlock extends Component {
                 </div>
                 <div>
                   <div className="logo-block">
-                    <a href={null}>
+                    <Link to={`${process.env.PUBLIC_URL}/promotion`}>
                       <img
                         style={{ width: 70 }}
                         src={`${
@@ -83,7 +83,7 @@ class CateBlock extends Component {
                       <center>
                         <h5>โปรโมชั่น</h5>
                       </center>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Slider>

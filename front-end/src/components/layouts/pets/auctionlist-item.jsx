@@ -33,58 +33,52 @@ class AuctionlistItem extends Component {
       clearInterval(this.state.intervalId);
       this.setState({ countdown: "จบแล้ว" });
     } else {
+      let strday = moment.utc(diff).format("D");
+      strday = strday - 1;
       this.setState({
-        countdown: moment.utc(diff).format("เหลือเวลา D วัน HH:mm:ss"),
+        countdown: moment.utc(diff).format(` ${strday} วัน HH:mm:ss`),
       });
     }
   }
   render() {
     const { product, symbol } = this.props;
     return (
-      <div>
+      <div className="pb-2" style={{ borderBottom: "1px solid #ddd" }}>
         <div className="product-box">
           <div className="row">
             <div className="col-5">
               <div className="img-wrapper">
                 <div className="front">
-                  <Link
-                    to={`${process.env.PUBLIC_URL}/product/${
-                      product.id
-                    }`}
-                  >
-                    <img src={product.image} className="img-fluid" alt="" />
-                  </Link>
+                  {/* <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}> */}
+                  <img src={product.image} className="img-fluid" alt="" />
+                  {/* </Link> */}
                 </div>
               </div>
+              <h5>{product.name}</h5>
             </div>
             <div className="col-7 ">
-              <div>
-                <Link
-                  to={`${process.env.PUBLIC_URL}/product/${
-                    product.id
-                  }`}
-                >
-                  <h5>{product.name}</h5>
-                </Link>
-                <h3 style={{ color: "rgb(0, 114, 190)", fontWeight: "bold" }}>
-                  <span style={{ fontSize: 18 }}>{symbol}</span>
-                  {parseFloat(product.startprice).toLocaleString(
-                    navigator.language,
-                    {
+              <div> 
+                <div className="auctionprice-box">
+                <div className="AuctionDate2 mb-2">
+                    {this.state.countdown}
+                  </div>
+                  <strong>ราคาปัจจุบัน</strong>
+                  <h3 style={{ color: "rgb(0, 114, 190)", fontWeight: "bold" }}>
+                    <span style={{ fontSize: 18 }}>{symbol}</span>
+                    {parseFloat(
+                      product.currentprice > 0
+                        ? product.currentprice
+                        : product.startprice
+                    ).toLocaleString(navigator.language, {
                       minimumFractionDigits: 0,
-                    }
-                  )}
-                </h3>
-                <span className="AuctionDate2">{this.state.countdown}</span>
-                <br />
+                    })}
+                  </h3> 
+                </div>
                 {this.state.countdown != "จบแล้ว" && (
-                  <Link
-                    to={`${process.env.PUBLIC_URL}/product/${
-                      product.id
-                    }`}
-                    className="btn btn-primary"
-                  >
-                    <h5 style={{ color: "#fff" }}>เข้าประมูล</h5>
+                     <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/${product.name}`}>
+                    <button className="btn btn-primary" style={{borderRadius:5,width:'100%'}}>
+                      เข้าประมูล
+                    </button>
                   </Link>
                 )}
               </div>

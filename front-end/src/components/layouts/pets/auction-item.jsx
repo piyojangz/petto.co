@@ -23,7 +23,7 @@ class AuctionItem extends Component {
   componentDidMount() {
     const { product, symbol } = this.props;
     console.log("auc", product);
-    let dateto = moment(product.dto).format("YYYY-MM-DD HH:mm:ss"); 
+    let dateto = moment(product.dto).format("YYYY-MM-DD HH:mm:ss");
     let difftime = moment(dateto).diff(moment(), "seconds");
 
     var countDownDate = moment().add(difftime, "seconds");
@@ -39,25 +39,25 @@ class AuctionItem extends Component {
       clearInterval(this.state.intervalId);
       this.setState({ countdown: "จบแล้ว" });
     } else {
-      this.setState({ countdown: moment.utc(diff).format("D วัน HH:mm:ss") });
+      let strday = moment.utc(diff).format("D");
+      strday = strday - 1;
+      this.setState({
+        countdown: moment.utc(diff).format(` ${strday} วัน HH:mm:ss`),
+      });
     }
   }
 
   render() {
     const { product, symbol } = this.props;
-    // console.log("auc", product);
     return (
       <div>
         <div className="product-box">
           <div className="img-wrapper">
             <div className="front">
-              <Link
-                to={`${process.env.PUBLIC_URL}/product/${
-                  product.id
-                }`}
-              >
+            <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/${product.name}`}>
                 <img
                   src={`${product.image}`}
+                  style={{ width: "100%" }}
                   className="img-fluid lazyload bg-img"
                   alt=""
                 />
@@ -66,11 +66,7 @@ class AuctionItem extends Component {
           </div>
           <div className="product-detail text-left mt-1 pr-1 pl-1">
             <div>
-              <Link
-                to={`${process.env.PUBLIC_URL}/product/${
-                  product.id
-                }`}
-              >
+              <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/${product.name}`}>
                 <h6>{product.name}</h6>
               </Link>
               <div className="row mt-2">
@@ -78,18 +74,21 @@ class AuctionItem extends Component {
                   <span className="AuctionDate">{this.state.countdown}</span>
                 </div>
                 <div className="col-7">
-                  <div className="iAuction">
-                    <i className="fa fa-gavel" />
-                  </div>
-                  <span className="AuctionPrice">
-                    {symbol}
-                    {parseFloat(product.startprice).toLocaleString(
-                      navigator.language,
-                      {
+                  <div style={{float:'right',alignItems:'center'}}>
+                    <div className="iAuction">
+                      <i className="fa fa-gavel" />
+                    </div>
+                    <span className="AuctionPrice ml-1"> 
+                      {symbol}
+                      {parseFloat(
+                        product.currentprice > 0
+                          ? product.currentprice
+                          : product.startprice
+                      ).toLocaleString(navigator.language, {
                         minimumFractionDigits: 0,
-                      }
-                    )}
-                  </span>
+                      })}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
