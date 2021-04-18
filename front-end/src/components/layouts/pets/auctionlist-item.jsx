@@ -75,7 +75,7 @@ class AuctionlistItem extends Component {
                   </h3> 
                 </div>
                 {this.state.countdown != "จบแล้ว" && (
-                     <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/${product.name}`}>
+                     <Link to={`${process.env.PUBLIC_URL}/auctiondetail/${product.id}/ประมูล`}>
                     <button className="btn btn-primary" style={{borderRadius:5,width:'100%'}}>
                       เข้าประมูล
                     </button>
