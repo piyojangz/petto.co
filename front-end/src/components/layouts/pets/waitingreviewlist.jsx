@@ -16,6 +16,22 @@ import Modal from "react-modal";
 import { Siteurl } from "../../../services/script";
 import { toast } from "react-toastify";
 import cookie from "react-cookies";
+import Resizer from "react-image-file-resizer";
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
 const customStyles = {
   content: {
     top: "50%",
@@ -59,7 +75,7 @@ class WaitingReviewList extends Component {
   }
 
   makereview(row, orderid) {
-    console.log(row);
+    // console.log(row);
     let confirmreview = {
       orderid: orderid,
       itemid: row.itemid,
@@ -84,12 +100,36 @@ class WaitingReviewList extends Component {
     });
   }
 
-  async uploadMultipleFiles(e) {
-    this.fileObj.push(e.target.files);
+  // async uploadMultipleFiles(e) {
+  //  let  resizedFiileBase64 = await this.resizeImageFn(e.target.files);
+  //   this.fileObj.push(resizedFiileBase64);
+  //   this.fileArray = [];
+  //   for (let i = 0; i < this.fileObj.length; i++) {
+  //     const base64 = await this.convertBase64(this.fileObj[i][0]);
+  //     this.fileArray.push(base64);
+  //   }
+  //   this.setState({ file: this.fileArray });
+  // }
+
+    // async uploadMultipleFiles(e) {
+  //  let  resizedFiileBase64 = await this.resizeImageFn(e.target.files);
+  //   this.fileObj.push(resizedFiileBase64);
+  //   this.fileArray = [];
+  //   for (let i = 0; i < this.fileObj.length; i++) {
+  //     const base64 = await this.convertBase64(this.fileObj[i][0]);
+  //     this.fileArray.push(base64);
+  //   }
+  //   this.setState({ file: this.fileArray });
+  // }
+
+  
+  async uploadMultipleFiles(e) { 
+    const resizedFiileBase64 = await resizeFile(e.target.files[0]);
+
+    this.fileObj.push(resizedFiileBase64);
     this.fileArray = [];
     for (let i = 0; i < this.fileObj.length; i++) {
-      const base64 = await this.convertBase64(this.fileObj[i][0]);
-      this.fileArray.push(base64);
+      this.fileArray.push(this.fileObj[i]);
     }
     this.setState({ file: this.fileArray });
   }
@@ -145,6 +185,7 @@ class WaitingReviewList extends Component {
         }
       );
   }
+ 
 
   render() {
     const { reviewdata } = this.props;

@@ -251,3 +251,28 @@ footer.pet-layout-footer .sub-footer.black-subfooter {
     margin: 0 15px 30px !important;
   }
 }
+
+.loader-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+  display: block;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+}
+
+.loader-wrapper .loaderx {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #404040;
+}
