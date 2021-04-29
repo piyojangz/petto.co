@@ -1,6 +1,6 @@
 
 
-export const  Siteurl = 'http://localhost/petto/';
+// export const  Siteurl = 'http://localhost/petto/';
 // export const  Siteurl = 'https://seller.pettogo.co/';
 
 export const groupByKey = (list, key, {omitKey=false}) => list.reduce((hash, {[key]:value, ...rest}) => ({...hash, [value]:( hash[value] || [] ).concat(omitKey ? {...rest} : {[key]:value, ...rest})} ), {})

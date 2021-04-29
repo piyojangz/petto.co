@@ -6,6 +6,7 @@ import { Siteurl } from "../../../services/script";
 import { Product4, Product5 } from "../../../services/script";
 import Slider from "react-slick";
 import { connect } from "react-redux";
+import ImageZoom from "react-medium-image-zoom";
 class DetailsTopTabs extends Component {
   constructor() {
     super();
@@ -103,12 +104,23 @@ class DetailsTopTabs extends Component {
                     return (
                       <div className="col-4" key={"xp-" + index}>
                         <div key={1}>
-                          <img
+                        <ImageZoom
+                          image={{
+                            src: `${picture}`,
+                            alt: "",
+                            className: "img-fluid",
+                          }}
+                          zoomImage={{
+                            src: `${picture}`,
+                            alt: "",
+                          }}
+                        />
+                          {/* <img
                             src={picture}
                             key={1}
                             alt=""
                             className="img-fluid"
-                          />
+                          /> */}
                         </div>
                       </div>
                     );
