@@ -13,6 +13,7 @@ import Countdown from "react-countdown";
 import Modal from "react-modal";
 import { Siteurl } from "../../../services/script";
 import { toast } from "react-toastify";
+import cookie from "react-cookies";
 // Renderer callback with condition
 const customStyles = {
   content: {
@@ -41,9 +42,9 @@ class PaidingList extends Component {
   }
 
   async componentDidMount() {
-    const customer = sessionStorage.getItem("customer");
+    const customer = cookie.load("customerdata");
     if (customer) {
-      const _customer = JSON.parse(customer);
+      const _customer =  customer;
       await this.setState({
         customer: _customer,
       });

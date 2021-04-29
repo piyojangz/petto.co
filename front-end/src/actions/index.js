@@ -3,6 +3,11 @@ import * as types from "../constants/ActionTypes";
 import store from "../store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import cookie from "react-cookies";
+import { googleTranslate } from "../utils/googleTranslate";
+import TH from "../utils/lang/th.json";
+import EN from "../utils/lang/en.json";
+import CN from "../utils/lang/cn.json";
 import e from "cors";
 
 export const fetchLodingBegin = () => ({
@@ -66,13 +71,12 @@ export const fetchSingleProduct = (productId) => ({
 });
 
 //it seems that I should probably use this as the basis for "Cart"
-const customer = sessionStorage.getItem("customer");
-export const addToCart = (product, qty) => (dispatch) => { 
-  if (qty > 0) { 
+const customer = cookie.load("customerdata");
+export const addToCart = (product, qty) => (dispatch) => {
+  if (qty > 0) {
     if (!customer) {
-      window.location.href = '/pages/login/false';
-    }
-    else {
+      window.location.href = "/pages/login/false";
+    } else {
       toast.success("เพิ่มลงตะกร้าแล้ว");
       dispatch(addToCartUnsafe(product, qty));
     }
@@ -83,9 +87,8 @@ export const addToCart = (product, qty) => (dispatch) => {
 export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
   if (qty > 0) {
     if (!customer) {
-      window.location.href = '/pages/login/false';
-    }
-    else {
+      window.location.href = "/pages/login/false";
+    } else {
       toast.success("เพิ่มลงตะกร้าแล้ว");
       dispatch(addToCartUnsafe(product, qty));
       dispatch(removeFromWishlist(product));
@@ -107,11 +110,11 @@ export const removeFromCart = (product_id) => (dispatch) => {
   });
 };
 
-export const removeAllCart = () => (dispatch) => { 
+export const removeAllCart = () => (dispatch) => {
   dispatch({
-    type: types.REMOVE_ALL_CART, 
+    type: types.REMOVE_ALL_CART,
   });
-  window.location.href = '/pages/user';
+  window.location.href = "/pages/user";
 };
 
 export const incrementQty = (product, qty) => (dispatch) => {
@@ -184,4 +187,38 @@ export const filterSort = (sort_by) => ({
 export const changeCurrency = (symbol) => ({
   type: types.CHANGE_CURRENCY,
   symbol,
+});
+
+//language
+export const setLang = (language) => (dispatch) => {
+  let jsonlang = {};
+  let LN = TH;
+  switch (language) {
+    case "th":
+      LN = TH;
+      break;
+    case "en":
+      LN = EN;
+      break;
+    case "zh-CN":
+      LN = CN;
+      break;
+  }
+
+  LN.map(async (lang) => {
+    jsonlang[lang.key] = lang.value;
+  });
+
+  cookie.save("language", language, { path: "/" });
+
+  dispatch({
+    type: types.SET_LANGUAGE,
+    jsonlang,
+  });
+};
+
+
+export const setLoading = (isload) => ({
+  type: types.SET_LOADING,
+  isload,
 });

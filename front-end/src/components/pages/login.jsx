@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Breadcrumb from "../common/breadcrumb";
 import CryptoJS from "crypto-js";
 import { Siteurl } from "../../services/script";
+import cookie from "react-cookies";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +43,9 @@ class Login extends Component {
         (result) => {
           console.log("result", result);
           if (result.result != null) {
-            sessionStorage.setItem("customer", JSON.stringify(result.result));
+            // sessionStorage.setItem("customer", JSON.stringify(result.result));
+            cookie.save("customerdata", JSON.stringify(result.result), { path: "/" , 'maxAge': 100000});
+
             window.location = "/";
           } else {
             alert("ไม่พบรายชื่อนี้ในระบบ");

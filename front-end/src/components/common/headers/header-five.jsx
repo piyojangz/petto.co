@@ -1,18 +1,47 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IntlActions } from "react-redux-multilingual";
 import Pace from "react-pace-progress";
-
 // Import custom components
 import store from "../../../store";
 import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
 import CartContainer from "./../../../containers/CartContainer";
 import TopBar from "./common/topbar";
-import { changeCurrency } from "../../../actions";
+import { changeCurrency, setLang, setLoading } from "../../../actions";
 import { connect } from "react-redux";
 import TopBarDark from "./common/topbar-dark";
 import LogoImage from "./common/logo";
+import cookie from "react-cookies";
+import Loader from "react-loader-spinner";
+const FallbackContainer = (props) => {
+  if (props.isload) {
+    return (
+      <div
+        className="loader-wrapper"
+        style={{ background: "rgb(255 255 255 / 22%)" }}
+      >
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+          }}
+        >
+          <Loader
+            type="Hearts"
+            color="rgb(217, 59, 66)"
+            height={80}
+            width={80}
+          />
+        </div>
+      </div>
+    );
+  } else {
+    return <div />;
+  }
+};
 
 class HeaderFive extends Component {
   constructor(props) {
@@ -21,23 +50,32 @@ class HeaderFive extends Component {
     this.state = {
       isLoading: false,
       customer: undefined,
+      languageCodes: [],
+      language: cookie.load("language") ? cookie.load("language") : "th",
     };
   }
   /*=====================
 		 Pre loader
 		 ==========================*/
+
+  changeHandler = async (language) => {
+    await this.props.setLang(language);
+    await this.setState({ language: language });
+  };
+
   componentDidMount() {
     setTimeout(function() {
       document.querySelector(".loader-wrapper").style = "display: none";
     }, 2000);
-
-    const customer = sessionStorage.getItem("customer");
+    this.props.setLoading(false);
+    const customer = cookie.load("customerdata");
     if (customer) {
-      this.setState({ customer: JSON.parse(customer) });
+      this.setState({ customer: customer });
     }
   }
 
   componentWillMount() {
+    this.props.setLang(this.state.language);
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
@@ -61,7 +99,7 @@ class HeaderFive extends Component {
   };
 
   changeLanguage(lang) {
-    store.dispatch(IntlActions.setLocale(lang));
+    this.changeHandler(lang);
   }
 
   openNav() {
@@ -87,11 +125,12 @@ class HeaderFive extends Component {
   };
 
   render() {
-	  const {customer} = this.state;
-	  console.log('customercustomercustomer',customer)
+    const { customer } = this.state; 
     return (
       <div>
+        <FallbackContainer isload={this.props.isloading} />
         <header id="sticky" className="sticky">
+          <p>{this.state.question}</p>
           {this.state.isLoading ? <Pace color="#27ae60" /> : null}
           <div className="mobile-fix-option" />
           {/*Top Header Component*/}
@@ -157,7 +196,8 @@ class HeaderFive extends Component {
                                         process.env.PUBLIC_URL
                                       }/pages/user`}
                                     >
-                                      {this.state.customer.firstname}  {this.state.customer.lastname}
+                                      {this.state.customer.firstname}{" "}
+                                      {this.state.customer.lastname}
                                     </Link>
                                   </li>
                                 </ul>
@@ -188,6 +228,26 @@ class HeaderFive extends Component {
                               <ul>
                                 <li>
                                   <a
+                                    style={{
+                                      textDecoration:
+                                        this.state.language == "zh-CN"
+                                          ? "underline"
+                                          : "none",
+                                    }}
+                                    href={null}
+                                    onClick={() => this.changeLanguage("zh-CN")}
+                                  >
+                                    Chinease
+                                  </a>{" "}
+                                </li>
+                                <li>
+                                  <a
+                                    style={{
+                                      textDecoration:
+                                        this.state.language == "en"
+                                          ? "underline"
+                                          : "none",
+                                    }}
                                     href={null}
                                     onClick={() => this.changeLanguage("en")}
                                   >
@@ -196,6 +256,12 @@ class HeaderFive extends Component {
                                 </li>
                                 <li>
                                   <a
+                                    style={{
+                                      textDecoration:
+                                        this.state.language == "th"
+                                          ? "underline"
+                                          : "none",
+                                    }}
                                     href={null}
                                     onClick={() => this.changeLanguage("th")}
                                   >
@@ -261,7 +327,11 @@ class HeaderFive extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  isloading: state.loading.isloading,
+});
+
 export default connect(
-  null,
-  { changeCurrency }
+  mapStateToProps,
+  { changeCurrency, setLang, setLoading }
 )(HeaderFive);

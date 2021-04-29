@@ -27,7 +27,7 @@ class Productoffer extends Component {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
       },
-      body: JSON.stringify({ limit: 5 }),
+      body: JSON.stringify({ limit: 5, pricelength: 0, pricesort: "" }),
     })
       .then((res) => res.json())
       .then(
@@ -68,7 +68,7 @@ class Productoffer extends Component {
                     <div className="col-6">
                       <Link to={`${process.env.PUBLIC_URL}/offer`}>
                         <h5 className="title-inner1 text-right">
-                          {"ดูเพิ่มเติม >"}
+                          {`${this.props.trans.more} >`}
                         </h5>
                       </Link>
                     </div>
@@ -99,6 +99,7 @@ class Productoffer extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   //   items: getTrendingCollection(state.data.products, ownProps.type),
+  trans: state.lang.trans,
   symbol: state.data.symbol,
 });
 

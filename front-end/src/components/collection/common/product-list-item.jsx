@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
-
+import { connect } from "react-redux";
+import cookie from "react-cookies";
 class ProductListItem extends Component {
   constructor(props) {
     super(props);
@@ -74,7 +75,7 @@ class ProductListItem extends Component {
                   }}
                 >
                   <i className="fa fa-flash" />
-                  <span style={{ fontSize: 12 }}>แนะนำ</span>
+                  <span style={{ fontSize: 12 }}>{this.props.trans.recommend}</span>
                 </div>
               )}
               <div className="front">
@@ -123,7 +124,7 @@ class ProductListItem extends Component {
                 }`}
                 className="btn btn-primary"
               >
-                <h5 style={{ color: "#fff" }}>ดูรายละเอียด</h5>
+                <h5 style={{ color: "#fff" }}>{this.props.trans.productdetail}</h5>
               </Link>
             </div>
           </div>
@@ -133,4 +134,13 @@ class ProductListItem extends Component {
   }
 }
 
-export default ProductListItem;
+
+const mapStateToProps = (state, ownProps) => ({ 
+  trans: state.lang.trans,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(ProductListItem);
+ 

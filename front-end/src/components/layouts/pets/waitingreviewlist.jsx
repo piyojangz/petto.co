@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { Siteurl } from "../../../services/script";
 import { toast } from "react-toastify";
+import cookie from "react-cookies";
 const customStyles = {
   content: {
     top: "50%",
@@ -48,9 +49,9 @@ class WaitingReviewList extends Component {
   }
 
   async componentDidMount() {
-    const customer = sessionStorage.getItem("customer");
+    const customer = cookie.load("customerdata");
     if (customer) {
-      const _customer = JSON.parse(customer);
+      const _customer = customer;
       await this.setState({
         customer: _customer,
       });
@@ -111,6 +112,7 @@ class WaitingReviewList extends Component {
   }
 
   makeconfirmreview(event) {
+    this.props.isLoading(true);
     event.preventDefault();
     const { confirmreview, customer } = this.state;
 
@@ -134,6 +136,7 @@ class WaitingReviewList extends Component {
         (result) => {
           toast.success("ยืนยันข้อมูลเรียบร้อย");
           this.setState({ ismodal: false });
+          this.props.isLoading(false);
           this.props.onsubmit();
         },
         (error) => {

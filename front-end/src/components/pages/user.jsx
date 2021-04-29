@@ -5,10 +5,13 @@ import AuctionList from "../layouts/pets/auctionlist";
 import PaidingList from "../layouts/pets/paidinglist";
 import WaitingList from "../layouts/pets/waitinglist";
 import WaitingReviewList from "../layouts/pets/waitingreviewlist";
+import { setLoading } from "../../actions";
+import { connect } from "react-redux";
 import { Tabs, Tab } from "react-bootstrap-tabs";
 import Modal from "react-modal";
 import { Siteurl } from "../../services/script";
 import { toast } from "react-toastify";
+import cookie from "react-cookies";
 const customStyles = {
   content: {
     top: "50%",
@@ -46,9 +49,10 @@ class User extends Component {
   }
 
   async componentDidMount() {
-    const customer = sessionStorage.getItem("customer");
+    const customer = cookie.load("customerdata");
+    // console.log('this.state.customer',customer)
     if (customer) {
-      const _customer = JSON.parse(customer);
+      const _customer = customer;
       await this.setState({
         customer: _customer,
         fulladdress: _customer.fulladdress,
@@ -177,7 +181,6 @@ class User extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("resultresult", result);
           this.setState({
             reviewlist: result.result,
             review: result.result.length,
@@ -191,7 +194,8 @@ class User extends Component {
 
   logout() {
     // console.log("asdasdsa");
-    sessionStorage.removeItem("customer");
+    // sessionStorage.removeItem("customer");
+    cookie.remove("customerdata");
     window.location.href = "/pages/login/false";
   }
 
@@ -218,7 +222,8 @@ class User extends Component {
           let customer = this.state.customer;
           customer.fulladdress = this.state.fulladdress;
           customer.tel = this.state.tel;
-          sessionStorage.setItem("customer", JSON.stringify(customer));
+          // sessionStorage.setItem("customer", JSON.stringify(customer));
+          cookie.save("customer", JSON.stringify(result.result), { path: "/" });
           toast.success("อัพเดทข้อมูลเรียบร้อย");
           this.setState({ ismodal: false });
           window.location.href = "/pages/user";
@@ -233,6 +238,10 @@ class User extends Component {
     this.setState({
       ismodal: true,
     });
+  }
+
+  isLoading(loading) {
+    this.props.setLoading(loading);
   }
 
   onsubmitOrder() {
@@ -534,6 +543,7 @@ class User extends Component {
                 }`}
               >
                 <WaitingReviewList
+                  isLoading={this.isLoading.bind(this)}
                   onsubmit={this.onsubmitOrder.bind(this)}
                   reviewdata={this.state.reviewlist}
                 />
@@ -593,4 +603,7 @@ class User extends Component {
   }
 }
 
-export default User;
+export default connect(
+  null,
+  { setLoading }
+)(User);

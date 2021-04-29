@@ -13,6 +13,7 @@ import LogoBlock from "../common/logo-block";
 import { Product4 } from "../../../services/script";
 import ProductItem from "../pets/product-item";
 import ReactStars from "react-rating-stars-component";
+import ImageZoom from "react-medium-image-zoom";
 import {
   svgFreeShipping,
   svgservice,
@@ -175,12 +176,23 @@ class Shop extends Component {
                   return (
                     <div className="col-4" key={"xp-" + index}>
                       <div key={1}>
-                        <img
+                        <ImageZoom
+                          image={{
+                            src: `${picture}`,
+                            alt: "",
+                            className: "img-fluid",
+                          }}
+                          zoomImage={{
+                            src: `${picture}`,
+                            alt: "",
+                          }}
+                        />
+                        {/* <img
                           src={picture}
                           key={1}
                           alt=""
                           className="img-fluid"
-                        />
+                        /> */}
                       </div>
                     </div>
                   );

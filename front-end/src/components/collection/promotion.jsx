@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -10,6 +11,7 @@ import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
 import { Siteurl, Cate6 } from "../../services/script";
 import CategoryItem from "../layouts/pets/category-item";
+import cookie from "react-cookies";
 class Promotion extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +60,10 @@ class Promotion extends Component {
 
     return (
       <div>
-        <Breadcrumb title={"โปรโมชั่น"} />
+        <Helmet>
+          <title>Petto.co | {this.props.trans.promotion}</title>
+        </Helmet>
+        <Breadcrumb title={this.props.trans.promotion} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
@@ -82,7 +87,13 @@ class Promotion extends Component {
                             <div className="row">
                               <div className="col">
                                 <div className="slider-contain">
-                                  <img src={value.image} alt="" style={{width:'100%'}} />
+                                <a href={`${value.externallink}`}  >
+                                  <img
+                                    src={value.image}
+                                    alt=""
+                                    style={{ width: "100%" }}
+                                  />
+                                  </a>
                                 </div>
                               </div>
                             </div>
@@ -105,6 +116,7 @@ const mapStateToProps = (state, ownProps) => ({
   cateId: ownProps.match.params.id,
   cateName: ownProps.match.params.name,
   symbol: state.data.symbol,
+  trans: state.lang.trans,
 });
 
 export default connect(

@@ -25,6 +25,7 @@ import { Siteurl } from "../../services/script";
 import NumericInput from "react-numeric-input";
 import moment from "moment";
 import { toast } from "react-toastify";
+import cookie from "react-cookies";
 class Auctiondetail extends Component {
   constructor() {
     super();
@@ -48,9 +49,9 @@ class Auctiondetail extends Component {
   // document.getElementById('idOfElement').classList.add('newClassName');
 
   async componentDidMount() {
-    const customer = sessionStorage.getItem("customer");
+    const customer = cookie.load("customerdata");
     if (customer) {
-      const _customer = JSON.parse(customer);
+      const _customer = customer;
       await this.setState({
         customer: _customer,
       });

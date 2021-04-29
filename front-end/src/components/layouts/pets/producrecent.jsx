@@ -68,7 +68,7 @@ class Productoffer extends Component {
                     <div className="col-6">
                       <Link to={`${process.env.PUBLIC_URL}/recent`}>
                         <h5 className="title-inner1 text-right">
-                          {"ดูเพิ่มเติม >"}
+                        {`${this.props.trans.more} >`}
                         </h5>
                       </Link>
                     </div>
@@ -99,6 +99,7 @@ class Productoffer extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   //   items: getTrendingCollection(state.data.products, ownProps.type),
+  trans: state.lang.trans,
   symbol: state.data.symbol,
 });
 

@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Slider from "react-slick";
 import { getTotal, getCartProducts } from "../../reducers/index";
-import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
+import {
+  addToCart,
+  addToWishlist,
+  addToCompare,
+  setLoading,
+} from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
@@ -29,6 +34,7 @@ class Productlistrecent extends Component {
   }
 
   getproduct = (cateId) => {
+    this.props.setLoading(true);
     fetch(Siteurl + "service/getproducts", {
       method: "POST",
       headers: {
@@ -45,6 +51,7 @@ class Productlistrecent extends Component {
         (result) => {
           console.log("result", result);
           this.setState({ products: result.result });
+          this.props.setLoading(false);
         },
         (error) => {
           this.setState({
@@ -187,5 +194,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { addToCart, addToWishlist, addToCompare }
+  { addToCart, addToWishlist, addToCompare, setLoading }
 )(Productlistrecent);

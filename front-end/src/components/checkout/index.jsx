@@ -9,7 +9,8 @@ import Breadcrumb from "../common/breadcrumb";
 import { removeFromWishlist } from "../../actions";
 import { getCartTotal } from "../../services";
 import { groupByKey, Siteurl } from "../../services/script";
-import { removeAllCart} from "../../actions";
+import { removeAllCart, setLoading } from "../../actions";
+import cookie from "react-cookies";
 import resolve from "resolve";
 class checkOut extends Component {
   constructor(props) {
@@ -23,9 +24,9 @@ class checkOut extends Component {
   }
 
   async componentDidMount() {
-    const customer = sessionStorage.getItem("customer");
+    const customer = cookie.load("customerdata");
     if (customer) {
-      this.setState({ customer: JSON.parse(customer) });
+      this.setState({ customer: customer });
     }
 
     const { cartItems, symbol, total } = this.props;
@@ -111,11 +112,10 @@ class checkOut extends Component {
   }
 
   submitorder() {
+    this.props.setLoading(true);
     const { cartItems, symbol, total } = this.props;
     const { merchantlist, customer } = this.state;
-    const {
-      removeAllCart
-    } = this.props; 
+    const { removeAllCart } = this.props;
 
     fetch(Siteurl + "service/createorder", {
       method: "POST",
@@ -131,6 +131,7 @@ class checkOut extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
+          this.props.setLoading(false);
           toast.success("ยืนยันรายการเรียบร้อย");
           removeAllCart();
         },
@@ -359,5 +360,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { removeFromWishlist ,removeAllCart}
+  { removeFromWishlist, removeAllCart, setLoading }
 )(checkOut);

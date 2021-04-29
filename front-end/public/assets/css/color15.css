@@ -7520,7 +7520,6 @@ footer p {
 /*=====================
     20.Loader CSS start
 ==========================*/
-
 .loader-wrapper {
   height: 100vh;
   width: 100vw;
@@ -7537,76 +7536,16 @@ footer p {
   top: 0;
 }
 
-.loader-wrapper .loader {
+.loader-wrapper .loaderx {
   position: absolute;
   top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background-color: #ff9944;
-  border-radius: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #404040;
 }
+ 
 
-.loader-wrapper .loader:after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  border: 0 solid white;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -webkit-animation: loading 1000ms ease-out forwards infinite;
-  animation: loading 1000ms ease-out forwards infinite;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-@-webkit-keyframes loading {
-  0% {
-    border: 0 solid white;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-  20% {
-    border: 8px solid white;
-    width: 0;
-    height: 0;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-  100% {
-    border: 8px solid white;
-    width: 100%;
-    height: 100%;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-}
-
-@keyframes loading {
-  0% {
-    border: 0 solid white;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-  20% {
-    border: 8px solid white;
-    width: 0;
-    height: 0;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-  100% {
-    border: 8px solid white;
-    width: 100%;
-    height: 100%;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-}
 
 /*=====================
     21.Tab to top CSS start

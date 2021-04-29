@@ -1,0 +1,118 @@
+[
+    {
+        "key": "shoprecommend",
+        "value": "Recommended shops"
+    },
+    {
+        "key": "productoffer",
+        "value": "Recommended Products"
+    },
+    {
+        "key": "auction",
+        "value": "Auction"
+    },
+    {
+        "key": "category",
+        "value": "Category"
+    },
+    {
+        "key": "promotion",
+        "value": "Promotion"
+    },
+    {
+        "key": "more",
+        "value": "More"
+    },
+    {
+        "key": "lastproduct",
+        "value": "Latest products"
+    },
+    {
+        "key": "auctionlist",
+        "value": "Auction list"
+    },
+    {
+        "key": "article",
+        "value": "Article"
+    },
+    {
+        "key": "mainpage",
+        "value": "Main page"
+    },
+    {
+        "key": "login",
+        "value": "Login"
+    },
+    {
+        "key": "register",
+        "value": "Register"
+    },
+    {
+        "key": "user",
+        "value": "User"
+    },
+    {
+        "key": "language",
+        "value": "Language"
+    },
+    {
+        "key": "confirmregister",
+        "value": "Confirm Register"
+    },
+    {
+        "key": "confirmpassword",
+        "value": "Confirm Password"
+    },
+    {
+        "key": "email",
+        "value": "Email"
+    },
+    {
+        "key": "lastname",
+        "value": "Lastname"
+    },
+    {
+        "key": "fullname",
+        "value": "Fullname"
+    },
+    {
+        "key": "termandcondition",
+        "value": "Term and Condition"
+    },
+    {
+        "key": "emailregister",
+        "value": "Email"
+    },
+    {
+        "key": "newcustomer",
+        "value": "New customers"
+    },
+    {
+        "key": "addtocart",
+        "value": "Add to cart"
+    },
+    {
+        "key": "productdetail",
+        "value": "Details"
+    },
+    {
+        "key": "review",
+        "value": "Review"
+    },
+    {
+        "key": "sold",
+        "value": "Sold"
+    },
+    {
+        "key": "seemore",
+        "value": "See more"
+    },
+    {
+        "key": "recommend",
+        "value": "Recommend"
+    },
+    {
+        "key": "confirm",
+        "value": "Confirm"
+    }
+]

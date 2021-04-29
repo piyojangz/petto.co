@@ -65,7 +65,7 @@ class AuctionCollection extends Component {
                     <div className="col-6">
                       <Link to={`${process.env.PUBLIC_URL}/auction`}>
                         <h5 className="title-inner1 text-right">
-                          {"ดูเพิ่มเติม >"}
+                        {`${this.props.trans.more} >`}
                         </h5>
                       </Link>
                     </div>
@@ -94,6 +94,7 @@ class AuctionCollection extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   symbol: state.data.symbol,
+  trans: state.lang.trans,
 });
 
 export default connect(

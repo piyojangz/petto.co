@@ -1,0 +1,118 @@
+[
+    {
+        "key": "shoprecommend",
+        "value": "ร้านค้าแนะนำ"
+    },
+    {
+        "key": "productoffer",
+        "value": "สินค้าแนะนำ"
+    },
+    {
+        "key": "auction",
+        "value": "ประมูล"
+    },
+    {
+        "key": "category",
+        "value": "หมวดหมู่"
+    },
+    {
+        "key": "promotion",
+        "value": "โปรโมชั่น"
+    },
+    {
+        "key": "more",
+        "value": "ดูเพิ่มเติม"
+    },
+    {
+        "key": "lastproduct",
+        "value": "สินค้าล่าสุด"
+    },
+    {
+        "key": "auctionlist",
+        "value": "รายการประมูล"
+    },
+    {
+        "key": "article",
+        "value": "บทความ"
+    },
+    {
+        "key": "mainpage",
+        "value": "หน้าหลัก"
+    },
+    {
+        "key": "signin",
+        "value": "เข้าสู่ระบบ"
+    },
+    {
+        "key": "signup",
+        "value": "สมัครสมาชิก"
+    },
+    {
+        "key": "user",
+        "value": "ผู้ใช้"
+    },
+    {
+        "key": "language",
+        "value": "ภาษา"
+    },
+    {
+        "key": "confirmregister",
+        "value": "ยืนยันการสมัครสมาชิก"
+    },
+    {
+        "key": "confirmpassword",
+        "value": "ยืนยันรหัสผ่าน"
+    },
+    {
+        "key": "email",
+        "value": "อีเมลล์"
+    },
+    {
+        "key": "lastname",
+        "value": "นามสกุล"
+    },
+    {
+        "key": "fullname",
+        "value": "ชื่อ"
+    },
+    {
+        "key": "termandcondition",
+        "value": "นโยบายและข้อกำหนด"
+    },
+    {
+        "key": "emailregister",
+        "value": "อีเมลล์ที่ใช้ลงทะเบียน"
+    },
+    {
+        "key": "newcustomer",
+        "value": "ลูกค้าใหม่"
+    },
+    {
+        "key": "addtocart",
+        "value": "เพิ่มสินค้าลงตะกร้า"
+    },
+    {
+        "key": "productdetail",
+        "value": "รายละเอียดสินค้า"
+    },
+    {
+        "key": "review",
+        "value": "รีวิว"
+    },
+    {
+        "key": "sold",
+        "value": "ขายแล้ว"
+    },
+    {
+        "key": "seemore",
+        "value": "See more"
+    },
+    {
+        "key": "recommend",
+        "value": "Recommend"
+    },
+    {
+        "key": "confirm",
+        "value": "ยืนยัน"
+    }
+]

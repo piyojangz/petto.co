@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import { Slider6 } from "../../../services/script";
 import { Siteurl } from "../../../services/script";
+import { connect } from "react-redux";
 class CateBlock extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,7 @@ class CateBlock extends Component {
                         alt=""
                       />
                       <center>
-                        <h5>ร้านแนะนำ</h5>
+                        <h5>{this.props.trans.shoprecommend}</h5>
                       </center>
                     </Link>
                   </div>
@@ -49,7 +50,7 @@ class CateBlock extends Component {
                         alt=""
                       />
                       <center>
-                        <h5>ประมูล</h5>
+                        <h5>{this.props.trans.auction}</h5>
                       </center>
                     </Link>
                   </div>
@@ -65,7 +66,7 @@ class CateBlock extends Component {
                         alt=""
                       />
                       <center>
-                        <h5>หมวดหมู่</h5>
+                        <h5>{this.props.trans.category}</h5>
                       </center>
                     </Link>
                   </div>
@@ -81,7 +82,7 @@ class CateBlock extends Component {
                         alt=""
                       />
                       <center>
-                        <h5>โปรโมชั่น</h5>
+                        <h5>{this.props.trans.promotion}</h5>
                       </center>
                     </Link>
                   </div>
@@ -95,4 +96,9 @@ class CateBlock extends Component {
   }
 }
 
-export default CateBlock;
+const mapStateToProps = (state, ownProps) => ({ trans: state.lang.trans });
+
+export default connect(
+  mapStateToProps,
+  null
+)(CateBlock);

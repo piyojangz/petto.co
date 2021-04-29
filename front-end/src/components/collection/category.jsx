@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Slider from "react-slick";
 import { getTotal, getCartProducts } from "../../reducers/index";
-import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
+import {
+  addToCart,
+  addToWishlist,
+  addToCompare,
+  setLoading,
+} from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
@@ -16,7 +21,6 @@ import Filter from "./common/filter";
 import FilterBar from "./common/filter-bar";
 import StickyBox from "react-sticky-box";
 
-
 class Category extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +28,8 @@ class Category extends Component {
     this.state = {
       limit: 20,
       hasMoreItems: true,
+      pricelength: 0,
+      pricesort: "",
       products: [],
       cate: [],
     };
@@ -35,18 +41,24 @@ class Category extends Component {
   }
 
   getproduct = (cateId) => {
+    this.props.setLoading(true);
     fetch(Siteurl + "service/getproductbycateid", {
       method: "POST",
       headers: {
         "X-Requested-With": "XMLHttpRequest",
       },
-      body: JSON.stringify({ id: cateId }),
+      body: JSON.stringify({
+        id: cateId,
+        pricelength: this.state.pricelength,
+        pricesort: this.state.pricesort,
+      }),
     })
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("result", result);
+          // console.log("result", result);
           this.setState({ products: result.result });
+          this.props.setLoading(false);
         },
         (error) => {
           this.setState({
@@ -63,12 +75,14 @@ class Category extends Component {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
       },
-      body: JSON.stringify({ id: cateId }),
+      body: JSON.stringify({
+        id: cateId,
+      }),
     })
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("cate", result);
+          // console.log("cate", result);
           this.setState({ cate: result.result });
         },
         // Note: it's important to handle errors here
@@ -107,27 +121,50 @@ class Category extends Component {
             <div className="col-12">
               <div class="panel panel-default">
                 <div class="panel-body">
-                 
-                    <div class="form-group">
-                      <label class="filter-col" style={{ margin: 0 }}>ช่วงราคา</label>
-                      <select id="pref-perpage" class="form-control">
-                        <option value="2">0 - 100</option>
-                        <option value="3">101 - 1000</option>
-                        <option value="4">1001 - 5000</option>
-                        <option value="5">5001 10,000</option>
-                        <option value="6">10,000 ขึ้นไป</option> 
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="filter-col"   for="pref-orderby">เรียงลำดับ:</label>
-                      <select id="pref-orderby" class="form-control">
-                        <option>มากไปน้อย</option>
-                        <option>น้อยไปมาก</option>
-                      </select>
-                    </div> 
-                    <div class="form-group">
-                      <button className="btn btn-petto">ยืนยัน</button>
-                      </div>
+                  <div class="form-group">
+                    <label class="filter-col" style={{ margin: 0 }}>
+                      ช่วงราคา
+                    </label>
+                    <select
+                      id="pref-perpage"
+                      class="form-control"
+                      value={this.state.pricelength}
+                      onChange={(v) =>
+                        this.setState({ pricelength: v.target.value })
+                      }
+                    >
+                      <option value="0">กรุณาเลือก</option>
+                      <option value="1">0 - 100</option>
+                      <option value="2">101 - 1,000</option>
+                      <option value="3">1,001 - 5,000</option>
+                      <option value="4">5,001 10,000</option>
+                      <option value="5">10,000 ขึ้นไป</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="filter-col" for="pref-orderby">
+                      เรียงลำดับ:
+                    </label>
+                    <select
+                      id="pref-orderby"
+                      class="form-control"
+                      value={this.state.pricesort}
+                      onChange={(v) =>
+                        this.setState({ pricesort: v.target.value })
+                      }
+                    >
+                      <option value="desc">มากไปน้อย</option>
+                      <option value="asc">น้อยไปมาก</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      onClick={() => this.getproduct(this.props.cateId)}
+                      className="btn btn-petto"
+                    >
+                      ยืนยัน
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -138,23 +175,20 @@ class Category extends Component {
                 {products.length > 0 ? (
                   <InfiniteScroll
                     dataLength={this.state.limit} //This is important field to render the next data
-                  // next={this.fetchMoreItems}
-                  // hasMore={this.state.hasMoreItems}
-                  // loader={<div className="loading-cls" />}
-                  // endMessage={
-                  //   <p className="seen-cls seen-it-cls">
-                  //     <b>Yay! You have seen it all</b>
-                  //   </p>
-                  // }
+                    // next={this.fetchMoreItems}
+                    // hasMore={this.state.hasMoreItems}
+                    // loader={<div className="loading-cls" />}
+                    // endMessage={
+                    //   <p className="seen-cls seen-it-cls">
+                    //     <b>Yay! You have seen it all</b>
+                    //   </p>
+                    // }
                   >
                     <div className="isotopeContainer row">
                       {products
                         .slice(0, this.state.limit)
                         .map((product, index) => (
-                          <div
-                            className="col-12 mb-3"
-                            key={index}
-                          >
+                          <div className="col-12 mb-3" key={index}>
                             <ProductListItem
                               product={product}
                               symbol={symbol}
@@ -175,8 +209,9 @@ class Category extends Component {
                   <div className="row">
                     <div className="col-sm-12 text-center section-b-space mt-5 no-found">
                       <img
-                        src={`${process.env.PUBLIC_URL
-                          }/assets/images/empty-search.jpg`}
+                        src={`${
+                          process.env.PUBLIC_URL
+                        }/assets/images/empty-search.jpg`}
                         className="img-fluid mb-4"
                       />
                       <h3>ขออภัย ยังไม่มีสินค้าในหมวดนี้ </h3>
@@ -206,5 +241,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
   mapStateToProps,
-  { addToCart, addToWishlist, addToCompare }
+  { addToCart, addToWishlist, addToCompare, setLoading }
 )(Category);

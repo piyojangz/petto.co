@@ -4,12 +4,18 @@ import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Slider from "react-slick";
 import { getTotal, getCartProducts } from "../../reducers/index";
-import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
+import {
+  addToCart,
+  addToWishlist,
+  addToCompare,
+  setLoading,
+} from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
 import { Siteurl, Cate6 } from "../../services/script";
 import CategoryItem from "../layouts/pets/category-item";
+import cookie from "react-cookies";
 class Productlistoffer extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +24,8 @@ class Productlistoffer extends Component {
       limit: 20,
       hasMoreItems: true,
       products: [],
+      pricelength: 0,
+      pricesort: "",
       cate: [],
     };
   }
@@ -27,18 +35,24 @@ class Productlistoffer extends Component {
   }
 
   getproduct = (cateId) => {
+    this.props.setLoading(true);
     fetch(Siteurl + "service/getproductoffer", {
       method: "POST",
       headers: {
         "X-Requested-With": "XMLHttpRequest",
       },
-      body: JSON.stringify({ limit: 100 }),
+      body: JSON.stringify({
+        limit: 100,
+        pricelength: this.state.pricelength,
+        pricesort: this.state.pricesort,
+      }),
     })
       .then((res) => res.json())
       .then(
         (result) => {
           console.log("result", result);
           this.setState({ products: result.result });
+          this.props.setLoading(false);
         },
         (error) => {
           this.setState({
@@ -55,35 +69,55 @@ class Productlistoffer extends Component {
 
     return (
       <div>
-        <Breadcrumb title={"สินค้าแนะนำ"} />
+        <Breadcrumb title={this.props.trans.productoffer} />
         <div className="container-fluid">
           <div class="row">
             <div className="col-12">
               <div class="panel panel-default">
-                <div class="panel-body">
+              <div class="panel-body">
                   <div class="form-group">
                     <label class="filter-col" style={{ margin: 0 }}>
                       ช่วงราคา
                     </label>
-                    <select id="pref-perpage" class="form-control">
-                      <option value="2">0 - 100</option>
-                      <option value="3">101 - 1000</option>
-                      <option value="4">1001 - 5000</option>
-                      <option value="5">5001 10,000</option>
-                      <option value="6">10,000 ขึ้นไป</option>
+                    <select
+                      id="pref-perpage"
+                      class="form-control"
+                      value={this.state.pricelength}
+                      onChange={(v) =>
+                        this.setState({ pricelength: v.target.value })
+                      }
+                    >
+                      <option value="0">กรุณาเลือก</option>
+                      <option value="1">0 - 100</option>
+                      <option value="2">101 - 1,000</option>
+                      <option value="3">1,001 - 5,000</option>
+                      <option value="4">5,001 10,000</option>
+                      <option value="5">10,000 ขึ้นไป</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label class="filter-col" for="pref-orderby">
                       เรียงลำดับ:
                     </label>
-                    <select id="pref-orderby" class="form-control">
-                      <option>มากไปน้อย</option>
-                      <option>น้อยไปมาก</option>
+                    <select
+                      id="pref-orderby"
+                      class="form-control"
+                      value={this.state.pricesort}
+                      onChange={(v) =>
+                        this.setState({ pricesort: v.target.value })
+                      }
+                    >
+                      <option value="desc">มากไปน้อย</option>
+                      <option value="asc">น้อยไปมาก</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <button className="btn btn-petto">ยืนยัน</button>
+                    <button
+                      onClick={() => this.getproduct()}
+                      className="btn btn-petto"
+                    >
+                      ยืนยัน
+                    </button>
                   </div>
                 </div>
               </div>
@@ -139,7 +173,7 @@ class Productlistoffer extends Component {
                         to={`${process.env.PUBLIC_URL}/`}
                         className="btn btn-solid"
                       >
-                        ดูสินค้าอื่น
+                        {this.props.trans.seemore}
                       </Link>
                     </div>
                   </div>
@@ -157,9 +191,10 @@ const mapStateToProps = (state, ownProps) => ({
   cateId: ownProps.match.params.id,
   cateName: ownProps.match.params.name,
   symbol: state.data.symbol,
+  trans: state.lang.trans,
 });
 
 export default connect(
   mapStateToProps,
-  { addToCart, addToWishlist, addToCompare }
+  { addToCart, addToWishlist, addToCompare, setLoading }
 )(Productlistoffer);

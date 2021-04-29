@@ -17,6 +17,10 @@ import FooterTwo from "../../common/footers/footer-two";
 import ThemeSettings from "../../common/theme-settings";
 import { Siteurl } from "../../../services/script";
 import { Link } from "react-router-dom";
+import cookie from "react-cookies";
+import Loader from "react-loader-spinner";
+import { Translate } from "@google-cloud/translate/build/src/v2";
+
 class Pets extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +37,7 @@ class Pets extends Component {
 
     this.getbanner();
     this.getcontentlist();
+ 
   }
 
   getbanner = () => {
@@ -92,7 +97,9 @@ class Pets extends Component {
             <div className="row">
               <div className="col">
                 <div className="slider-contain">
-                  <img src={value.image} alt="" />
+                  <a href={`${value.externallink}`}>
+                    <img src={value.image} alt="" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -103,9 +110,9 @@ class Pets extends Component {
   }
   render() {
     return (
-      <div>
+      <div> 
         <Helmet>
-          <title>Petto.co | หน้าหลัก</title>
+          <title>Petto.co | {this.props.trans.mainpage}</title>
         </Helmet>
         <HeaderFive logoName={"logo/petto_logo.png"} />
         <section className="p-0 small-slider">
@@ -115,15 +122,14 @@ class Pets extends Component {
             })}
           </Slider>
         </section>
-
         {/*Logo Block section*/}
         <CateBlock />
         {/*Logo Block section end*/}
         {/*Product Slider*/}
-        <Productoffer type={"pets"} title="สินค้าแนะนำ" />
-        <Productrecent type={"pets"} title="สินค้าล่าสุด" />
-        <AuctionCollection type={"pets"} title="รายการประมูล" />
-        <ShopCollection type={"pets"} title="ร้านค้าแนะนำ" />
+        <Productoffer type={"pets"} title={this.props.trans.productoffer} />
+        <Productrecent type={"pets"} title={this.props.trans.lastproduct} />
+        <AuctionCollection type={"pets"} title={this.props.trans.auctionlist} />
+        <ShopCollection type={"pets"} title={this.props.trans.shoprecommend} />
         {/*Product Slider End*/}
 
         {/*Banner Section*/}
@@ -181,7 +187,7 @@ class Pets extends Component {
         {/*Banner Section End*/}
 
         {/*Category Section*/}
-        <CategoryCollection title="หมวดหมู่" />
+        <CategoryCollection title={this.props.trans.category} />
         {/*Category Section End*/}
 
         {/*Product Section*/}
@@ -218,11 +224,15 @@ class Pets extends Component {
           <div className="title1 title5">
             <div className="row">
               <div className="col-6">
-                <h2 className="title-inner1 text-left">{"บทความ"}</h2>
+                <h2 className="title-inner1 text-left">
+                  {this.props.trans.article}
+                </h2>
               </div>
               <div className="col-6">
                 <Link to={`${process.env.PUBLIC_URL}/blog/blog-page`}>
-                  <h5 className="title-inner1 text-right">{"ดูเพิ่มเติม >"}</h5>
+                  <h5 className="title-inner1 text-right">{`${
+                    this.props.trans.more
+                  } >`}</h5>
                 </Link>
               </div>
             </div>
@@ -235,30 +245,30 @@ class Pets extends Component {
           <div className="container">
             <div className="row">
               {this.state.contentlist.map((row, index) => {
-                return ( 
-                    <div className="col-md-3 col-6" key={"div-" + index}>
-                      <Link
-                        to={`${process.env.PUBLIC_URL}/blog/details/${row.id}`}
-                      >
-                        <div className="classic-effect">
-                          <img
-                            style={{ width: "100%" }}
-                            src={`${row.image}`}
-                            className="img"
-                            alt=""
-                          />
-                          <span />
-                        </div>
-                      </Link>
-                      <div className="blog-details">
-                        <h4>{`${row.createdate}`}</h4>
-                        <Link to={`${process.env.PUBLIC_URL}/blog/details`}>
-                          <p>{`${row.title}`}</p>
-                        </Link>
-                        <hr className="style1" />
-                        {/*   <h6>by: John Dio , 2 Comment</h6> */}
+                return (
+                  <div className="col-md-3 col-6" key={"div-" + index}>
+                    <Link
+                      to={`${process.env.PUBLIC_URL}/blog/details/${row.id}`}
+                    >
+                      <div className="classic-effect">
+                        <img
+                          style={{ width: "100%" }}
+                          src={`${row.image}`}
+                          className="img"
+                          alt=""
+                        />
+                        <span />
                       </div>
-                    </div> 
+                    </Link>
+                    <div className="blog-details">
+                      <h4>{`${row.createdate}`}</h4>
+                      <Link to={`${process.env.PUBLIC_URL}/blog/details`}>
+                        <p>{`${row.title}`}</p>
+                      </Link>
+                      <hr className="style1" />
+                      {/*   <h6>by: John Dio , 2 Comment</h6> */}
+                    </div>
+                  </div>
                 );
               })}
             </div>
@@ -286,6 +296,8 @@ class Pets extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = (state, ownProps) => ({
+  trans: state.lang.trans,
+});
 
 export default connect(mapStateToProps)(Pets);

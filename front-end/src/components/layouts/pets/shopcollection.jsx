@@ -67,7 +67,7 @@ class ShopCollection extends Component {
                     <div className="col-6">
                       <Link to={`${process.env.PUBLIC_URL}/bestseller`}>
                         <h5 className="title-inner1 text-right">
-                          {"ดูเพิ่มเติม >"}
+                        {`${this.props.trans.more} >`}
                         </h5>
                       </Link>
                     </div>
@@ -90,7 +90,7 @@ class ShopCollection extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = (state, ownProps) => ({  trans: state.lang.trans,});
 
 export default connect(
   mapStateToProps,
