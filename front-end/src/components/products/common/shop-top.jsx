@@ -40,7 +40,13 @@ class Shoptop extends Component {
                           )}
                         </div>
                         <div className="col-6 text-right">
-                          <label style={{ marginBottom: 0, color: "#f63b3b",marginTop:-10 }}>
+                          <label
+                            style={{
+                              marginBottom: 0,
+                              color: "#f63b3b",
+                              marginTop: -10,
+                            }}
+                          >
                             {shoprating}
                           </label>
                         </div>
@@ -86,7 +92,9 @@ class Shoptop extends Component {
                             aria-hidden="true"
                             style={{ color: "red" }}
                           />
-                          <label style={{ marginBottom: 0 }}>{shop.sold || '0'} ขายแล้ว</label>
+                          <label style={{ marginBottom: 0 }}>
+                            {shop.sold || "0"} ขายแล้ว
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -94,6 +102,12 @@ class Shoptop extends Component {
                 </div>
               </div>
             </form>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="col-sm-12 col-lg-12" style={{paddingLeft:20,paddingRight:20}}>
+            <div dangerouslySetInnerHTML={{ __html: shop.textcustom }} />
           </div>
         </div>
         <hr />
