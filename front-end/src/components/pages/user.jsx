@@ -11,6 +11,7 @@ import { Tabs, Tab } from "react-bootstrap-tabs";
 import Modal from "react-modal";
 import { Siteurl } from "../../services/script";
 import { toast } from "react-toastify";
+import CryptoJS from "crypto-js";
 import cookie from "react-cookies";
 const customStyles = {
   content: {
@@ -29,6 +30,7 @@ class User extends Component {
     this.state = {
       fulladdress: "",
       ismodal: false,
+      ismodalpassword: false,
       pendingpaid: 0,
       pendingpaidlist: undefined,
       paid: 0,
@@ -202,6 +204,31 @@ class User extends Component {
   closeModal() {
     this.setState({ ismodal: false });
   }
+  savenewpassword(event) {
+    event.preventDefault();
+    let _password = CryptoJS.MD5(this.state.newpassword).toString();
+    fetch(Siteurl + "service/savenewpassword", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({
+        custid: this.state.customer.id,
+        password: _password,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          toast.success("เปลี่ยนรหัสผ่านสำเร็จ");
+          this.setState({ ismodalpassword: false });
+        },
+        (error) => {
+          toast.warn("เปลี่ยนรหัสผ่านไม่สำเร็จ");
+          this.setState({ ismodalpassword: false });
+        }
+      );
+  }
 
   saveaddress(event) {
     event.preventDefault();
@@ -252,7 +279,15 @@ class User extends Component {
   }
 
   render() {
-    const { customer, ismodal, fulladdress, tel, historylist } = this.state;
+    const {
+      customer,
+      ismodal,
+      ismodalpassword,
+      fulladdress,
+      tel,
+      historylist,
+      newpassword,
+    } = this.state;
     // console.log("fulladdress", fulladdress);
     return (
       <div>
@@ -305,9 +340,18 @@ class User extends Component {
                                       {customer.firstname} {customer.lastname}
                                     </h6>
                                     <h6>{customer.email}</h6>
-                                    {/* <h6>
-                                      <a href="#">เปลี่ยนรหัสผ่าน</a>
-                                    </h6> */}
+                                    <h6>
+                                      <a
+                                        href="javascript:;"
+                                        onClick={() =>
+                                          this.setState({
+                                            ismodalpassword: true,
+                                          })
+                                        }
+                                      >
+                                        เปลี่ยนรหัสผ่าน
+                                      </a>
+                                    </h6>
                                   </div>
                                 </div>
                               </div>
@@ -551,6 +595,43 @@ class User extends Component {
             </Tabs>
           </div>
         </section>
+
+        <Modal isOpen={ismodalpassword} style={customStyles}>
+          <form method="post" onSubmit={(e) => this.savenewpassword(e)}>
+            <div class="modal-header">
+              <h5 class="modal-title f-w-600" id="exampleModalLabel2">
+                เปลี่ยนรหัสผ่าน
+              </h5>
+            </div>
+            <div className="modal-body">
+              <div className="form-group">
+                <label>รหัสผ่านใหม่</label>
+                <input
+                  type="password"
+                  required
+                  autocomplete="new-password"
+                  className="form-control"
+                  onChange={(v) =>
+                    this.setState({ newpassword: v.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                ยืนยัน
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onClick={() => this.setState({ ismodalpassword: false })}
+              >
+                ปิดหน้านี้
+              </button>
+            </div>
+          </form>
+        </Modal>
+
         <Modal isOpen={ismodal} style={customStyles}>
           <form method="post" onSubmit={(e) => this.saveaddress(e)}>
             <div class="modal-header">

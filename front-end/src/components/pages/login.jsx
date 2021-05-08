@@ -4,6 +4,7 @@ import Breadcrumb from "../common/breadcrumb";
 import CryptoJS from "crypto-js";
 import { Siteurl } from "../../services/script";
 import cookie from "react-cookies";
+import { toast } from "react-toastify";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ class Login extends Component {
   Login = () => {
     const { email, password } = this.state;
     if (email == "" || password == "") {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      toast.warn("กรุณากรอกข้อมูลให้ครบถ้วน");
       return;
     }
 
@@ -44,11 +45,14 @@ class Login extends Component {
           console.log("result", result);
           if (result.result != null) {
             // sessionStorage.setItem("customer", JSON.stringify(result.result));
-            cookie.save("customerdata", JSON.stringify(result.result), { path: "/" , 'maxAge': 100000});
+            cookie.save("customerdata", JSON.stringify(result.result), {
+              path: "/",
+              maxAge: 100000,
+            });
 
             window.location = "/";
           } else {
-            alert("ไม่พบรายชื่อนี้ในระบบ");
+            toast.warn("ไม่พบรายชื่อนี้ในระบบ หรือ รหัสผ่านไม่ถูกต้อง");
           }
         },
         (error) => {
@@ -117,6 +121,12 @@ class Login extends Component {
                     </a>
                   </form>
                 </div>
+                <a
+                  href="/pages/forget-password"
+                  style={{ float: "right", marginTop: 15 }}
+                >
+                  ลืมรหัสผ่าน?
+                </a>
               </div>
               <div className="col-lg-6 right-login">
                 <h3>ลูกค้าใหม่</h3>
