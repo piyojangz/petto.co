@@ -80,7 +80,7 @@ class Register extends Component {
       password: this.state.password,
       repassword: this.state.repassword,
       userLineID: this.state.userLineID,
-      pictureUrl: this.state.userLineID,
+      pictureUrl: this.state.pictureUrl,
       name: this.state.name,
     };
 
