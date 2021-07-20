@@ -159,7 +159,7 @@ class PaidingList extends Component {
           <div className="container">
             {pendingdata.map((product, index) => (
               <div className="row mb-2">
-                <div className="col-md-4 card">
+                <div className="col-md-12 card">
                   <div className="media mr-2 bb-1">
                     <img
                       src={product.image}

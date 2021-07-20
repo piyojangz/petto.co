@@ -15,7 +15,7 @@ import HeaderThree from "../../common/headers/header-three";
 import HeaderFive from "../../common/headers/header-five";
 import FooterTwo from "../../common/footers/footer-two";
 import ThemeSettings from "../../common/theme-settings";
-import { Siteurl } from "../../../services/script";
+import { Siteurl, Slider2 } from "../../../services/script";
 import { Link } from "react-router-dom";
 import cookie from "react-cookies";
 import Loader from "react-loader-spinner";
@@ -37,7 +37,6 @@ class Pets extends Component {
 
     this.getbanner();
     this.getcontentlist();
- 
   }
 
   getbanner = () => {
@@ -110,13 +109,13 @@ class Pets extends Component {
   }
   render() {
     return (
-      <div> 
+      <div>
         <Helmet>
           <title>Petto.co | {this.props.trans.mainpage}</title>
         </Helmet>
         <HeaderFive logoName={"logo/petto_logo.png"} />
         <section className="p-0 small-slider">
-          <Slider className="slide-1 home-slider">
+          <Slider {...Slider2} className="slide-1 home-slider">
             {this.state.bannerlist.map((value, index) => {
               return this.banner(value, index);
             })}
@@ -124,9 +123,45 @@ class Pets extends Component {
         </section>
         {/*Logo Block section*/}
         <CateBlock />
+       
         {/*Logo Block section end*/}
         {/*Product Slider*/}
         <Productoffer type={"pets"} title={this.props.trans.productoffer} />
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6" style={{ marginBottom: 10 }}>
+              <Link to={`${process.env.PUBLIC_URL}/aboutus`}>
+                <img
+                  style={{ width: "100%" }}
+                  src={`${
+                    process.env.PUBLIC_URL
+                  }/assets/images/logos/aboutus.png`}
+                  alt=""
+                />
+                {/* <center>
+                <h5>{this.props.trans.aboutus}</h5>
+              </center> */}
+              </Link>
+            </div>
+
+            <div className="col-md-6" style={{ marginBottom: 10 }}>
+              <Link to={`${process.env.PUBLIC_URL}/contractus`}>
+                <img
+                  style={{ width: "100%" }}
+                  src={`${
+                    process.env.PUBLIC_URL
+                  }/assets/images/logos/contractus.png`}
+                  alt=""
+                />
+                {/* <center>
+                <h5>{this.props.trans.contractus}</h5>
+              </center> */}
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <Productrecent type={"pets"} title={this.props.trans.lastproduct} />
         <AuctionCollection type={"pets"} title={this.props.trans.auctionlist} />
         <ShopCollection type={"pets"} title={this.props.trans.shoprecommend} />

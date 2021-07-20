@@ -69,6 +69,8 @@ class ProductItem extends Component {
     for (var i = 0; i < product.rating; i++) {
       RatingStars.push(<i className="fa fa-star" key={i} />);
     }
+    var count = 50;
+    product.name = product.name.slice(0, count) + (product.name.length > count ? "..." : "");
     return (
       <div>
         <div className="product-box">
@@ -134,7 +136,7 @@ class ProductItem extends Component {
                   product.id
                 }`}
               >
-                <h6 >{product.name}</h6>
+                <h6>{product.name}</h6>
               </Link>
 
               <h4 style={{ color: "#0072BE" }}>

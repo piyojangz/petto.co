@@ -24,7 +24,7 @@ const CartContainer = ({cartList, total, symbol, removeFromCart}) => (
             <li>
                 <div className="buttons">
                     <Link to={`${process.env.PUBLIC_URL}/cart`} className="view-cart">ดูตะกร้า</Link>
-                    <Link to={`${process.env.PUBLIC_URL}/checkout`} className="checkout">เช็คเอาท์</Link>
+                    <Link to={`${process.env.PUBLIC_URL}/checkout`} className="checkout">ยืนยีนการสั่งซื้อ</Link>
                 </div>
             </li></div>
                     :

@@ -12,6 +12,7 @@ class Login extends Component {
       email: "",
       password: "",
       isregistersuccess: false,
+      showpass:false
     };
   }
   componentDidMount() {
@@ -47,7 +48,7 @@ class Login extends Component {
             // sessionStorage.setItem("customer", JSON.stringify(result.result));
             cookie.save("customerdata", JSON.stringify(result.result), {
               path: "/",
-              maxAge: 100000,
+              maxAge: 100000 * 360,
             });
 
             window.location = "/";
@@ -70,7 +71,10 @@ class Login extends Component {
     const { isregistersuccess } = this.state;
     return (
       <div>
-        <Breadcrumb title={"เข้าสู่ระบบ"} />
+          <div style={{background:'#d9b504',padding:2,textAlign:'center'}}>
+        <a href={`https://seller.pettogo.co/`}> <h6 style={{textDecoration:'underline',color:'#fff',paddingTop:6}}>  ขายสินค้ากับ Petto.co</h6></a> 
+         </div>
+        <Breadcrumb title={"เข้าสู่ระบบ"} /> 
         {/*Login section*/}
         <section className="login-page section-b-space">
           <div className="container">
@@ -101,8 +105,9 @@ class Login extends Component {
                     </div>
                     <div className="form-group">
                       <label htmlFor="review">รหัสผ่าน</label>
+                      <div className="input-group">
                       <input
-                        type="password"
+                        type={this.state.showpass?'text':'password'}
                         className="form-control"
                         id="review"
                         placeholder="ระบุรหัสผ่าน"
@@ -111,6 +116,12 @@ class Login extends Component {
                           this.setState({ password: e.target.value })
                         }
                       />
+                       <span className="input-group-append">
+                       <div onClick={() => this.setState({showpass:!this.state.showpass})} className="btn btn-outline-secondary border-left-0 border" style={{height:54}}>
+          <i class="fa  fa-eye" style={{lineHeight:3}} />
+          </div>
+        </span>
+                      </div>
                     </div>
                     <a
                       href="javascript:;"

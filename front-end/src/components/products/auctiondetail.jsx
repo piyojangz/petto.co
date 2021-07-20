@@ -210,6 +210,25 @@ class Auctiondetail extends Component {
     let { auctionname } = this.props;
     let { auction, auctionprice, minprice } = this.state;
     console.log("auction", auction);
+    var products = {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: false,
+      arrows: true,
+      fade: true,
+    };
+    var productsnav = {
+      slidesToShow: 3,
+      swipeToSlide: true,
+      arrows: false,
+      dots: false,
+      focusOnSelect: true,
+    };
+    let images = [];
+    if(auction){
+        images = auction.image.split("#");
+    } 
+
     return (
       <div>
         {/*SEO Support*/}
@@ -226,14 +245,35 @@ class Auctiondetail extends Component {
           <section className="section-b-space">
             <div className="collection-wrapper">
               <div className="container">
-                <div className="row">
+                <div className="row">  
                   <div className="col-lg-6 col-sm-12 col-xs-12 mb-2">
-                    <img
+                    {/* <img
                       src={`${auction.image}`}
                       style={{ width: "100%" }}
                       className="img-fluid lazyload bg-img"
                       alt=""
-                    />
+                    /> */}
+
+                <div className="col-lg-12 product-thumbnail">
+                          <Slider
+                            {...products}
+                            asNavFor={this.state.nav2}
+                            ref={(slider) => (this.slider1 = slider)}
+                            className="product-slick"
+                          >
+                            {images.map((vari, index) => (
+                              <div key={index}>
+                                <ImageZoom image={vari} />
+                              </div>
+                            ))} 
+                          </Slider>
+                          {/* <SmallImages
+                            item={auction}
+                            settings={productsnav}
+                            navOne={this.state.nav1}
+                          /> */}
+                        </div>
+
                   </div>
                   <div className="col-lg-6 col-sm-12 col-xs-12">
                     <div className="auctionprice-box">
@@ -370,6 +410,25 @@ class Auctiondetail extends Component {
                 </div>
                 <div className="row pt-3">
                   <div className="col">
+                  <section className="tab-product m-0">
+                      <h5>วีดีโอ</h5>
+                  {auction.vdourl && (
+                        <div>
+                          <div className="row">
+                            <div className="col-lg-12 product-thumbnail">
+                              <div className="embed-responsive embed-responsive-16by9">
+                                <iframe
+                                  src={auction.vdourl}
+                                  allow="autoplay; encrypted-media"
+                                  allowFullScreen
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <hr />
+                        </div>
+                      )}
+                      </section>
                     <section className="tab-product m-0">
                       <h5>รายละเอียดสินค้า</h5>
                       <div

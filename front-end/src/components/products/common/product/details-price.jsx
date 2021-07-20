@@ -44,12 +44,27 @@ class DetailsWithPrice extends Component {
     if (this.props.item.stock > this.state.quantity) {
       this.setState({ quantity: this.state.quantity + 1 });
     } else {
-      this.setState({ stock: "สินค้าหมด !" });
+      this.setState({
+        stock: `ไม่สามารถสั่งได้มากกว่า ${this.props.item.stock}`,
+      });
     }
   };
   changeQty = (e) => {
     this.setState({ quantity: parseInt(e.target.value) });
   };
+
+  addtoCart(item) {
+    const { addToCartClicked } = this.props;
+
+    if (this.props.item.stock >= this.state.quantity) {
+      addToCartClicked(item, this.state.quantity);
+      this.props.item.stock = this.props.item.stock - this.state.quantity;
+    } else {
+      this.setState({
+        stock: `ไม่สามารถสั่งได้มากกว่า ${this.props.item.stock}`,
+      });
+    }
+  }
 
   render() {
     const {
@@ -68,7 +83,7 @@ class DetailsWithPrice extends Component {
       focusOnSelect: true,
     };
 
-    console.log('item',item)
+    console.log("item", item);
 
     return (
       <div className="col-lg-6 rtl-text">
@@ -87,10 +102,11 @@ class DetailsWithPrice extends Component {
           </h4>
           <h3 style={{ color: "#0072BE" }}>
             <span style={{ fontSize: 18 }}>{symbol}</span>
-            {parseFloat(item.discount > 0 ? item.discount : item.price).toLocaleString(
-              navigator.language,
-              { minimumFractionDigits: 2 }
-            )}{" "}
+            {parseFloat(
+              item.discount > 0 ? item.discount : item.price
+            ).toLocaleString(navigator.language, {
+              minimumFractionDigits: 2,
+            })}{" "}
           </h3>
           {/* {item.variants?
                     <ul >
@@ -136,22 +152,22 @@ class DetailsWithPrice extends Component {
                         </div>
                             </div>:''} */}
             <span className="instock-cls">{this.state.stock}</span>
-            <h6 className="product-title">จำนวน</h6>
+            <h6 className="product-title">คลัง : {item.stock}</h6>
             <div className="qty-box">
               <div className="input-group">
                 {/* {this.state.quantity > item.stock && ( */}
-                  <span className="input-group-prepend">
-                    <button
-                      type="button"
-                      className="btn quantity-left-minus"
-                      onClick={this.minusQty}
-                      data-type="minus"
-                      data-field=""
-                    >
-                      <i className="fa fa-angle-left" />
-                    </button>
-                  </span>
-                 {/* )} */}
+                <span className="input-group-prepend">
+                  <button
+                    type="button"
+                    className="btn quantity-left-minus"
+                    onClick={this.minusQty}
+                    data-type="minus"
+                    data-field=""
+                  >
+                    <i className="fa fa-angle-left" />
+                  </button>
+                </span>
+                {/* )} */}
 
                 <input
                   // disabled={this.state.quantity <= item.stock}
@@ -162,26 +178,23 @@ class DetailsWithPrice extends Component {
                   className="form-control input-number"
                 />
                 {/* {this.state.quantity > item.stock && ( */}
-                  <span className="input-group-prepend">
-                    <button
-                      type="button"
-                      className="btn quantity-right-plus"
-                      onClick={this.plusQty}
-                      data-type="plus"
-                      data-field=""
-                    >
-                      <i className="fa fa-angle-right" />
-                    </button>
-                  </span>
+                <span className="input-group-prepend">
+                  <button
+                    type="button"
+                    className="btn quantity-right-plus"
+                    onClick={this.plusQty}
+                    data-type="plus"
+                    data-field=""
+                  >
+                    <i className="fa fa-angle-right" />
+                  </button>
+                </span>
                 {/* )} */}
               </div>
             </div>
           </div>
           <div className="product-buttons">
-            <a
-              className="btn btn-solid"
-              onClick={() => addToCartClicked(item, this.state.quantity)}
-            >
+            <a className="btn btn-solid" onClick={() => this.addtoCart(item)}>
               เพิ่มสินค้าลงตะกร้า
             </a>
             {/* <Link

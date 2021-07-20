@@ -1,7 +1,18 @@
-[
-    {
+[{
         "key": "shoprecommend",
         "value": "Recommended shops"
+    },
+    {
+        "key": "shops",
+        "value": "Shops"
+    },
+    {
+        "key": "aboutus",
+        "value": "About Us"
+    },
+    {
+        "key": "contractus",
+        "value": "Contract Us"
     },
     {
         "key": "productoffer",

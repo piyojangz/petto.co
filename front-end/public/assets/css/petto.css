@@ -276,3 +276,11 @@ footer.pet-layout-footer .sub-footer.black-subfooter {
   font-size: 16px;
   color: #404040;
 }
+.j-box .product-box .product-detail {
+  height: 120px;
+}
+
+#root{
+  max-width: 750px;
+  margin: 0 auto;
+}

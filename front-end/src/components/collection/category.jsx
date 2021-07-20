@@ -26,6 +26,7 @@ class Category extends Component {
     super(props);
 
     this.state = {
+      loadingmsg: "กำลังค้นหาข้อมูล",
       limit: 20,
       hasMoreItems: true,
       pricelength: 0,
@@ -57,7 +58,11 @@ class Category extends Component {
       .then(
         (result) => {
           // console.log("result", result);
+          if (result.result.length == 0) {
+            this.setState({ loadingmsg: "ขออภัยไม่พบข้อมูลในหมวดนี้" });
+          }
           this.setState({ products: result.result });
+
           this.props.setLoading(false);
         },
         (error) => {
@@ -208,19 +213,25 @@ class Category extends Component {
                 ) : (
                   <div className="row">
                     <div className="col-sm-12 text-center section-b-space mt-5 no-found">
-                      <img
-                        src={`${
-                          process.env.PUBLIC_URL
-                        }/assets/images/empty-search.jpg`}
-                        className="img-fluid mb-4"
-                      />
-                      <h3>ขออภัย ยังไม่มีสินค้าในหมวดนี้ </h3>
-                      <Link
-                        to={`${process.env.PUBLIC_URL}/`}
-                        className="btn btn-solid"
-                      >
-                        ดูสินค้าอื่น
-                      </Link>
+                      {this.state.loadingmsg !== "กำลังค้นหาข้อมูล" ? (
+                        <div>
+                          <img
+                            src={`${
+                              process.env.PUBLIC_URL
+                            }/assets/images/empty-search.jpg`}
+                            className="img-fluid mb-4"
+                          />
+                          <h3>{this.state.loadingmsg}</h3>
+                          <Link
+                            to={`${process.env.PUBLIC_URL}/`}
+                            className="btn btn-solid"
+                          >
+                            ดูสินค้าอื่น
+                          </Link>
+                        </div>
+                      ) : (
+                        <h3>{this.state.loadingmsg}</h3>
+                      )}
                     </div>
                   </div>
                 )}

@@ -14,6 +14,8 @@ import TopBarDark from "./common/topbar-dark";
 import LogoImage from "./common/logo";
 import cookie from "react-cookies";
 import Loader from "react-loader-spinner";
+import { Siteurl } from "../../../services/script";
+import Modal from "react-modal";
 const FallbackContainer = (props) => {
   if (props.isload) {
     return (
@@ -43,15 +45,28 @@ const FallbackContainer = (props) => {
   }
 };
 
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
 class HeaderFive extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isLoading: false,
+      ismodal: false,
       customer: undefined,
       languageCodes: [],
       language: cookie.load("language") ? cookie.load("language") : "th",
+      query: "",
     };
   }
   /*=====================
@@ -68,12 +83,35 @@ class HeaderFive extends Component {
       document.querySelector(".loader-wrapper").style = "display: none";
     }, 2000);
     this.props.setLoading(false);
-    const customer = cookie.load("customerdata");
+    const customer = cookie.load("customerdata"); 
     if (customer) {
       this.setState({ customer: customer });
+      this.checkusersusspend(customer);
     }
   }
 
+  checkusersusspend(customer) {
+    fetch(Siteurl + "service/getsusspendcustomerbyid", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ id: customer.id }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result.result == true) {
+          this.setState({ ismodal: true });
+        }
+      });
+  }
+  handleSearch = () => {
+    window.location = `search/${this.state.query}`;
+  };
+  queryChange = (evt) => {
+    this.setState({ query: evt.target.value });
+  };
   componentWillMount() {
     this.props.setLang(this.state.language);
     window.addEventListener("scroll", this.handleScroll);
@@ -89,13 +127,13 @@ class HeaderFive extends Component {
       document.body.scrollTop ||
       0;
 
-    if (number >= 300) {
-      if (window.innerWidth < 576) {
-        document.getElementById("sticky").classList.remove("fixed");
-      } else document.getElementById("sticky").classList.add("fixed");
-    } else {
-      document.getElementById("sticky").classList.remove("fixed");
-    }
+    // if (number >= 300) {
+    //   if (window.innerWidth < 576) {
+    //     document.getElementById("sticky").classList.remove("fixed");
+    //   } else document.getElementById("sticky").classList.add("fixed");
+    // } else {
+    //   document.getElementById("sticky").classList.remove("fixed");
+    // }
   };
 
   changeLanguage(lang) {
@@ -124,10 +162,36 @@ class HeaderFive extends Component {
     });
   };
 
+  closeModal() {
+    this.setState({ ismodal: false });
+  }
+
+  logout() {
+    cookie.remove("customerdata", { path: "/" });
+    window.location.href = "/pages/login/false";
+  }
+
   render() {
-    const { customer } = this.state; 
+    const { customer } = this.state;
     return (
       <div>
+        <Modal isOpen={this.state.ismodal} style={customStyles}>
+          <div class="modal-header">
+            <h2>แจ้งเตือน</h2>
+          </div>
+          <div class="modal-body">
+            <div>"บัญชีคุณถูกระงับ กรุณาติดต่อเจ้าหน้าที่"</div>
+          </div>
+          <div class="modal-footer">
+            <button
+              onClick={() => this.logout()}
+              type="submit"
+              class="btn btn-primary"
+            >
+              ออกจากบัญชีนี้
+            </button>
+          </div>
+        </Modal>
         <FallbackContainer isload={this.props.isloading} />
         <header id="sticky" className="sticky">
           <p>{this.state.question}</p>
@@ -160,6 +224,15 @@ class HeaderFive extends Component {
                       <div className="icon-nav">
                         <ul>
                           <li className="onhover-div mobile-search">
+                            <div className="d-none d-sm-block">
+                              <a href={`https://seller.pettogo.co/`}>
+                                <h6 style={{ textDecoration: "underline" }}>
+                                  ขายสินค้ากับ Petto.co
+                                </h6>
+                              </a>
+                            </div>
+                          </li>
+                          <li className="onhover-div mobile-search">
                             <div>
                               <img
                                 src={`${
@@ -175,6 +248,20 @@ class HeaderFive extends Component {
                               />
                             </div>
                           </li>
+                          {this.state.customer != undefined && (
+                            <li className="onhover-div mobile-setting">
+                              <div className="d-none d-sm-block">
+                                <Link
+                                  to={`${process.env.PUBLIC_URL}/pages/user`}
+                                >
+                                  <h6 style={{ textDecoration: "underline" }}>
+                                    {this.state.customer.firstname}{" "}
+                                    {this.state.customer.lastname}
+                                  </h6>
+                                </Link>
+                              </div>
+                            </li>
+                          )}
                           <li className="onhover-div mobile-setting">
                             <div>
                               <img
@@ -187,20 +274,22 @@ class HeaderFive extends Component {
                               <i className="fa fa-cog" />
                             </div>
                             <div className="show-div setting">
-                              <h6>ผู้ใช้</h6>
+                              {/* <h6>ผู้ใช้</h6> */}
                               {this.state.customer != undefined ? (
-                                <ul>
-                                  <li>
-                                    <Link
-                                      to={`${
-                                        process.env.PUBLIC_URL
-                                      }/pages/user`}
-                                    >
-                                      {this.state.customer.firstname}{" "}
-                                      {this.state.customer.lastname}
-                                    </Link>
-                                  </li>
-                                </ul>
+                                <div className=".d-block .d-sm-none">
+                                  <ul>
+                                    <li>
+                                      <Link
+                                        to={`${
+                                          process.env.PUBLIC_URL
+                                        }/pages/user`}
+                                      >
+                                        {this.state.customer.firstname}{" "}
+                                        {this.state.customer.lastname}
+                                      </Link>
+                                    </li>
+                                  </ul>
+                                </div>
                               ) : (
                                 <ul>
                                   <li>
@@ -303,19 +392,23 @@ class HeaderFive extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-xl-12">
-                    <form>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Search a Product"
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-primary">
-                        <i className="fa fa-search" />
-                      </button>
-                    </form>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="txtsearch"
+                        placeholder="ค้นหาสินค้า / ร้านค้า"
+                        value={this.state.query}
+                        onChange={this.queryChange}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={this.handleSearch}
+                    >
+                      <i className="fa fa-search" />
+                    </button>
                   </div>
                 </div>
               </div>

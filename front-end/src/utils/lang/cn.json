@@ -1,7 +1,18 @@
-[
-    {
+[{
         "key": "shoprecommend",
         "value": "ร้านค้าแนะนำ"
+    },
+    {
+        "key": "shops",
+        "value": "ร้านค้าทั้งหมด"
+    },
+    {
+        "key": "aboutus",
+        "value": "เกี่ยวกับเรา"
+    },
+    {
+        "key": "contractus",
+        "value": "ติดต่อเรา"
     },
     {
         "key": "productoffer",

@@ -126,7 +126,7 @@ export const incrementQty = (product, qty) => (dispatch) => {
   }
 };
 export const decrementQty = (productId) => (dispatch) => {
-  toast.warn("Item Decrement Qty to Cart");
+  toast.warn("ลดจำนวนสินค้าในตะกร้าแล้ว");
 
   dispatch({
     type: types.DECREMENT_QTY,

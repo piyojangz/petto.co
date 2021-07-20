@@ -38,7 +38,7 @@ class ProductItem extends Component {
         if(this.props.product.stock >= this.state.quantity) {
             this.setState({quantity: this.state.quantity+1})
         }else{
-            this.setState({stock: 'สินค้าหมด !'})
+            this.setState({stock: `ไม่สามารถสั่งได้มากกว่า ${this.props.product.stock}`})
         }
     }
     changeQty = (e) => {
@@ -105,7 +105,7 @@ class ProductItem extends Component {
                             </Link>
                             <h4>{symbol}{product.price-(product.price*product.discount/100)}
                                 <del><span className="money">{symbol}{product.price}</span></del>
-                            </h4> 
+                            </h4>  
                         </div>
                     </div>
                     <Modal open={this.state.open} onClose={this.onCloseModal} center>

@@ -67,6 +67,9 @@ class User extends Component {
       this.gethistory();
       this.getauction();
     }
+    else{
+      window.location.href = "/pages/login/false";
+    }
   }
 
   getauction() {
@@ -197,7 +200,8 @@ class User extends Component {
   logout() {
     // console.log("asdasdsa");
     // sessionStorage.removeItem("customer");
-    cookie.remove("customerdata");
+    // cookie.remove("customerdata");
+    cookie.remove("customerdata", { path: '/' });
     window.location.href = "/pages/login/false";
   }
 
@@ -246,11 +250,12 @@ class User extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
+          console.log('xxresult',result)
           let customer = this.state.customer;
           customer.fulladdress = this.state.fulladdress;
           customer.tel = this.state.tel;
           // sessionStorage.setItem("customer", JSON.stringify(customer));
-          cookie.save("customer", JSON.stringify(result.result), { path: "/" });
+          cookie.save("customerdata", JSON.stringify(result.result), { path: "/" });
           toast.success("อัพเดทข้อมูลเรียบร้อย");
           this.setState({ ismodal: false });
           window.location.href = "/pages/user";
@@ -301,11 +306,15 @@ class User extends Component {
               <Tab label="ข้อมูลส่วนตัว">
                 <div className="no-slider row">
                   <div className="row">
-                    <div className="col-sm-6">
+                    <div className="col-sm-12">
                       <div className="dashboard-right">
                         <div className="dashboard">
                           <div className="page-title">
-                            <h2>ข้อมูลส่วนตัว</h2>
+                            <h2>ข้อมูลส่วนตัว 
+                              {customer.tel == '' || customer.fulladdress == '' && (
+                                <span style={{color:'red'}}>(กรอกข้อมูลไม่ครบ)</span>
+                              )} 
+                              </h2>
                           </div>
                           <div className="box-account box-info">
                             <div className="box-head">
@@ -330,7 +339,7 @@ class User extends Component {
                               </div>
                             </div>
                             <div className="row">
-                              <div className="col-sm-6">
+                              <div className="col-sm-12">
                                 <div className="box">
                                   <div className="box-title">
                                     <h3>ข้อมูลสำหรับจัดส่ง</h3>
@@ -368,7 +377,7 @@ class User extends Component {
                                                                 <a href="#">Edit Address</a>
                                                             </address>
                                                         </div> */}
-                                  <div className="col-sm-6">
+                                  <div className="col-sm-12">
                                     <h6>เบอร์โทรศัพท์</h6>
                                     <p style={{ color: "#212529" }}>
                                       {customer.tel || "-"}
@@ -409,7 +418,7 @@ class User extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-sm-12">
                       <div className="dashboard-right">
                         <div className="dashboard">
                           <div className="page-title">

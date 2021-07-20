@@ -33,20 +33,22 @@ class cartComponent extends Component {
                 <section className="cart-section section-b-space">
                     <div className="container">
                         <div className="row">
-                            <div className="col-sm-12">
+                            <div className="col-sm-12" style={{overflowX:'scroll'}}>
                                 <table className="table cart-table table-responsive-xs">
                                     <thead>
                                     <tr className="table-head">
                                         <th scope="col">รูป</th>
-                                        <th scope="col">ชื่อสินค้า</th>
+                                        <th scope="col">ชื่อสินค้า</th> 
+                                        <th scope="col">ค่าส่ง</th>
                                         <th scope="col">ราคา</th>
                                         <th scope="col">จำนวน</th>
-                                        <th scope="col">action</th>
+                                        <th scope="col">สถานะ</th>
                                         <th scope="col">สรุปยอด</th>
                                     </tr>
                                     </thead>
                                     {cartItems.map((item, index) => {
                                         let images  = item.image.split('#');
+                                        let price = item.discount?item.discount:item.price;
                                         return (
                                         <tbody key={index}>
                                             <tr>
@@ -66,18 +68,19 @@ class cartComponent extends Component {
                                                             </div>
                                                         </div>
                                                         <div className="col-xs-3">
-                                                            <h2 className="td-color">{symbol}{item.discount?item.discount:item.price}</h2>
+                                                            <h2 className="td-color">{'฿'}{price}</h2>
                                                         </div>
                                                         <div className="col-xs-3">
                                                             <h2 className="td-color">
                                                                 <a href="#" className="icon" onClick={() => this.props.removeFromCart(item)}>
-                                                                    <i className="icon-close"></i>
+                                                                    {/* <i className="icon-close"></i> */}ยกเลิก
                                                                 </a>
                                                             </h2>
                                                         </div>
                                                     </div>
-                                                </td>
-                                                <td><h2>{symbol}{item.price}</h2></td>
+                                                </td> 
+                                                <td><h5>{'฿'}{item.shippingfee}</h5></td>
+                                                <td><h2>{'฿'}{price}</h2></td>
                                                 <td>
                                                     <div className="qty-box">
                                                         <div className="input-group">
@@ -94,14 +97,14 @@ class cartComponent extends Component {
                                                             </button>
                                                            </span>
                                                         </div>
-                                                    </div>{(item.qty >= item.stock)? 'out of Stock' : ''}
+                                                    </div>{(item.qty >= item.stock)? `ไม่สามารถเพิ่มได้มากกว่า ${item.stock}` : ''}
                                                 </td>
                                                 <td>
                                                     <a href="#" className="icon" onClick={() => this.props.removeFromCart(item)}>
-                                                        <i className="fa fa-times"></i>
+                                                       ยกเลิก
                                                     </a>
                                                 </td>
-                                                <td><h2 className="td-color">{symbol}{item.sum}</h2></td>
+                                                <td><h2 className="td-color">{'฿'}{item.sum}</h2></td>
                                             </tr>
                                         </tbody> )
                                     })}
@@ -109,8 +112,8 @@ class cartComponent extends Component {
                                 <table className="table cart-table table-responsive-md">
                                     <tfoot>
                                     <tr>
-                                        <td>ยอดรวม : <br/>(ยังไม่รวมค่าจัดส่ง) </td>
-                                        <td><h2>{symbol}{total}</h2></td>
+                                        <td>ยอดรวม :</td>
+                                        <td><h2>{'฿'}{total}</h2></td>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -121,7 +124,7 @@ class cartComponent extends Component {
                                 <Link to={`${process.env.PUBLIC_URL}/category/0/ทั้งหมด`} className="btn btn-solid">เลือกสินค้าต่อ</Link>
                             </div>
                             <div className="col-6">
-                                <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid">เช็คเอาท์</Link>
+                                <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid">ยืนยันการสั่งซื้อ</Link>
                             </div>
                         </div>
                     </div>

@@ -91,7 +91,7 @@ class checkOut extends Component {
                 <img src={images[0]} alt="" style={{ width: 40 }} />
                 {item.name} × {item.qty}{" "}
                 <span>
-                  {symbol} {item.sum}
+                  {symbol} {item.sum} <code>{'+ ค่าส่ง '}{symbol}{item.shippingfee}</code>
                 </span>
               </li>
             );
@@ -115,8 +115,7 @@ class checkOut extends Component {
     this.props.setLoading(true);
     const { cartItems, symbol, total } = this.props;
     const { merchantlist, customer } = this.state;
-    const { removeAllCart } = this.props;
-
+    const { removeAllCart } = this.props; 
     fetch(Siteurl + "service/createorder", {
       method: "POST",
       headers: {
@@ -146,12 +145,12 @@ class checkOut extends Component {
       <div>
         {/*SEO Support*/}
         <Helmet>
-          <title>Pettogo.co | เช็คเอาท์</title>
-          <meta name="description" content="Pettogo.co เช็คเอาท์" />
+          <title>Pettogo.co | ยืนยีนการสั่งซื้อ</title>
+          <meta name="description" content="Pettogo.co ยืนยีนการสั่งซื้อ" />
         </Helmet>
         {/*SEO Support End */}
 
-        <Breadcrumb title={"เช็คเอาท์"} />
+        <Breadcrumb title={"ยืนยีนการสั่งซื้อ"} />
 
         <section className="section-b-space">
           <div className="container padding-cls">
@@ -221,7 +220,7 @@ class checkOut extends Component {
                                                 </div>
                                             </div> */}
                   </div>
-                  <div className="col-lg-6 col-sm-12 col-xs-12">
+                  <div className="col-lg-12 col-sm-12 col-xs-12">
                     <div className="checkout-details">
                       <div className="order-box">
                         <div className="title-box">
@@ -247,7 +246,7 @@ class checkOut extends Component {
 
                         <ul className="total">
                           <li>
-                            รวม<code>(ยังไม่รวมค่าจัดส่ง)</code>{" "}
+                            รวม {" "}
                             <span className="count">
                               {symbol}
                               {total}
@@ -354,7 +353,7 @@ class checkOut extends Component {
 }
 const mapStateToProps = (state) => ({
   cartItems: state.cartList.cart,
-  symbol: state.data.symbol,
+  symbol: '฿',
   total: getCartTotal(state.cartList.cart),
 });
 

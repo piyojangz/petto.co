@@ -33,9 +33,12 @@ import CollectionMetro from "./components/collection/collection-metro";
 import Category from "./components/collection/category";
 import Productlistrecent from "./components/collection/product-list-recent";
 import Productlistoffer from "./components/collection/product-list-offer";
+import Searchlist from "./components/collection/search-list";
+
 import Productlistauction from "./components/collection/product-list-action";
 
 import Shopoffer from "./components/collection/shopoffeer";
+import Shops from "./components/collection/shops";
 import Promotion from "./components/collection/promotion";
 
 // Product Pages
@@ -97,11 +100,12 @@ import ElementProductTab from "./components/features/product/element-product-tab
 // Portfolio Features
 import GridCols from "./components/features/portfolio/grid-cols";
 import MasonaryGridCols from "./components/features/portfolio/masonary-grid-cols";
-import Shoptop from "./components/products/common/shop-top"; 
+import Shoptop from "./components/products/common/shop-top";
+import Aboutus from "./components/layouts/pets/aboutus";
+import Contractus from "./components/layouts/pets/contractus";
 
 class Root extends React.Component {
- 
-  render() { 
+  render() {
     return (
       <Provider store={store}>
         <IntlProvider translations={translations} locale="en">
@@ -166,6 +170,10 @@ class Root extends React.Component {
                     component={Productlistoffer}
                   />
                   <Route
+                    path={`${process.env.PUBLIC_URL}/search/:q`}
+                    component={Searchlist}
+                  />
+                  <Route
                     path={`${process.env.PUBLIC_URL}/auction`}
                     component={Productlistauction}
                   />
@@ -176,6 +184,10 @@ class Root extends React.Component {
                   <Route
                     path={`${process.env.PUBLIC_URL}/bestseller`}
                     component={Shopoffer}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/shops`}
+                    component={Shops}
                   />
                   <Route
                     path={`${process.env.PUBLIC_URL}/promotion`}
@@ -393,6 +405,15 @@ class Root extends React.Component {
                   <Route
                     path={`${process.env.PUBLIC_URL}/blog/blog-page`}
                     component={BlogPage}
+                  />
+
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/aboutus`}
+                    component={Aboutus}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/contractus`}
+                    component={Contractus}
                   />
 
                   {/* <Route exact path="*" component={PageNotFound} /> */}

@@ -48,15 +48,15 @@ export const Product4 = {
         {
             breakpoint: 1200,
             settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3
+                slidesToShow: 6,
+                slidesToScroll: 6
             }
         },
         {
             breakpoint: 991,
             settings: {
                 slidesToShow:2,
-                slidesToScroll: 2
+                slidesToScroll:2
             }
         },
         {
@@ -145,8 +145,10 @@ export const Team4 = {
 
 export const Slider2 = {
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive: [
         {
             breakpoint: 991,
@@ -253,7 +255,7 @@ export const Slider5 = {
 }
 
 export const Slider6 = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 300,
     slidesToShow: 6,
@@ -270,7 +272,7 @@ export const Slider6 = {
         {
             breakpoint: 1024,
             settings: {
-                slidesToShow: 4,
+                slidesToShow: 5,
                 slidesToScroll: 4,
                 infinite: true
             }
@@ -278,7 +280,7 @@ export const Slider6 = {
         {
             breakpoint: 767,
             settings: {
-                slidesToShow: 4,
+                slidesToShow: 5,
                 slidesToScroll: 3,
                 infinite: true
             }
@@ -286,7 +288,7 @@ export const Slider6 = {
         {
             breakpoint: 480,
             settings: {
-                slidesToShow: 4,
+                slidesToShow: 5,
                 slidesToScroll: 2
             }
         }
