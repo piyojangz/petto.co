@@ -10,6 +10,11 @@ import {
 import { addToCart, addToWishlist, addToCompare } from "../../../actions/index";
 import ProductItem from "./product-item";
 import { Link } from "react-router-dom";
+
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 class SpecialProducts extends Component {
   renderitems(items) {
     const { symbol } = this.props;
@@ -61,19 +66,19 @@ class SpecialProducts extends Component {
             </Link>
             <h4 style={{ color: "#0072BE" }}>
               <span style={{ fontSize: 14 }}>{symbol}</span>
-              {(product.discount > 0
+              {numberWithCommas((product.discount > 0
                   ? product.discount
                   : product.price
                 ).toLocaleString(navigator.language, {
                   minimumFractionDigits: 2,
-                })}
+                }))}
               {product.discount > 0 && (
                 <del>
                   <span className="money">
                     <span style={{ fontSize: 14 }}>{symbol}</span>
-                    {product.price.toLocaleString(navigator.language, {
+                    {numberWithCommas(product.price.toLocaleString(navigator.language, {
                       minimumFractionDigits: 2,
-                    })}
+                    }))}
                   </span>
                 </del>
               )}

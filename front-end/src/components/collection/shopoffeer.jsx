@@ -18,7 +18,7 @@ class Shopoffer extends Component {
       limit: 20,
       hasMoreItems: true,
       pricelength: 0,
-      pricesort: "",
+      pricesort: "desc",
       shoplists: [],
       cate: [],
     };

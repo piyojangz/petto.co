@@ -30,7 +30,7 @@ class Category extends Component {
       limit: 20,
       hasMoreItems: true,
       pricelength: 0,
-      pricesort: "",
+      pricesort: "desc",
       products: [],
       cate: [],
     };
@@ -138,7 +138,7 @@ class Category extends Component {
                         this.setState({ pricelength: v.target.value })
                       }
                     >
-                      <option value="0">กรุณาเลือก</option>
+                      <option value="0">ทั้งหมด</option>
                       <option value="1">0 - 100</option>
                       <option value="2">101 - 1,000</option>
                       <option value="3">1,001 - 5,000</option>

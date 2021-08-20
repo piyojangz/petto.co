@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 import moment from "moment";
 import { getRelatedItems } from "../../../services";
 
+
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 class AuctionItem extends Component {
   constructor(props) {
     super(props);
@@ -80,13 +85,13 @@ class AuctionItem extends Component {
                     </div>
                     <span className="AuctionPrice ml-1"> 
                       {symbol}
-                      {parseFloat(
+                      {numberWithCommas(parseFloat(
                         product.currentprice > 0
                           ? product.currentprice
                           : product.startprice
                       ).toLocaleString(navigator.language, {
                         minimumFractionDigits: 0,
-                      })}
+                      }))}
                     </span>
                   </div>
                 </div>

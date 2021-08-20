@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 
 import { getRelatedItems } from "../../../services";
 
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -141,19 +145,19 @@ class ProductItem extends Component {
 
               <h4 style={{ color: "#0072BE" }}>
                 <span style={{ fontSize: 14 }}>{symbol}</span>
-                {(product.discount > 0
+                {numberWithCommas((product.discount > 0
                   ? product.discount
                   : product.price
                 ).toLocaleString(navigator.language, {
                   minimumFractionDigits: 2,
-                })}
+                }))}
                 {product.discount > 0 && (
                   <del>
                     <span className="money">
                       <span style={{ fontSize: 14 }}>{symbol}</span>
-                      {product.price.toLocaleString(navigator.language, {
+                      {numberWithCommas(product.price.toLocaleString(navigator.language, {
                         minimumFractionDigits: 2,
-                      })}
+                      }))}
                     </span>
                   </del>
                 )}

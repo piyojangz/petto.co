@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Modal from "react-responsive-modal";
 
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 class DetailsWithPrice extends Component {
   constructor(props) {
     super(props);
@@ -102,11 +106,13 @@ class DetailsWithPrice extends Component {
           </h4>
           <h3 style={{ color: "#0072BE" }}>
             <span style={{ fontSize: 18 }}>{symbol}</span>
-            {parseFloat(
-              item.discount > 0 ? item.discount : item.price
-            ).toLocaleString(navigator.language, {
-              minimumFractionDigits: 2,
-            })}{" "}
+            {numberWithCommas(
+              parseFloat(
+                item.discount > 0 ? item.discount : item.price
+              ).toLocaleString(navigator.language, {
+                minimumFractionDigits: 2,
+              })
+            )}{" "}
           </h3>
           {/* {item.variants?
                     <ul >

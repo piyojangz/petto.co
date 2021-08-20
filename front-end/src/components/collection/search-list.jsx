@@ -25,7 +25,7 @@ class Searchlist extends Component {
       hasMoreItems: true,
       products: [],
       pricelength: 0,
-      pricesort: "",
+      pricesort: "desc",
       cate: [],
     };
   }

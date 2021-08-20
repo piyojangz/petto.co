@@ -20,7 +20,7 @@ class Promotion extends Component {
       limit: 20,
       hasMoreItems: true,
       pricelength: 0,
-      pricesort: "",
+      pricesort: "desc",
       bannerlist: [],
       cate: [],
     };

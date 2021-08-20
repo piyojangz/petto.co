@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 import uuid from "react-uuid";
 import { getRelatedItems } from "../../../services";
 import moment from "moment";
+
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 class AuctionlistItem extends Component {
   constructor(props) {
     super(props);
@@ -65,13 +70,13 @@ class AuctionlistItem extends Component {
                   <strong>ราคาปัจจุบัน</strong>
                   <h3 style={{ color: "rgb(0, 114, 190)", fontWeight: "bold" }}>
                     <span style={{ fontSize: 18 }}>{symbol}</span>
-                    {parseFloat(
+                    {numberWithCommas(parseFloat(
                       product.currentprice > 0
                         ? product.currentprice
                         : product.startprice
                     ).toLocaleString(navigator.language, {
                       minimumFractionDigits: 0,
-                    })}
+                    }))}
                   </h3> 
                 </div>
                 {this.state.countdown != "จบแล้ว" && (

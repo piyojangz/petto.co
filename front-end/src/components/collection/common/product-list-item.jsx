@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
 import { connect } from "react-redux";
 import cookie from "react-cookies";
+
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 class ProductListItem extends Component {
   constructor(props) {
     super(props);
@@ -75,15 +80,13 @@ class ProductListItem extends Component {
                   }}
                 >
                   <i className="fa fa-flash" />
-                  <span style={{ fontSize: 12 }}>{this.props.trans.recommend}</span>
+                  <span style={{ fontSize: 12 }}>
+                    {this.props.trans.recommend}
+                  </span>
                 </div>
               )}
               <div className="front">
-                <Link
-                  to={`${process.env.PUBLIC_URL}/product/${
-                    product.id
-                  }`}
-                >
+                <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
                   <img src={images[0]} className="img-fluid" alt="" />
                 </Link>
               </div>
@@ -91,40 +94,38 @@ class ProductListItem extends Component {
           </div>
           <div className="col-7 ">
             <div>
-              <Link
-                to={`${process.env.PUBLIC_URL}/product/${
-                  product.id
-                }`}
-              >
-                <h5  className="two-line-ellipsis">{product.name}</h5>
+              <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
+                <h5 className="two-line-ellipsis">{product.name}</h5>
               </Link>
               <h3 style={{ color: "rgb(0, 114, 190)", fontWeight: "bold" }}>
                 <span style={{ fontSize: 18 }}>{symbol}</span>
-                {(product.discount
+                {numberWithCommas((product.discount
                   ? product.discount
                   : product.price
                 ).toLocaleString(navigator.language, {
                   minimumFractionDigits: 2,
-                })}
+                }))}
                 {product.discount > 0 && (
                   <del>
                     <span className="money">
                       <span style={{ fontSize: 18 }}>{symbol}</span>
-                      {product.price.toLocaleString(navigator.language, {
-                        minimumFractionDigits: 2,
-                      })}
+                      {numberWithCommas(
+                        product.price.toLocaleString(navigator.language, {
+                          minimumFractionDigits: 2,
+                        })
+                      )}
                     </span>
                   </del>
                 )}
               </h3>
 
               <Link
-                to={`${process.env.PUBLIC_URL}/product/${
-                  product.id
-                }`}
+                to={`${process.env.PUBLIC_URL}/product/${product.id}`}
                 className="btn btn-primary"
               >
-                <h5 style={{ color: "#fff" }}>{this.props.trans.productdetail}</h5>
+                <h5 style={{ color: "#fff" }}>
+                  {this.props.trans.productdetail}
+                </h5>
               </Link>
             </div>
           </div>
@@ -134,8 +135,7 @@ class ProductListItem extends Component {
   }
 }
 
-
-const mapStateToProps = (state, ownProps) => ({ 
+const mapStateToProps = (state, ownProps) => ({
   trans: state.lang.trans,
 });
 
@@ -143,4 +143,3 @@ export default connect(
   mapStateToProps,
   null
 )(ProductListItem);
- 
