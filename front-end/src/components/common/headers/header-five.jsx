@@ -365,7 +365,7 @@ class HeaderFive extends Component {
 																<li><a href={null} onClick={() => this.props.changeCurrency('£')}>pound</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('$')}>doller</a> </li>
 															</ul> */} 
-                              <a href={null}>
+                               <a href={`https://seller.pettogo.co/`}>
                                 <h5
                                   style={{
                                     textDecoration: "underline",
