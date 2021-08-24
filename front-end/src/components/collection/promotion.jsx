@@ -61,7 +61,7 @@ class Promotion extends Component {
     return (
       <div>
         <Helmet>
-          <title>Petto.co | {this.props.trans.promotion}</title>
+          <title>Pettogo.co | {this.props.trans.promotion}</title>
         </Helmet>
         <Breadcrumb title={this.props.trans.promotion} />
         <div className="container-fluid">

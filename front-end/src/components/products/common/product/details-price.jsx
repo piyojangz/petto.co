@@ -54,7 +54,9 @@ class DetailsWithPrice extends Component {
     }
   };
   changeQty = (e) => {
-    this.setState({ quantity: parseInt(e.target.value) });
+    this.setState({
+      quantity: parseInt(e.target.value) ? parseInt(e.target.value) : 0,
+    });
   };
 
   addtoCart(item) {

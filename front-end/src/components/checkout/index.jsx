@@ -91,7 +91,12 @@ class checkOut extends Component {
                 <img src={images[0]} alt="" style={{ width: 40 }} />
                 {item.name} × {item.qty}{" "}
                 <span>
-                  {symbol} {item.sum} <code>{'+ ค่าส่ง '}{symbol}{item.shippingfee}</code>
+                  {symbol} {item.sum}{" "}
+                  <code>
+                    {"+ ค่าส่ง "}
+                    {symbol}
+                    {item.shippingfee}
+                  </code>
                 </span>
               </li>
             );
@@ -115,7 +120,7 @@ class checkOut extends Component {
     this.props.setLoading(true);
     const { cartItems, symbol, total } = this.props;
     const { merchantlist, customer } = this.state;
-    const { removeAllCart } = this.props; 
+    const { removeAllCart } = this.props;
     fetch(Siteurl + "service/createorder", {
       method: "POST",
       headers: {
@@ -145,12 +150,12 @@ class checkOut extends Component {
       <div>
         {/*SEO Support*/}
         <Helmet>
-          <title>Pettogo.co | ยืนยีนการสั่งซื้อ</title>
-          <meta name="description" content="Pettogo.co ยืนยีนการสั่งซื้อ" />
+          <title>Pettogo.co | ยืนยันการสั่งซื้อ</title>
+          <meta name="description" content="Pettogo.co ยืนยันการสั่งซื้อ" />
         </Helmet>
         {/*SEO Support End */}
 
-        <Breadcrumb title={"ยืนยีนการสั่งซื้อ"} />
+        <Breadcrumb title={"ยืนยันการสั่งซื้อ"} />
 
         <section className="section-b-space">
           <div className="container padding-cls">
@@ -246,7 +251,7 @@ class checkOut extends Component {
 
                         <ul className="total">
                           <li>
-                            รวม {" "}
+                            รวม{" "}
                             <span className="count">
                               {symbol}
                               {total}
@@ -255,13 +260,27 @@ class checkOut extends Component {
                         </ul>
                       </div>
                       <div className="payment-box">
-                        <button
-                          onClick={() => this.submitorder()}
-                          className="btn btn-primary full"
-                          style={{ width: "100%" }}
-                        >
-                          ยืนยันข้อมูลการสั่งสินค้า
-                        </button>
+                        <div class="row cart-buttons">
+                          <div class="col-6">
+                            <Link  to={`${process.env.PUBLIC_URL}/cart`}> 
+                            <button 
+                              className="btn"
+                              style={{ width: "100%" }}
+                            >
+                              ดูตะกร้า
+                            </button>
+                            </Link>
+                          </div>
+                          <div class="col-6">
+                            <button
+                              onClick={() => this.submitorder()}
+                              className="btn btn-primary"
+                              style={{ width: "100%" }}
+                            >
+                              ยืนยันการสั่งสินค้า
+                            </button>
+                          </div>
+                        </div>
                       </div>
                       {/* <div className="payment-box">
                                                     <div className="upper-box">
@@ -353,7 +372,7 @@ class checkOut extends Component {
 }
 const mapStateToProps = (state) => ({
   cartItems: state.cartList.cart,
-  symbol: '฿',
+  symbol: "฿",
   total: getCartTotal(state.cartList.cart),
 });
 

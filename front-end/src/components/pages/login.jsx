@@ -72,7 +72,7 @@ class Login extends Component {
     return (
       <div>
           <div style={{background:'#d9b504',padding:2,textAlign:'center'}}>
-        <a href={`https://seller.pettogo.co/`}> <h6 style={{textDecoration:'underline',color:'#fff',paddingTop:6}}>  ขายสินค้ากับ Petto.co</h6></a> 
+        <a href={`https://seller.pettogo.co/`}> <h6 style={{textDecoration:'underline',color:'#fff',paddingTop:6}}>  ขายสินค้ากับ Pettogo.co</h6></a> 
          </div>
         <Breadcrumb title={"เข้าสู่ระบบ"} /> 
         {/*Login section*/}

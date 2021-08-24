@@ -111,7 +111,7 @@ class Pets extends Component {
     return (
       <div>
         <Helmet>
-          <title>Petto.co | {this.props.trans.mainpage}</title>
+          <title>Pettogo.co | {this.props.trans.mainpage}</title>
         </Helmet>
         <HeaderFive logoName={"logo/petto_logo.png"} />
         <section className="p-0 small-slider">

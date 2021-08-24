@@ -83,7 +83,7 @@ class HeaderFive extends Component {
       document.querySelector(".loader-wrapper").style = "display: none";
     }, 2000);
     this.props.setLoading(false);
-    const customer = cookie.load("customerdata"); 
+    const customer = cookie.load("customerdata");
     if (customer) {
       this.setState({ customer: customer });
       this.checkusersusspend(customer);
@@ -227,7 +227,7 @@ class HeaderFive extends Component {
                             <div className="d-none d-sm-block">
                               <a href={`https://seller.pettogo.co/`}>
                                 <h6 style={{ textDecoration: "underline" }}>
-                                  ขายสินค้ากับ Petto.co
+                                  ขายสินค้ากับ Pettogo.co
                                 </h6>
                               </a>
                             </div>
@@ -364,7 +364,18 @@ class HeaderFive extends Component {
 																<li><a href={null} onClick={() => this.props.changeCurrency('₹')}>rupees</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('£')}>pound</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('$')}>doller</a> </li>
-															</ul> */}
+															</ul> */} 
+                              <a href={null}>
+                                <h5
+                                  style={{
+                                    textDecoration: "underline",
+                                    color: "#035cff",
+                                    marginTop:10
+                                  }}
+                                >
+                                  ขายสินค้ากับ Pettogo.co{" "}
+                                </h5>{" "}
+                              </a>
                             </div>
                           </li>
                           {/*Header Cart Component */}
