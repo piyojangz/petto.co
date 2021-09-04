@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
 import { getCartTotal } from "../../services";
 import { removeFromCart, incrementQty, decrementQty } from "../../actions";
-
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 class cartComponent extends Component {
   constructor(props) {
     super(props);
@@ -125,7 +127,7 @@ class cartComponent extends Component {
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                    ราคา {"฿"}
-                                    {price}
+                                    {numberWithCommas(price)}
                                   </h2>
                                 </div>
                                 <div className="col-xs-3">
@@ -151,13 +153,13 @@ class cartComponent extends Component {
                             <td>
                               <h5>
                                 {"฿"}
-                                {item.shippingfee}
+                                {numberWithCommas(item.shippingfee)}
                               </h5>
                             </td>
                             <td>
                               <h2>
                                 {"฿"}
-                                {price}
+                                {numberWithCommas(price)}
                               </h2>
                             </td>
                             <td>
@@ -220,7 +222,7 @@ class cartComponent extends Component {
                             <td>
                               <h2 className="td-color">
                                 {"฿"}
-                                {item.sum}
+                                {numberWithCommas(item.sum)}
                               </h2>
                             </td>
                           </tr>
@@ -235,7 +237,7 @@ class cartComponent extends Component {
                         <td>
                           <h2>
                             {"฿"}
-                            {total}
+                            {numberWithCommas(total)}
                           </h2>
                         </td>
                       </tr>

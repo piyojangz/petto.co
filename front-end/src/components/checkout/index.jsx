@@ -121,28 +121,34 @@ class checkOut extends Component {
     const { cartItems, symbol, total } = this.props;
     const { merchantlist, customer } = this.state;
     const { removeAllCart } = this.props;
-    fetch(Siteurl + "service/createorder", {
-      method: "POST",
-      headers: {
-        // "X-Requested-With": "XMLHttpRequest",
-      },
-      body: JSON.stringify({
-        cartItems: cartItems,
-        merchantlist: merchantlist,
-        userid: customer.id,
-      }),
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.props.setLoading(false);
-          toast.success("ยืนยันรายการเรียบร้อย");
-          removeAllCart();
-        },
-        (error) => {
-          toast.warn(error);
-        }
-      );
+
+    console.log({
+      cartItems: cartItems,
+      merchantlist: merchantlist,
+      userid: customer.id,
+    });
+    // fetch(Siteurl + "service/createorder", {
+    //   method: "POST",
+    //   headers: {
+    //     // "X-Requested-With": "XMLHttpRequest",
+    //   },
+    //   body: JSON.stringify({
+    //     cartItems: cartItems,
+    //     merchantlist: merchantlist,
+    //     userid: customer.id,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.props.setLoading(false);
+    //       toast.success("ยืนยันรายการเรียบร้อย");
+    //       removeAllCart();
+    //     },
+    //     (error) => {
+    //       toast.warn(error);
+    //     }
+    //   );
   }
   render() {
     const { symbol, total } = this.props;
