@@ -208,7 +208,7 @@ class WaitingReviewList extends Component {
                       alt=""
                     />{" "}
                     <label className="mt-2">
-                      {product.name ? product.name : product.webname}
+                      {product.name}
                     </label>
                   </div>
                   <div className="media mr-2 bb-1">

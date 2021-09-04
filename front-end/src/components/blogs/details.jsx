@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import Breadcrumb from "../common/breadcrumb";
 import { connect } from "react-redux";
 import { Siteurl } from "../../services/script";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
+
 class BlogDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       content: {
+        title: "",
+      },
+      next: {
+        title: "",
+      },
+      previous: {
         title: "",
       },
     };
@@ -28,6 +37,8 @@ class BlogDetails extends Component {
       .then(
         (result) => {
           this.setState({ content: result.result });
+          this.setState({ next: result.next });
+          this.setState({ previous: result.previous });
         },
         (error) => {
           this.setState({
@@ -38,13 +49,47 @@ class BlogDetails extends Component {
       );
   };
 
+  getcontentnextid = (contentId) => {
+    fetch(Siteurl + "service/getcontentbyid", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ id: contentId }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        this.setState({ contentnext: result.result });
+      });
+  };
+
+  getcontentbackid = (contentId) => {
+    fetch(Siteurl + "service/getcontentbyid", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ id: contentId }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        this.setState({ contentback: result.result });
+      });
+  };
+
+  refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 100);
+    console.log("page to reload");
+  }
+
   render() {
-    let content = this.state.content;
-    console.log(content);
+    let { content, next, previous } = this.state;
+    console.log("next", next);
+    console.log("previous", previous);
     return (
       <div>
-        <Breadcrumb title={`บทความ - ${content.title}`} />
-
         {/*Blog Details section*/}
         <section className="blog-detail-page section-b-space">
           <div className="container">
@@ -63,6 +108,28 @@ class BlogDetails extends Component {
                     dangerouslySetInnerHTML={{ __html: content.description }}
                   />
                 </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                {previous != null && (
+                  <Link
+                    onClick={() => this.refreshPage()}
+                    to={`${process.env.PUBLIC_URL}/blog/details/${previous.id}`}
+                  >
+                    <b>{"< บทความก่อนหน้า"}</b>
+                  </Link>
+                )}
+              </div>
+              <div className="col" style={{ textAlign: "right" }}>
+                {next != null && (
+                  <Link
+                    onClick={() => this.refreshPage()}
+                    to={`${process.env.PUBLIC_URL}/blog/details/${next.id}`}
+                  >
+                    <b>{"บทความถัดไป >"}</b>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -120,8 +120,12 @@ class LeftSideBar extends Component {
     };
 
     let productdetail = this.state.productdetail;
+    console.log(productdetail);
+    let images = [];
+    try {
+      images = productdetail.image.split("#");
+    } catch (error) {}
 
-    let images = productdetail.image.split("#");
     return (
       <div>
         {/*SEO Support*/}
@@ -134,8 +138,8 @@ class LeftSideBar extends Component {
         {/*SEO Support End */}
 
         <Breadcrumb
-          parent={productdetail.category}
-          title={productdetail.name}
+          parent={productdetail.category || ''}
+          title={productdetail.name || ''}
         />
 
         {/*Section Start*/}
@@ -197,6 +201,8 @@ class LeftSideBar extends Component {
                             asNavFor={this.state.nav2}
                             ref={(slider) => (this.slider1 = slider)}
                             className="product-slick"
+                            centerMode={true}
+                            adaptiveHeight={true}
                           >
                             {images.map((vari, index) => (
                               <div key={index}>

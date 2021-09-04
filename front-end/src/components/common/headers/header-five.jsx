@@ -67,6 +67,7 @@ class HeaderFive extends Component {
       languageCodes: [],
       language: cookie.load("language") ? cookie.load("language") : "th",
       query: "",
+      queryshop: "",
     };
   }
   /*=====================
@@ -112,6 +113,14 @@ class HeaderFive extends Component {
   queryChange = (evt) => {
     this.setState({ query: evt.target.value });
   };
+
+  handleShopSearch = () => {
+    window.location = `searchshop/${this.state.queryshop}`;
+  };
+  queryShopChange = (evt) => {
+    this.setState({ queryshop: evt.target.value });
+  };
+
   componentWillMount() {
     this.props.setLang(this.state.language);
     window.addEventListener("scroll", this.handleScroll);
@@ -208,7 +217,12 @@ class HeaderFive extends Component {
                     <div className="brand-logo">
                       <LogoImage logo={this.props.logoName} />
                     </div>
-                    <div className="navbar">
+                    <div className="navbar"> 
+                          <div className="d-block d-sm-none">
+                            <a href={`${process.env.PUBLIC_URL}`} style={{color:'#000'}}>
+                              <i style={{color:'#0073bf'}} class="fa fa-home" /> หน้าหลัก
+                            </a>
+                          </div> 
                       {/* <a href="javascript:void(0)" onClick={this.openNav}>
 												<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>
 											</a> */}
@@ -223,6 +237,15 @@ class HeaderFive extends Component {
                     <div>
                       <div className="icon-nav">
                         <ul>
+                          <li className="onhover-div mobile-search">
+                            <div className="d-none d-sm-block">
+                              <a href={`${process.env.PUBLIC_URL}`}>
+                                <h6 style={{ textDecoration: "underline" }}>
+                                  หน้าหลัก
+                                </h6>
+                              </a>
+                            </div>
+                          </li>
                           <li className="onhover-div mobile-search">
                             <div className="d-none d-sm-block">
                               <a href={`https://seller.pettogo.co/`}>
@@ -364,13 +387,13 @@ class HeaderFive extends Component {
 																<li><a href={null} onClick={() => this.props.changeCurrency('₹')}>rupees</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('£')}>pound</a> </li>
 																<li><a href={null} onClick={() => this.props.changeCurrency('$')}>doller</a> </li>
-															</ul> */} 
-                               <a href={`https://seller.pettogo.co/`}>
+															</ul> */}
+                              <a href={`https://seller.pettogo.co/`}>
                                 <h5
                                   style={{
                                     textDecoration: "underline",
                                     color: "#035cff",
-                                    marginTop:10
+                                    marginTop: 10,
                                   }}
                                 >
                                   ขายสินค้ากับ Pettogo.co{" "}
@@ -402,13 +425,13 @@ class HeaderFive extends Component {
             <div className="overlay-content">
               <div className="container">
                 <div className="row">
-                  <div className="col-xl-12">
+                  <div className="col-xl-6">
                     <div className="form-group">
                       <input
                         type="text"
                         className="form-control"
                         id="txtsearch"
-                        placeholder="ค้นหาสินค้า / ร้านค้า"
+                        placeholder="ค้นหาสินค้า"
                         value={this.state.query}
                         onChange={this.queryChange}
                       />
@@ -417,6 +440,25 @@ class HeaderFive extends Component {
                       type="submit"
                       className="btn btn-primary"
                       onClick={this.handleSearch}
+                    >
+                      <i className="fa fa-search" />
+                    </button>
+                  </div>
+                  <div className="col-xl-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="txtsearch"
+                        placeholder="ค้นหาร้านค้า"
+                        value={this.state.queryshop}
+                        onChange={this.queryShopChange}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={this.handleShopSearch}
                     >
                       <i className="fa fa-search" />
                     </button>

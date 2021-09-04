@@ -7,6 +7,11 @@ import { Product4, Product5 } from "../../../services/script";
 import Slider from "react-slick";
 import { connect } from "react-redux";
 import ImageZoom from "react-medium-image-zoom";
+// import 'moment/locale/th';
+// import Moment from "react-moment";
+// import "moment-timezone";
+import moment from "moment";
+
 class DetailsTopTabs extends Component {
   constructor() {
     super();
@@ -69,7 +74,7 @@ class DetailsTopTabs extends Component {
                   style={{ width: 35, height: 35 }}
                   alt=""
                 />
-                <div className="col-md-12 ">
+                <div className="col ">
                   <label style={{ marginBottom: 0 }}>{`${review.firstname} ${
                     review.lastname
                   }`}</label>
@@ -78,6 +83,13 @@ class DetailsTopTabs extends Component {
                       {this.renderstar(review.star)}
                     </div>
                   </div>
+                </div>
+                <div className="col" style={{ textAlign: "right" }}>
+                  {/* <Moment locale="th" fromNow>
+                    {review.createdate}
+                  </Moment> */}
+
+                  {moment(review.createdate).fromNow()}
                 </div>
               </div>
             </div>
@@ -104,17 +116,17 @@ class DetailsTopTabs extends Component {
                     return (
                       <div className="col-4" key={"xp-" + index}>
                         <div key={1}>
-                        <ImageZoom
-                          image={{
-                            src: `${picture}`,
-                            alt: "",
-                            className: "img-fluid",
-                          }}
-                          zoomImage={{
-                            src: `${picture}`,
-                            alt: "",
-                          }}
-                        />
+                          <ImageZoom
+                            image={{
+                              src: `${picture}`,
+                              alt: "",
+                              className: "img-fluid",
+                            }}
+                            zoomImage={{
+                              src: `${picture}`,
+                              alt: "",
+                            }}
+                          />
                           {/* <img
                             src={picture}
                             key={1}
@@ -190,7 +202,9 @@ class DetailsTopTabs extends Component {
                             return this.renderreview(review, index);
                           })
                         ) : (
-                          <p className="text-center">ยังไม่มีรีวิวสินค้านี้ค่ะ :)</p>
+                          <p className="text-center">
+                            ยังไม่มีรีวิวสินค้านี้ค่ะ :)
+                          </p>
                         )}
                       </div>
                     </div>

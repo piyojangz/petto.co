@@ -73,25 +73,65 @@ class cartComponent extends Component {
                                 <div className="col-xs-3">
                                   <div className="qty-box">
                                     <div className="input-group">
-                                      <input
-                                        type="text"
-                                        name="quantity"
-                                        className="form-control input-number"
-                                        defaultValue={item.qty}
-                                      />
+                                      <div className="qty-box">
+                                        <div className="input-group">
+                                          <span className="input-group-prepend">
+                                            <button
+                                              type="button"
+                                              className="btn quantity-left-minus"
+                                              onClick={() =>
+                                                this.props.decrementQty(item.id)
+                                              }
+                                              data-type="minus"
+                                              data-field=""
+                                            >
+                                              <i className="fa fa-angle-left" />
+                                            </button>
+                                          </span>
+                                          <input
+                                            type="text"
+                                            name="quantity"
+                                            value={item.qty}
+                                            readOnly={true}
+                                            className="form-control input-number"
+                                          />
+
+                                          <span className="input-group-prepend">
+                                            <button
+                                              className="btn quantity-right-plus"
+                                              onClick={() =>
+                                                this.props.incrementQty(item, 1)
+                                              }
+                                              data-type="plus"
+                                              disabled={
+                                                item.qty >= item.stock
+                                                  ? true
+                                                  : false
+                                              }
+                                            >
+                                              <i className="fa fa-angle-right" />
+                                            </button>
+                                          </span>
+                                        </div>
+                                      </div>
+                                      {item.qty >= item.stock
+                                        ? `ไม่สามารถเพิ่มได้มากกว่า ${
+                                            item.stock
+                                          }`
+                                        : ""}
                                     </div>
                                   </div>
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
-                                    {"฿"}
+                                   ราคา {"฿"}
                                     {price}
                                   </h2>
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                     <button
-                                     style={{
+                                      style={{
                                         background: "#fff",
                                         fontSize: 14,
                                         borderWidth: 0,

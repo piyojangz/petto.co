@@ -13,7 +13,7 @@ import LogoBlock from "../common/logo-block";
 import { Product4 } from "../../../services/script";
 import ProductItem from "../pets/product-item";
 import ReactStars from "react-rating-stars-component";
-import ImageZoom from "react-medium-image-zoom";
+import ImageZoom from "react-medium-image-zoom"; 
 import {
   svgFreeShipping,
   svgservice,
@@ -21,6 +21,10 @@ import {
 } from "../../../services/script";
 import Shoptop from "../../products/common/shop-top";
 import { Siteurl } from "../../../services/script";
+// import 'moment/locale/th';
+// import Moment from "react-moment";
+// import "moment-timezone";
+import moment from "moment";
 class Shop extends Component {
   constructor(props) {
     super(props);
@@ -104,7 +108,14 @@ class Shop extends Component {
 
           console.log("savg", avg);
           avg = avg / result.result.length;
-          this.setState({ reviews: result.result, reviewavg: avg });
+          this.setState({
+            reviews: result.result,
+            reviewavg: avg.toLocaleString("en-US", {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1,
+              useGrouping: false,
+            }),
+          });
         },
         (error) => {
           this.setState({
@@ -141,7 +152,7 @@ class Shop extends Component {
             style={{ width: 35, height: 35 }}
             alt=""
           />
-          <div className="col-12 ">
+          <div className="col">
             <label style={{ marginBottom: 0 }}>{`${review.firstname} ${
               review.lastname
             }`}</label>
@@ -150,6 +161,10 @@ class Shop extends Component {
                 {this.renderstar(review.star)}
               </div>
             </div>
+          </div>
+          <div className="col" style={{ textAlign: "right" }}>
+            {/* <Moment locale="th" fromNow>{review.createdate}</Moment> */}
+            {moment(review.createdate).fromNow()}
           </div>
         </div>
         <div className="row">

@@ -107,9 +107,7 @@ class Shopoffer extends Component {
                               <Link
                                 to={`${process.env.PUBLIC_URL}/shop/${shop.id}`}
                               >
-                                <h6>
-                                  {shop.title != "" ? shop.title : shop.webname}
-                                </h6>
+                                <h6>{shop.title}</h6>
                               </Link>
                             </div>
                           </div>

@@ -57,7 +57,7 @@ class Shoptop extends Component {
                             to={`${process.env.PUBLIC_URL}/shop/${shop.id}`}
                           >
                             <label style={{ marginBottom: 0 }}>
-                              {shop.title != "" ? shop.title : shop.webname}
+                              {shop.title}
                             </label>
                           </Link>
                           {/* <div className="media-body">
@@ -72,7 +72,7 @@ class Shoptop extends Component {
                         </div>
                       </div>
                       <div className="row mt-2">
-                        <div className="col-6 ">
+                        <div className="col">
                           {["2", "3", "4"].includes(shop.packageid) && (
                             <div>
                               <i
@@ -86,14 +86,14 @@ class Shoptop extends Component {
                             </div>
                           )}
                         </div>
-                        <div className="col-6 text-right">
+                        <div className="col">
                           <i
                             className="fa fa-heart"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           />
                           <label style={{ marginBottom: 0 }}>
-                            {shop.sold || "0"} ขายแล้ว
+                            ขายไปแล้ว {shop.sold || "0"} ชิ้น
                           </label>
                         </div>
                       </div>
@@ -106,7 +106,10 @@ class Shoptop extends Component {
         </div>
         <hr />
         <div className="row">
-          <div className="col-sm-12 col-lg-12" style={{paddingLeft:20,paddingRight:20}}>
+          <div
+            className="col-sm-12 col-lg-12"
+            style={{ paddingLeft: 20, paddingRight: 20 }}
+          >
             <div dangerouslySetInnerHTML={{ __html: shop.textcustom }} />
           </div>
         </div>

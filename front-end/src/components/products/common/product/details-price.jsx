@@ -89,19 +89,35 @@ class DetailsWithPrice extends Component {
       focusOnSelect: true,
     };
 
-    console.log("item", item);
+    // console.log("item", item);
 
     return (
       <div className="col-lg-6 rtl-text">
         <div className="product-right">
           <h2> {item.name} </h2>
+
+          <div className="row">
+            <div className="col">
+              <i
+                className="fa fa-heart"
+                aria-hidden="true"
+                style={{ color: "red" }}
+              />
+              <label style={{ marginBottom: 0 }}>
+                สินค้านี้ขายไปแล้ว {item.sold || "0"} ชิ้น
+              </label>
+            </div>
+          </div>
+
           <h4 style={{ color: "#0072BE" }}>
             {item.discount > 0 && (
               <del>
                 <span style={{ fontSize: 18 }}>{symbol}</span>
-                {item.price.toLocaleString(navigator.language, {
-                  minimumFractionDigits: 2,
-                })}
+                {numberWithCommas(
+                  item.price.toLocaleString(navigator.language, {
+                    minimumFractionDigits: 2,
+                  })
+                )}
               </del>
             )}
             {/* <span>ลดไป {item.discount}%</span> */}

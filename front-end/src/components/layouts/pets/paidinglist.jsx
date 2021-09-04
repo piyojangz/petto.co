@@ -85,6 +85,7 @@ class PaidingList extends Component {
       return false;
     }
     this.getpaymentdetail(product);
+    console.log('product',product)
     this.setState({ ismodal: true, confirmorder: product });
   }
 
@@ -168,7 +169,7 @@ class PaidingList extends Component {
                       alt=""
                     />{" "}
                     <label className="mt-2">
-                      {product.name ? product.name : product.webname}
+                      {product.name}
                     </label>
                   </div>
                   <div className="media mr-2 bb-1">
@@ -289,7 +290,7 @@ class PaidingList extends Component {
                 </ul>
               </div>
               <div className="form-group mt-2">
-                <label>จำนวนเงินที่โอน</label>
+                <label>จำนวนเงินที่ต้องชำระ <span style={{color:'#f00'}}>{this.state.confirmorder.total}</span> บาท</label>
                 <input
                   className="form-control"
                   onChange={(v) =>
@@ -302,7 +303,7 @@ class PaidingList extends Component {
                   }
                   type="number"
                   required="required"
-                  placeholder="จำนวนเงิน (บาท)"
+                  placeholder={this.state.confirmorder.total}
                   value={this.state.payamount}
                 />
               </div>

@@ -34,6 +34,7 @@ import Category from "./components/collection/category";
 import Productlistrecent from "./components/collection/product-list-recent";
 import Productlistoffer from "./components/collection/product-list-offer";
 import Searchlist from "./components/collection/search-list";
+import SearchShoplist from "./components/collection/searchshop-list";
 
 import Productlistauction from "./components/collection/product-list-action";
 
@@ -173,6 +174,12 @@ class Root extends React.Component {
                     path={`${process.env.PUBLIC_URL}/search/:q`}
                     component={Searchlist}
                   />
+
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/searchshop/:q`}
+                    component={SearchShoplist}
+                  />
+
                   <Route
                     path={`${process.env.PUBLIC_URL}/auction`}
                     component={Productlistauction}
