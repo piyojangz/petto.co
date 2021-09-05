@@ -18,6 +18,8 @@ class Register extends Component {
       password: "",
       repassword: "",
       isaccept: false,
+      showpass: false,
+      showpass2: false,
     };
   }
   componentDidMount() {
@@ -143,9 +145,21 @@ class Register extends Component {
     console.log("this.props.isaccept", this.props.isaccept);
     return (
       <div>
-           <div style={{background:'#d9b504',padding:2,textAlign:'center'}}>
-        <a href={`https://seller.pettogo.co/`}> <h6 style={{textDecoration:'underline',color:'#fff',paddingTop:6}}>  ขายสินค้ากับ Pettogo.co</h6></a> 
-         </div>
+        <div style={{ background: "#d9b504", padding: 2, textAlign: "center" }}>
+          <a href={`https://seller.pettogo.co/`}>
+            {" "}
+            <h6
+              style={{
+                textDecoration: "underline",
+                color: "#fff",
+                paddingTop: 6,
+              }}
+            >
+              {" "}
+              ขายสินค้ากับ Pettogo.co
+            </h6>
+          </a>
+        </div>
         <Breadcrumb title={"สมัครสมาชิก"} />
 
         {/*Regsiter section*/}
@@ -202,7 +216,39 @@ class Register extends Component {
                         />
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="passw">รหัสผ่าน</label>
+                        <div className="form-group">
+                          <label htmlFor="review">รหัสผ่าน</label>
+                          <div className="input-group">
+                            <input
+                              type={this.state.showpass ? "text" : "password"}
+                              className="form-control"
+                              id="review"
+                              placeholder="ระบุรหัสผ่าน"
+                              required=""
+                              onChange={(e) =>
+                                this.setState({ password: e.target.value })
+                              }
+                            />
+                            <span className="input-group-append">
+                              <div
+                                onClick={() =>
+                                  this.setState({
+                                    showpass: !this.state.showpass,
+                                  })
+                                }
+                                className="btn btn-outline-secondary border-left-0 border"
+                                style={{ height: 46 }}
+                              >
+                                <i
+                                  class="fa  fa-eye"
+                                  style={{ lineHeight: 2.5 }}
+                                />
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* <label htmlFor="passw">รหัสผ่าน</label>
                         <input
                           type="password"
                           className="form-control"
@@ -212,10 +258,43 @@ class Register extends Component {
                           onChange={(e) =>
                             this.setState({ password: e.target.value })
                           }
-                        />
+                        /> */}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="repassw">ยืนยันรหัสผ่าน</label>
+                      <div className="form-group">
+                          <label htmlFor="review">ยืนยันรหัสผ่าน</label>
+                          <div className="input-group">
+                            <input
+                              type={this.state.showpass2 ? "text" : "password"}
+                              className="form-control"
+                              id="review"
+                              placeholder="ระบุรหัสผ่าน"
+                              required=""
+                              onChange={(e) =>
+                                this.setState({ repassword: e.target.value })
+                              }
+                            />
+                            <span className="input-group-append">
+                              <div
+                                onClick={() =>
+                                  this.setState({
+                                    showpass2: !this.state.showpass2,
+                                  })
+                                }
+                                className="btn btn-outline-secondary border-left-0 border"
+                                style={{ height: 46 }}
+                              >
+                                <i
+                                  class="fa  fa-eye"
+                                  style={{ lineHeight: 2.5 }}
+                                />
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+
+
+                        {/* <label htmlFor="repassw">ยืนยันรหัสผ่าน</label>
                         <input
                           type="password"
                           className="form-control"
@@ -225,7 +304,7 @@ class Register extends Component {
                           onChange={(e) =>
                             this.setState({ repassword: e.target.value })
                           }
-                        />
+                        /> */}
                       </div>
                       <div className="col-md-6">
                         <span>

@@ -39,6 +39,7 @@ class User extends Component {
       reviewlist: undefined,
       auction: 0,
       auctionlist: undefined,
+      showpass: false,
       historylist: [],
       customer: {
         firstname: "",
@@ -66,8 +67,7 @@ class User extends Component {
       this.getorderreview();
       this.gethistory();
       this.getauction();
-    }
-    else{
+    } else {
       window.location.href = "/pages/login/false";
     }
   }
@@ -201,7 +201,7 @@ class User extends Component {
     // console.log("asdasdsa");
     // sessionStorage.removeItem("customer");
     // cookie.remove("customerdata");
-    cookie.remove("customerdata", { path: '/' });
+    cookie.remove("customerdata", { path: "/" });
     window.location.href = "/pages/login/false";
   }
 
@@ -250,12 +250,14 @@ class User extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log('xxresult',result)
+          console.log("xxresult", result);
           let customer = this.state.customer;
           customer.fulladdress = this.state.fulladdress;
           customer.tel = this.state.tel;
           // sessionStorage.setItem("customer", JSON.stringify(customer));
-          cookie.save("customerdata", JSON.stringify(result.result), { path: "/" });
+          cookie.save("customerdata", JSON.stringify(result.result), {
+            path: "/",
+          });
           toast.success("อัพเดทข้อมูลเรียบร้อย");
           this.setState({ ismodal: false });
           window.location.href = "/pages/user";
@@ -310,11 +312,15 @@ class User extends Component {
                       <div className="dashboard-right">
                         <div className="dashboard">
                           <div className="page-title">
-                            <h2>ข้อมูลส่วนตัว 
-                              {customer.tel == '' || customer.fulladdress == '' && (
-                                <span style={{color:'red'}}>(กรอกข้อมูลไม่ครบ)</span>
-                              )} 
-                              </h2>
+                            <h2>
+                              ข้อมูลส่วนตัว
+                              {customer.tel == "" ||
+                                (customer.fulladdress == "" && (
+                                  <span style={{ color: "red" }}>
+                                    (กรอกข้อมูลไม่ครบ)
+                                  </span>
+                                ))}
+                            </h2>
                           </div>
                           <div className="box-account box-info">
                             <div className="box-head">
@@ -437,9 +443,7 @@ class User extends Component {
                                     }}
                                     alt=""
                                   />{" "}
-                                  <label className="mt-2">
-                                    {product.name}
-                                  </label>
+                                  <label className="mt-2">{product.name}</label>
                                 </div>
                                 <div className="media mr-2 bb-1">
                                   Orderno : <b>#{product.orderno}</b>
@@ -612,6 +616,36 @@ class User extends Component {
             </div>
             <div className="modal-body">
               <div className="form-group">
+                <label htmlFor="review">รหัสผ่านใหม่</label>
+                <div className="input-group">
+                  <input
+                    type={this.state.showpass ? "text" : "password"}
+                    className="form-control"
+                    id="review"
+                    autocomplete="new-password"
+                    placeholder="ระบุรหัสผ่าน"
+                    required
+                    onChange={(e) =>
+                      this.setState({ newpassword: e.target.value })
+                    }
+                  />
+                  <span className="input-group-append">
+                    <div
+                      onClick={() =>
+                        this.setState({
+                          showpass: !this.state.showpass,
+                        })
+                      }
+                      className="btn btn-outline-secondary border-left-0 border"
+                      style={{ height: 46 }}
+                    >
+                      <i class="fa  fa-eye" style={{ lineHeight: 2.5 }} />
+                    </div>
+                  </span>
+                </div>
+              </div>
+
+              {/* <div className="form-group">
                 <label>รหัสผ่านใหม่</label>
                 <input
                   type="password"
@@ -622,7 +656,7 @@ class User extends Component {
                     this.setState({ newpassword: v.target.value })
                   }
                 />
-              </div>
+              </div> */}
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">
