@@ -113,7 +113,7 @@ class Pets extends Component {
         <Helmet>
           <title>Pettogo.co | {this.props.trans.mainpage}</title>
         </Helmet>
-        <HeaderFive logoName={"logo/petto_logo.png"} />
+        <HeaderFive logoName={"logo/218860.jpg"} />
         <section className="p-0 small-slider">
           <Slider {...Slider2} className="slide-1 home-slider">
             {this.state.bannerlist.map((value, index) => {
@@ -325,7 +325,7 @@ class Pets extends Component {
         </section>
         {/* Blog Section End*/}
         {/* <ThemeSettings/> */}
-        <FooterTwo logoName={"logo/petto_logo.png"} />
+        <FooterTwo logoName={"logo/218860.jpg"} />
       </div>
     );
   }

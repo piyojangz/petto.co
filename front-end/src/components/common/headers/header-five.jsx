@@ -215,7 +215,7 @@ class HeaderFive extends Component {
                 <div className="main-menu">
                   <div className="menu-left category-nav-right">
                     <div className="brand-logo">
-                      <LogoImage logo={this.props.logoName} />
+                      <LogoImage logo={this.props.logoName}  />
                     </div>
                     <div className="navbar"> 
                           <div className="d-block d-sm-none">

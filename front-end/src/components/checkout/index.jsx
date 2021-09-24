@@ -12,6 +12,9 @@ import { groupByKey, Siteurl } from "../../services/script";
 import { removeAllCart, setLoading } from "../../actions";
 import cookie from "react-cookies";
 import resolve from "resolve";
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 class checkOut extends Component {
   constructor(props) {
     super(props);
@@ -91,11 +94,11 @@ class checkOut extends Component {
                 <img src={images[0]} alt="" style={{ width: 40 }} />
                 {item.name} × {item.qty}{" "}
                 <span>
-                  {symbol} {item.sum}{" "}
+                  {symbol} {numberWithCommas(item.sum)}{" "}
                   <code>
                     {"+ ค่าส่ง "}
                     {symbol}
-                    {item.shippingfee}
+                    {numberWithCommas(item.shippingfee)}
                   </code>
                 </span>
               </li>
@@ -127,28 +130,28 @@ class checkOut extends Component {
       merchantlist: merchantlist,
       userid: customer.id,
     });
-    // fetch(Siteurl + "service/createorder", {
-    //   method: "POST",
-    //   headers: {
-    //     // "X-Requested-With": "XMLHttpRequest",
-    //   },
-    //   body: JSON.stringify({
-    //     cartItems: cartItems,
-    //     merchantlist: merchantlist,
-    //     userid: customer.id,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.props.setLoading(false);
-    //       toast.success("ยืนยันรายการเรียบร้อย");
-    //       removeAllCart();
-    //     },
-    //     (error) => {
-    //       toast.warn(error);
-    //     }
-    //   );
+    fetch(Siteurl + "service/createorder", {
+      method: "POST",
+      headers: {
+        // "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({
+        cartItems: cartItems,
+        merchantlist: merchantlist,
+        userid: customer.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.props.setLoading(false);
+          toast.success("ยืนยันรายการเรียบร้อย");
+          removeAllCart();
+        },
+        (error) => {
+          toast.warn(error);
+        }
+      );
   }
   render() {
     const { symbol, total } = this.props;
@@ -260,7 +263,7 @@ class checkOut extends Component {
                             รวม{" "}
                             <span className="count">
                               {symbol}
-                              {total}
+                              {numberWithCommas(total)}
                             </span>
                           </li>
                         </ul>

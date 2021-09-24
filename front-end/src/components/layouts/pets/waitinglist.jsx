@@ -25,7 +25,9 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 class WaitingList extends Component {
   constructor(props) {
     super(props);
@@ -122,12 +124,7 @@ class WaitingList extends Component {
                                 <div className="col-8 text-right">
                                   <p>
                                     ฿
-                                    {row.price.toLocaleString(
-                                      navigator.language,
-                                      {
-                                        minimumFractionDigits: 2,
-                                      }
-                                    )}
+                                    {numberWithCommas(row.price)}
                                   </p>
                                 </div>
                               </div>

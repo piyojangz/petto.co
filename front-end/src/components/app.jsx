@@ -19,9 +19,9 @@ class App extends Component {
     render() {
         return (
             <div>
-                <HeaderFive logoName={'logo/petto_logo.png'} />
+                <HeaderFive logoName={'logo/218860.jpg'} />
                 {this.props.children}
-                <FooterTwo logoName={'logo/petto_logo.png'}/>
+                <FooterTwo logoName={'logo/218860.jpg'}/>
 
                 <ThemeSettings />
 

@@ -25,7 +25,9 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 class PaidingList extends Component {
   constructor(props) {
     super(props);
@@ -194,12 +196,7 @@ class PaidingList extends Component {
                                 <div className="col-8 text-right">
                                   <p>
                                     ฿
-                                    {row.price.toLocaleString(
-                                      navigator.language,
-                                      {
-                                        minimumFractionDigits: 2,
-                                      }
-                                    )}
+                                    {numberWithCommas(row.price)}
                                   </p>
                                 </div>
                               </div>
@@ -215,12 +212,7 @@ class PaidingList extends Component {
                       <div className="col-6 text-right">
                         <p>
                           ฿
-                          {product.shippingfee.toLocaleString(
-                            navigator.language,
-                            {
-                              minimumFractionDigits: 2,
-                            }
-                          )}
+                          {numberWithCommas(product.shippingfee)}
                         </p>
                       </div>
                     </div>
@@ -290,7 +282,7 @@ class PaidingList extends Component {
                 </ul>
               </div>
               <div className="form-group mt-2">
-                <label>จำนวนเงินที่ต้องชำระ <span style={{color:'#f00'}}>{this.state.confirmorder.total}</span> บาท</label>
+                <label>จำนวนเงินที่ต้องชำระ <span style={{color:'#f00'}}>{numberWithCommas(`${this.state.confirmorder.grandtotal}`)}</span> บาท</label>
                 <input
                   className="form-control"
                   onChange={(v) =>
@@ -303,7 +295,7 @@ class PaidingList extends Component {
                   }
                   type="number"
                   required="required"
-                  placeholder={this.state.confirmorder.total}
+                  placeholder={numberWithCommas(`${this.state.confirmorder.grandtotal}`)}
                   value={this.state.payamount}
                 />
               </div>

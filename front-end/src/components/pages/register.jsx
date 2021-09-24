@@ -30,7 +30,7 @@ class Register extends Component {
   }
 
   getProfile() {
-    liff.init({ liffId: "1655781149-9byNMe1M" }, async () => {
+    liff.init({ liffId: "1656457430-BML1k06b" }, async () => {
       let getProfile = await liff.getProfile();
       this.setState({
         name: getProfile.displayName,
